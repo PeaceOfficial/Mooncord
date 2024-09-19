@@ -35,10 +35,18 @@ export interface Dev {
  * If you are fine with attribution but don't want the badge, add badge: false
  */
 export const Devs = /* #__PURE__*/ Object.freeze({
-    Ven: {
+    peaceofficial: {
         name: "peaceofficial",
         id: 317206043039891459n
     },
+} satisfies Record<string, Dev>);
+
+export const EquicordDevs = Object.freeze({
+    nobody: {
+        name: "nobody",
+        id: 0n
+    },
+
 } satisfies Record<string, Dev>);
 
 // iife so #__PURE__ works correctly
