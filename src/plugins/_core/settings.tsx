@@ -106,7 +106,7 @@ export default definePlugin({
                 className: "vc-settings"
             },
             {
-                section: "MooncordPlugins",
+                section: "EquicordPlugins",
                 label: "Plugins",
                 element: PluginsTab,
                 className: "vc-plugins"

@@ -26,7 +26,7 @@ export interface ButtonAction {
 
 export const actions: ButtonAction[] = [
     { id: "openEquicordSettings", label: "Open Equicord tab", callback: async () => await SettingsRouter.open("EquicordSettings"), registrar: "Equicord" },
-    { id: "openPluginSettings", label: "Open Plugin tab", callback: () => SettingsRouter.open("MooncordPlugins"), registrar: "Equicord" },
+    { id: "openPluginSettings", label: "Open Plugin tab", callback: () => SettingsRouter.open("EquicordPlugins"), registrar: "Equicord" },
     { id: "openThemesSettings", label: "Open Themes tab", callback: () => SettingsRouter.open("EquicordThemes"), registrar: "Equicord" },
     { id: "openUpdaterSettings", label: "Open Updater tab", callback: () => SettingsRouter.open("EquicordUpdater"), registrar: "Equicord" },
     { id: "openEquicordCloudSettings", label: "Open Cloud tab", callback: () => SettingsRouter.open("EquicordCloud"), registrar: "Equicord" },
