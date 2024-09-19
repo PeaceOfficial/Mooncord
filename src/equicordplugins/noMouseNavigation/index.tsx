@@ -4,14 +4,16 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { Devs, EquicordDevs } from "@utils/constants";
+// import { Devs, EquicordDevs } from "@utils/constants";
+
+import { EquicordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "noMouseNavigation",
     description: "Disables Forward/Back navigation with mouse side buttons!",
     tags: ["FFMSB", "sidebuttons"],
-    authors: [Devs.peaceofficial, EquicordDevs.peaceofficial],
+    authors: [EquicordDevs.peaceofficial],
 
     start() {
         window.addEventListener("mouseup", this.event);
