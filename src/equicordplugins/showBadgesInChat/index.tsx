@@ -54,9 +54,9 @@ function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.El
                 <span style={{ order: settings.store.EquicordContributorPosition }}>
                     <RoleIconComponent
                         className={roleIconClassName}
-                        name="Equicord Contributor"
+                        name="Mooncord Contributor"
                         size={20}
-                        src={"https://i.imgur.com/57ATLZu.png"}
+                        src={"https://i.imgur.com/EXAL5KW.png"}
                     />
                 </span>
             ) : null;
