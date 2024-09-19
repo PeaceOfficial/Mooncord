@@ -23,10 +23,10 @@ export const DATA_DIR = process.env.EQUICORD_USER_DATA_DIR ?? process.env.VENCOR
     process.env.DISCORD_USER_DATA_DIR
         ? IS_VESKTOP
             ? join(process.env.DISCORD_USER_DATA_DIR, "..", "VencordData")
-            : join(process.env.DISCORD_USER_DATA_DIR, "..", "EquicordData")
+            : join(process.env.DISCORD_USER_DATA_DIR, "..", "MooncordData")
         : IS_VESKTOP
             ? join(app.getPath("userData"), "..", "Vencord")
-            : join(app.getPath("userData"), "..", "Equicord")
+            : join(app.getPath("userData"), "..", "Mooncord")
 );
 
 export const SETTINGS_DIR = join(DATA_DIR, "settings");
