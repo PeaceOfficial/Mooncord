@@ -33,9 +33,10 @@
 19.09.2024
 - Created the github repository.
 
+<hr>
+- Added new custom plugin : <a href="https://github.com/PeaceOfficial/Mooncord/blob/main/src/equicordplugins/2FaOnServers/index.tsx">2FaOnServers</a> - (19.09.2024) - STATUS: ✅
 <br>
-##################################
-<br>
-- Added
+- Added new custom plugin : <a href="https://github.com/PeaceOfficial/Mooncord/blob/main/src/equicordplugins/NoMouseNavigation/index.tsx">NoMouseNavigation</a> - (19.09.2024) - STATUS: ✅
+<hr>
 
 </div>
