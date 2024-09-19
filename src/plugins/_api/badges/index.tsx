@@ -130,7 +130,7 @@ export default definePlugin({
     async start() {
         Vencord.Api.Badges.addBadge(ContributorBadge);
         Vencord.Api.Badges.addBadge(EquicordContributorBadge);
-        // Vencord.Api.Badges.addBadge(MooncordContributorBadge);
+        Vencord.Api.Badges.addBadge(MooncordContributorBadge);
         await loadAllBadges();
     },
 
