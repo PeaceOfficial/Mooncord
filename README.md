@@ -1,6 +1,6 @@
 <hr>
 
-<p align="center" style="font-size: 62px;">
+<p align="center" style="font-size: 120px;">
   <strong>" Mooncord "</strong>
 </p>
 
