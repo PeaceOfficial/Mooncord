@@ -35,8 +35,8 @@ jobs:
             - name: Generate plugin list
               run: pnpm generatePluginJson dist/plugins.json dist/plugin-readmes.json
 
-            - name: Generate Equicord plugin list
-              run: pnpm generateEquicordPluginJson dist/equicordplugins.json
+            - name: Generate Mooncord plugin list
+              run: pnpm generateMooncordPluginJson dist/Mooncordplugins.json
 
             - name: Collect files to be released
               run: |
@@ -76,7 +76,7 @@ jobs:
                 git clone https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git upload
                 cd upload
                 rm plugins.json
-                cp -r ../dist/equicordplugins.json plugins.json
+                cp -r ../dist/Mooncordplugins.json plugins.json
                 git add -A
                 git commit -m "Plugins for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
                 git push --force https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git

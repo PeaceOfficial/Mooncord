@@ -7,7 +7,7 @@
 import definePlugin from "@utils/types";
 
 export default definePlugin({
-    name: "NoMouseNavigation",
+    name: "noMouseNavigation",
     description: "Disables Forward/Back navigation with mouse side buttons!",
     tags: ["FFMSB", "sidebuttons"],
     authors: [

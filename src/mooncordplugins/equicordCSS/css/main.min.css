@@ -55,7 +55,7 @@
     --si-textcomponent: url(https://minidiscordthemes.github.io/SettingsIcons/svg/textcomponent.svg);
     --si-logout: url(https://minidiscordthemes.github.io/SettingsIcons/svg/logout.svg);
     --si-equicordsettings: url(https://minidiscordthemes.github.io/SettingsIcons/svg/vencordsettings.svg);
-    --si-equicordplugins: url(https://minidiscordthemes.github.io/SettingsIcons/svg/vencordplugins.svg);
+    --si-mooncordplugins: url(https://minidiscordthemes.github.io/SettingsIcons/svg/vencordplugins.svg);
     --si-equicordthemes: url(https://minidiscordthemes.github.io/SettingsIcons/svg/vencordthemes.svg);
     --si-equicordupdater: url(https://minidiscordthemes.github.io/SettingsIcons/svg/vencordupdater.svg);
     --si-equicordcloud: url(https://minidiscordthemes.github.io/SettingsIcons/svg/vencordcloud.svg);
@@ -333,9 +333,9 @@
     mask: var(--si-equicordsettings) center/contain no-repeat
 }
 
-.sidebar_c25c6d .side_a0 .item_a0[data-tab-id=EquicordPlugins]::before {
-    -webkit-mask: var(--si-equicordplugins) center/contain no-repeat;
-    mask: var(--si-equicordplugins) center/contain no-repeat
+.sidebar_c25c6d .side_a0 .item_a0[data-tab-id=MooncordPlugins]::before {
+    -webkit-mask: var(--si-mooncordplugins) center/contain no-repeat;
+    mask: var(--si-mooncordplugins) center/contain no-repeat
 }
 
 .sidebar_c25c6d .side_a0 .item_a0[data-tab-id=EquicordThemes]::before {
