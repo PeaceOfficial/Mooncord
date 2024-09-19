@@ -1,4 +1,3 @@
-
 <hr>
 
 <p align="center" style="font-size: 62px;">
@@ -20,7 +19,7 @@
 </p>
 
 <p align="center" style="font-size: 17px;">
-  Mooncord takes a moonshot at Discord customization, elevating it to the next level while maintaining full transparency through solo development by <a href="<https://discord.com/users/317206043039891459>">PEACE</a>.
+  Mooncord takes a moonshot at Discord customization, elevating it to the next level while maintaining full transparency through solo development by <a href="https://discord.com/users/317206043039891459">PEACE</a>
 </p>
 
 <hr>
@@ -29,26 +28,10 @@
   <strong>" Journey of Mooncord "</strong>
 </p>
 
-  <div align="center">
-    Created the GitHub repository on [19.09.2024] - ✅
-  </div>
-
-<br>
-<hr>
-
-<div>
-
-  <p align="center" style="font-size: 32px;">
-    <strong>" Patchnotes & Updates "</strong>
-  </p>
-
-  <div align="center">
-    - Added new custom plugin : <a href="https://github.com/PeaceOfficial/Mooncord/blob/main/src/equicordplugins/2FaOnServers/index.tsx">2FaOnServers</a> - (19.09.2024) - STATUS: ✅ <br>
-    - Added new custom plugin : <a href="https://github.com/PeaceOfficial/Mooncord/blob/main/src/equicordplugins/NoMouseNavigation/index.tsx">NoMouseNavigation</a> - (19.09.2024) - STATUS: ✅
-  </div>
-
-<br>
-<hr>
-
+<div align="center">
+  - Added new custom plugin : <a href="https://github.com/PeaceOfficial/Mooncord/blob/main/src/equicordplugins/2FaOnServers/index.tsx">2FaOnServers</a> - (19.09.2024) - STATUS: ✅ <br>
+  - Added new custom plugin : <a href="https://github.com/PeaceOfficial/Mooncord/blob/main/src/equicordplugins/NoMouseNavigation/index.tsx">NoMouseNavigation</a> - (19.09.2024) - STATUS: ✅
 </div>
 
+<br>
+<hr>
