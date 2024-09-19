@@ -43,7 +43,7 @@ const ContributorBadge: ProfileBadge = {
 };
 
 const EquicordContributorBadge: ProfileBadge = {
-    description: "Equicord Contributor",
+    description: "Mooncord Contributor",
     image: EQUICORD_CONTRIBUTOR_BADGE,
     position: BadgePosition.START,
     shouldShow: ({ userId }) => isEquicordPluginDev(userId),
@@ -62,6 +62,7 @@ async function loadBadges(url: string, noCache = false) {
 
 async function loadAllBadges(noCache = false) {
     const vencordBadges = await loadBadges("https://badges.vencord.dev/badges.json", noCache);
+    // const equicordBadges = await loadBadges("https://raw.githubusercontent.com/Equicord/Equibored/main/badges.json", noCache);
     const equicordBadges = await loadBadges("https://raw.githubusercontent.com/Equicord/Equibored/main/badges.json", noCache);
 
     DonorBadges = vencordBadges;
