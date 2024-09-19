@@ -5,8 +5,8 @@
  */
 
 import { addDecoration, removeDecoration } from "@api/MessageDecorations";
-import { Devs, EquicordDevs } from "@utils/constants";
-import { isEquicordPluginDev, isPluginDev } from "@utils/misc";
+import { Devs, EquicordDevs, } from "@utils/constants";
+import { isEquicordPluginDev, isMooncordPluginDev, isPluginDev } from "@utils/misc";
 import definePlugin from "@utils/types";
 import { findByPropsLazy, findComponentByCodeLazy } from "@webpack";
 import badges from "plugins/_api/badges";
@@ -36,6 +36,30 @@ const discordBadges: readonly [number, string, string][] = Object.freeze([
 function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.Element | null {
 
     switch (badge) {
+        case "MooncordDonor":
+            return (
+                <span style={{ order: settings.store.MooncordDonorPosition }}>
+                    {badges.getMooncordDonorBadges(author.id)?.map((badge: any) => (
+                        <RoleIconComponent
+                            className={roleIconClassName}
+                            name={badge.description}
+                            size={20}
+                            src={badge.image}
+                        />
+                    ))}
+                </span>
+            );
+        case "MooncordContributer":
+            return isMooncordPluginDev(author.id) ? (
+                <span style={{ order: settings.store.MooncordContributorPosition }}>
+                    <RoleIconComponent
+                        className={roleIconClassName}
+                        name="Mooncord Contributor"
+                        size={20}
+                        src={"https://i.imgur.com/EXAL5KW.png"}
+                    />
+                </span>
+            ) : null;
         case "EquicordDonor":
             return (
                 <span style={{ order: settings.store.EquicordDonorPosition }}>
@@ -54,9 +78,9 @@ function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.El
                 <span style={{ order: settings.store.EquicordContributorPosition }}>
                     <RoleIconComponent
                         className={roleIconClassName}
-                        name="Mooncord Contributor"
+                        name="Equicord Contributor"
                         size={20}
-                        src={"https://i.imgur.com/EXAL5KW.png"}
+                        src={"https://i.imgur.com/57ATLZu.png"}
                     />
                 </span>
             ) : null;
@@ -124,6 +148,8 @@ function ChatBadges({ author }: { author: User; }) {
 
     return (
         <span className="vc-sbic-badge-row" style={{ margin: "2px" }}>
+            {settings.store.showMooncordDonor && <CheckBadge badge={"MooncordDonor"} author={author} />}
+            {settings.store.showMooncordContributor && <CheckBadge badge={"MooncordContributer"} author={author} />}
             {settings.store.showEquicordDonor && <CheckBadge badge={"EquicordDonor"} author={author} />}
             {settings.store.showEquicordContributor && <CheckBadge badge={"EquicordContributer"} author={author} />}
             {settings.store.showVencordDonor && <CheckBadge badge={"VencordDonor"} author={author} />}

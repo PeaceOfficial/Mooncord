@@ -9,6 +9,32 @@ import { OptionType } from "@utils/types";
 import { Text, useEffect, UserStore, useState } from "@webpack/common";
 
 const settings = definePluginSettings({
+
+    showMooncordDonor: {
+        type: OptionType.BOOLEAN,
+        description: "Enable to show Mooncord Donor badges in chat.",
+        hidden: true,
+        default: true
+    },
+    MooncordDonorPosition: {
+        type: OptionType.NUMBER,
+        description: "The position of the Mooncord Donor badges.",
+        hidden: true,
+        default: 0
+    },
+    showMooncordContributor: {
+        type: OptionType.BOOLEAN,
+        description: "Enable to show Mooncord Contributor badges in chat.",
+        hidden: true,
+        default: true
+    },
+    MooncordContributorPosition: {
+        type: OptionType.NUMBER,
+        description: "The position of the Mooncord Contributor badge.",
+        hidden: true,
+        default: 1
+    },
+
     showEquicordDonor: {
         type: OptionType.BOOLEAN,
         description: "Enable to show Equicord Donor badges in chat.",
@@ -33,6 +59,7 @@ const settings = definePluginSettings({
         hidden: true,
         default: 1
     },
+
     showVencordDonor: {
         type: OptionType.BOOLEAN,
         description: "Enable to show Vencord donor badges in chat.",
@@ -57,6 +84,7 @@ const settings = definePluginSettings({
         hidden: true,
         default: 5
     },
+
     showDiscordProfile: {
         type: OptionType.BOOLEAN,
         description: "Enable to show Discord profile badges in chat.",
@@ -81,6 +109,7 @@ const settings = definePluginSettings({
         hidden: true,
         default: 7
     },
+
     badgeSettings: {
         type: OptionType.COMPONENT,
         description: "Setup badge layout and visibility",
