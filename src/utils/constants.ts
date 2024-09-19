@@ -42,10 +42,6 @@ export const Devs = /* #__PURE__*/ Object.freeze({
 
     // //////////////////////////////////
 
-    peaceofficial: {
-        name: "peaceofficial",
-        id: 317206043039891459n,
-    },
 
     // //////////////////////////////////
 
