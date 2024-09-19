@@ -35,6 +35,20 @@ export interface Dev {
  * If you are fine with attribution but don't want the badge, add badge: false
  */
 export const Devs = /* #__PURE__*/ Object.freeze({
+    nobody: {
+        name: "nobody",
+        id: 0n
+    },
+
+    // //////////////////////////////////
+
+    peaceofficial: {
+        name: "peaceofficial",
+        id: 317206043039891459n
+    },
+
+    // //////////////////////////////////
+
     Ven: {
         name: "Vee",
         id: 343383572805058560n
@@ -577,11 +591,6 @@ export const Devs = /* #__PURE__*/ Object.freeze({
         name: "RamziAH",
         id: 1279957227612147747n,
     },
-    peaceofficial: {
-        name: "peaceofficial",
-        id: 317206043039891459n
-    },
-
 } satisfies Record<string, Dev>);
 
 export const EquicordDevs = Object.freeze({
@@ -589,10 +598,16 @@ export const EquicordDevs = Object.freeze({
         name: "nobody",
         id: 0n
     },
+
+    // //////////////////////////////////
+
     peaceofficial: {
         name: "peaceofficial",
         id: 317206043039891459n
     },
+
+    // //////////////////////////////////
+
     thororen: {
         name: "thororen",
         id: 848339671629299742n
