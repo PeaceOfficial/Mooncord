@@ -61,7 +61,7 @@ const MooncordContributorBadge: ProfileBadge = {
 
 let DonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
 let EquicordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
-const MooncordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
+let MooncordDonorBadges = {} as Record<string, Array<Record<"tooltip" | "badge", string>>>;
 
 async function loadBadges(url: string, noCache = false) {
     const init = {} as RequestInit;
@@ -77,6 +77,7 @@ async function loadAllBadges(noCache = false) {
 
     DonorBadges = vencordBadges;
     EquicordDonorBadges = equicordBadges;
+    MooncordDonorBadges = mooncordBadges;
 }
 
 
