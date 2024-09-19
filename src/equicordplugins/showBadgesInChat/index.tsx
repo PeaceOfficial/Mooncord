@@ -34,7 +34,6 @@ const discordBadges: readonly [number, string, string][] = Object.freeze([
 ]);
 
 function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.Element | null {
-
     switch (badge) {
         case "MooncordDonor":
             return (
