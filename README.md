@@ -1,6 +1,6 @@
 <hr>
 
-<p align="center" style="font-size: 120px;">
+<p align="center" style="font-size: 62px;">
   <strong>" Mooncord "</strong>
 </p>
 
@@ -19,7 +19,7 @@
 </p>
 
 <p align="center" style="font-size: 17px;">
-  Mooncord takes a moonshot at Discord customization, elevating it to the next level while maintaining full transparency through solo development by <a href="https://discord.com/users/317206043039891459">PEACE</a>
+  Mooncord takes a moonshot at Discord customization, elevating it to the next level while maintaining full transparency through solo development by <a href="https://discord.com/users/317206043039891459">PEACE</a>.
 </p>
 
 <hr>
@@ -33,5 +33,4 @@
   - Added new custom plugin : <a href="https://github.com/PeaceOfficial/Mooncord/blob/main/src/equicordplugins/NoMouseNavigation/index.tsx">NoMouseNavigation</a> - (19.09.2024) - STATUS: ✅
 </div>
 
-<br>
 <hr>
