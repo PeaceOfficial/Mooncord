@@ -5,7 +5,7 @@ on:
             - main
 env:
     FORCE_COLOR: true
-    GITHUB_TOKEN: ${{ secrets.ETOKEN }}
+    #GITHUB_TOKEN: ${{ secrets.ETOKEN }}
 
 jobs:
     Build:
@@ -81,6 +81,6 @@ jobs:
                 git commit -m "Plugins for https://github.com/$GITHUB_REPOSITORY/commit/$GITHUB_SHA"
                 git push --force https://$USERNAME:$API_TOKEN@github.com/$GH_REPO.git
               env:
-                API_TOKEN: ${{ secrets.ETOKEN }}
+                #API_TOKEN: ${{ secrets.ETOKEN }}
                 GH_REPO: Equicord/Equibored
                 USERNAME: thororen1234
