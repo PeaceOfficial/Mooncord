@@ -4,17 +4,13 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
+import { Devs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
 export default definePlugin({
     name: "2FaOnServers",
     description: "never get bothered about 2fa moderation again on servers!",
-    authors: [
-        {
-            id: 317206043039891459n,
-            name: "PEACE",
-        },
-    ],
+    authors: [Devs.peaceofficial],
     patches: [
         {
             find: "APPLICATION_SUBSCRIPTION_EXPIRATION:",
