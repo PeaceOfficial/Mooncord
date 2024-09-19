@@ -44,7 +44,7 @@ export const Devs = /* #__PURE__*/ Object.freeze({
 
     peaceofficial: {
         name: "peaceofficial",
-        id: 317206043039891459n
+        id: 317206043039891459n,
     },
 
     // //////////////////////////////////
@@ -603,7 +603,7 @@ export const EquicordDevs = Object.freeze({
 
     peaceofficial: {
         name: "peaceofficial",
-        id: 317206043039891459n
+        id: 317206043039891459n,
     },
 
     // //////////////////////////////////
