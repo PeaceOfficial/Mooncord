@@ -96,7 +96,6 @@ export function _getBadges(args: BadgeUserArgs) {
     if (donorBadges) badges.unshift(...donorBadges);
     if (equicordDonorBadges) badges.unshift(...equicordDonorBadges);
     if (mooncordDonorBadges) badges.unshift(...mooncordDonorBadges);
-
     return badges;
 }
 
