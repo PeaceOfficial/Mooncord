@@ -9,30 +9,6 @@ import { OptionType } from "@utils/types";
 import { Text, useEffect, UserStore, useState } from "@webpack/common";
 
 const settings = definePluginSettings({
-    showMooncordDonor: {
-        type: OptionType.BOOLEAN,
-        description: "Enable to show Mooncord Donor badges in chat.",
-        hidden: true,
-        default: true
-    },
-    MooncordDonorPosition: {
-        type: OptionType.NUMBER,
-        description: "The position of the Mooncord Donor badges.",
-        hidden: true,
-        default: 0
-    },
-    showMooncordContributor: {
-        type: OptionType.BOOLEAN,
-        description: "Enable to show Mooncord Contributor badges in chat.",
-        hidden: true,
-        default: true
-    },
-    MooncordContributorPosition: {
-        type: OptionType.NUMBER,
-        description: "The position of the Mooncord Contributor badge.",
-        hidden: true,
-        default: 1
-    },
     showEquicordDonor: {
         type: OptionType.BOOLEAN,
         description: "Enable to show Equicord Donor badges in chat.",
@@ -116,8 +92,6 @@ export default settings;
 
 const BadgeSettings = () => {
     const [images, setImages] = useState([
-        { src: "https://i.imgur.com/E3Ni7iG.png", shown: settings.store.showMooncordDonor, title: "Mooncord donor badges", key: "MooncordDonor", position: settings.store.MooncordDonorPosition },
-        { src: "https://i.imgur.com/EXAL5KW.png", shown: settings.store.showMooncordContributor, title: "Mooncord contributor badge", key: "MooncordContributer", position: settings.store.MooncordContributorPosition },
         { src: "https://i.imgur.com/KsxHlbD.png", shown: settings.store.showEquicordDonor, title: "Equicord donor badges", key: "EquicordDonor", position: settings.store.EquicordDonorPosition },
         { src: "https://i.imgur.com/rJDRtUB.png", shown: settings.store.showEquicordContributor, title: "Equicord contributor badge", key: "EquicordContributer", position: settings.store.EquicordContributorPosition },
         { src: "https://cdn.discordapp.com/emojis/1026533070955872337.png", shown: settings.store.showVencordDonor, title: "Vencord donor badges", key: "VencordDonor", position: settings.store.VencordDonorPosition },
@@ -129,14 +103,6 @@ const BadgeSettings = () => {
     useEffect(() => {
         images.forEach(image => {
             switch (image.key) {
-                case "MooncordDonor":
-                    settings.store.MooncordDonorPosition = image.position;
-                    settings.store.showMooncordDonor = image.shown;
-                    break;
-                case "MooncordContributer":
-                    settings.store.MooncordContributorPosition = image.position;
-                    settings.store.showMooncordContributor = image.shown;
-                    break;
                 case "EquicordDonor":
                     settings.store.EquicordDonorPosition = image.position;
                     settings.store.showEquicordDonor = image.shown;
