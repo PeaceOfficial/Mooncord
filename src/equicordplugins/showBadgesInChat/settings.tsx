@@ -19,7 +19,7 @@ const settings = definePluginSettings({
         type: OptionType.NUMBER,
         description: "The position of the Mooncord Donor badges.",
         hidden: true,
-        default: 1
+        default: 0
     },
     showMooncordContributor: {
         type: OptionType.BOOLEAN,
