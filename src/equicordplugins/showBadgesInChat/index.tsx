@@ -56,7 +56,7 @@ function CheckBadge({ badge, author }: { badge: string; author: User; }): JSX.El
                         className={roleIconClassName}
                         name="Mooncord Contributor"
                         size={20}
-                        src={"https://i.imgur.com/57ATLZu.png"}
+                        src={"https://i.imgur.com/bwIHqLv.png"}
                     />
                 </span>
             ) : null;
