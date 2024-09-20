@@ -1,3 +1,9 @@
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2024 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
 import axios from "axios";
 
 import * as utils from "./utils.mjs";
@@ -7,21 +13,21 @@ const { addUser, CLIENT_MODS } = utils;
 let attempts = 1;
 
 
-const getEquicordBadges = async () => {
+const getMooncordBadges = async () => {
     try {
         const { data } = await axios.get(
-            "https://raw.githubusercontent.com/Equicord/Equicord/main/src/utils/constants.ts",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/utils/constants.ts",
             { headers: { "Cache-Control": "no-cache" } }
         );
 
-        const matches = data.split("EquicordDevs")[1].match(/id: ([0-9n]+)/gs);
+        const matches = data.split("MooncordDevs")[1].match(/id: ([0-9n]+)/gs);
         const contributors = matches.map(match => {
             const [, id] = match.match(/id: ([0-9n]+)/s);
             return { id: id.replace("n", ""), badges: ["Contributor"] };
         });
 
         const { data: donorData } = await axios.get(
-            "https://raw.githubusercontent.com/Equicord/Ignore/main/badges.json",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/badges/badges.json",
             { headers: { "Cache-Control": "no-cache" } }
         );
 
@@ -47,13 +53,13 @@ const getEquicordBadges = async () => {
             return acc;
         }, []);
 
-        users.forEach(user => addUser(user.id, CLIENT_MODS.EQUICORD, user.badges));
+        users.forEach(user => addUser(user.id, CLIENT_MODS.MOONCORD, user.badges));
         console.log(users);
     } catch (e) {
         if (attempts++ > 4)
-            console.error("Failed to get Equicord badges after 5 attempts", e);
+            console.error("Failed to get Mooncord badges after 5 attempts", e);
         else setTimeout(getEquicordBadges, 500);
     }
 };
 
-getEquicordBadges();
+getMooncordBadges();
