@@ -110,7 +110,7 @@ function VencordPopoutButton() {
                 <HeaderBarIcon
                     className="vc-toolbox-btn"
                     onClick={() => setShow(v => !v)}
-                    tooltip={isShown ? null : "Vencord Toolbox"}
+                    tooltip={isShown ? null : "Client Toolbox"}
                     icon={() => VencordPopoutIcon(isShown)}
                     selected={isShown}
                 />
@@ -130,10 +130,10 @@ function ToolboxFragmentWrapper({ children }: { children: ReactNode[]; }) {
     return <>{children}</>;
 }
 
-migratePluginSettings("EquicordToolbox", "VencordToolbox");
+migratePluginSettings("clientToolbox", "VencordToolbox");
 export default definePlugin({
-    name: "EquicordToolbox",
-    description: "Adds a button next to the inbox button in the channel header that houses Equicord quick actions",
+    name: "clientToolbox",
+    description: "Adds a button next to the inbox button in the channel header that houses your Discord Client quick actions.",
     authors: [Devs.Ven, Devs.AutumnVN],
 
     patches: [
