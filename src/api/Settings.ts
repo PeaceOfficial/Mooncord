@@ -87,9 +87,13 @@ const DefaultSettings: Settings = {
     autoUpdate: false,
     autoUpdateNotification: false,
     useQuickCss: true,
-    themeLinks: ["https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css"],
-    enabledThemes: [],
-    enabledThemeLinks: [],
+    "themeLinks": [
+        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css"
+    ],
+    "enabledThemes": [],
+    "enabledThemeLinks": [
+        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css"
+    ],
     enableReactDevtools: false,
     frameless: false,
     transparent: false,
