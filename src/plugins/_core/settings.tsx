@@ -18,10 +18,7 @@
 
 import { Settings } from "@api/Settings";
 import BackupAndRestoreTab from "@components/VencordSettings/BackupAndRestoreTab";
-import CloudTab from "@components/VencordSettings/CloudTab";
-import PatchHelperTab from "@components/VencordSettings/PatchHelperTab";
 import PluginsTab from "@components/VencordSettings/PluginsTab";
-import UpdaterTab from "@components/VencordSettings/UpdaterTab";
 import VencordTab from "@components/VencordSettings/VencordTab";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
@@ -117,6 +114,15 @@ export default definePlugin({
                 element: require("@components/ThemeSettings/ThemesTab").default,
                 className: "vc-themes"
             },
+
+            {
+                section: "EquicordSettingsSync",
+                label: "Backup & Restore",
+                element: BackupAndRestoreTab,
+                className: "vc-backup-restore"
+            },
+
+            /*
             !IS_UPDATER_DISABLED && {
                 section: "EquicordUpdater",
                 label: "Updater",
@@ -130,17 +136,13 @@ export default definePlugin({
                 className: "vc-cloud"
             },
             {
-                section: "EquicordSettingsSync",
-                label: "Backup & Restore",
-                element: BackupAndRestoreTab,
-                className: "vc-backup-restore"
-            },
-            {
                 section: "EquicordPatchHelper",
                 label: "Patch Helper",
                 element: PatchHelperTab,
                 className: "vc-patch-helper"
             },
+            */
+
             ...this.customSections.map(func => func(SectionTypes)),
             {
                 section: SectionTypes.DIVIDER
