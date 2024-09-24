@@ -126,7 +126,7 @@
 .folderIconWrapper_bc7085[style="background-color: rgba(88, 101, 242, 0.4);"] /* default color closed folders */ {
 	background: var(--bg-3) !important;
 }
-.folder_bc7085.hover_bc7085 /* folder opened on hover */, 
+.folder_bc7085.hover_bc7085 /* folder opened on hover */,
 #app-mount .outer_c0f6a6.interactive_c0f6a6:hover, #app-mount .outer_c0f6a6.active_c0f6a6 /* friend activity cards on hover */ {
 	background: var(--bg-2);
 }
@@ -211,7 +211,7 @@ path[fill='var(--white-500)'] {
 .lookFilled_dd4f85.colorRed_dd4f85 /* red buttons */,
 .lookFilled_dd4f85.colorYellow__818c3 /* yellow buttons */,
 .bar_c10249 /* NEW unread pill */,
-.wrapper_f90abb:hover .childWrapper_f90abb, /* default server icon text */ 
+.wrapper_f90abb:hover .childWrapper_f90abb, /* default server icon text */
 .wrapper_f90abb.selected_ae80f7 .childWrapper_f90abb /* default server icon text */,
 .colorDefault_d90b3d.focused_d90b3d /* menu option hover */,
 .colorDefault_d90b3d.focused_d90b3d .caret_d90b3d /* popup menu hover caret */,
@@ -467,7 +467,7 @@ a[href="https://support.discord.com"] /* hide help */
 .shop_e77fa3 /* discord shop */,
 .container_d576e9 /* family center */,
 .container_d1c246 /* message request */,
-#app-mount .callContainer_d880dc /* vc */, 
+#app-mount .callContainer_d880dc /* vc */,
 .chat_a7d72e /* general chat container (for browse channels page */,
 .animatedContainer_fd6364 /* server image card */,
 .notice_be03aa /* banner notice */,
@@ -662,7 +662,7 @@ button.button_dd4f85 /* small buttons */,
 .platform-win .container_a4d4d9 {
 	margin-top: 0;
 }
-/* UNCOMMENT if you want to make panels evenly sized on macos 
+/* UNCOMMENT if you want to make panels evenly sized on macos
 .platform-osx .wrapper_fea3ef {
     margin-top: 0;
 }
@@ -891,6 +891,12 @@ button.button_f67531 /* make user panel buttons round */ {
 }
 .bottom_eba0ba > .containerPadding_eba0ba:hover {
 	margin-bottom: -12px;
+}
+
+/* Decor Compat */
+.vc-decor-sectioned-grid-list-container {
+	border-radius: 0% !important;
+	overflow: scroll !important;
 }
 
 .theme-light {
