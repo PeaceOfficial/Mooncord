@@ -32,13 +32,16 @@ function BackupRestoreTab() {
             <Card className={classes("vc-settings-card", "vc-backup-restore-card")}>
                 <Flex flexDirection="column">
                     <strong>Warning</strong>
+                    <span> </span>
                     <span>Importing a settings file will overwrite your current settings.</span>
+                    <span> </span>
+                    <span>You can find "MOONCORD" # directory inside: %AppData%</span>
                 </Flex>
             </Card>
             <Text variant="text-md/normal" className={Margins.bottom8}>
                 You can import and export your Mooncord settings as a JSON file.
                 This allows you to easily transfer your settings to another device,
-                or recover your settings after reinstalling Vencord or Discord.
+                or recover your settings after reinstalling Mooncord or Discord.
             </Text>
             <Text variant="text-md/normal" className={Margins.bottom8}>
                 Settings Export contains:
