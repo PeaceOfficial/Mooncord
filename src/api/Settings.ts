@@ -259,7 +259,7 @@ const DefaultSettings: Settings = {
             "imageSmall": "moonlight",
             "imageSmallTooltip": "Mooncord, featuring a variety of new enhancements, including: \"Themes, Plugins, Optimizations\".",
             "details": "Mooncord takes a Moonshot at Discord customization, elevating it through solo development by: \"PEACE\", with full transparency.",
-            "state": "Version: \"0.0.1 - DEV BUILD\" 🌙🌚🌕",
+            "state": "Version: \"1.0 - RELEASE\" 🌙🌚🌕",
             "buttonOneText": "GITHUB",
             "buttonOneURL": "https://github.com/PeaceOfficial/Mooncord",
             "buttonTwoText": "WEBSITE",
