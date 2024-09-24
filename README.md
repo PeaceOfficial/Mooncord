@@ -23,7 +23,7 @@
 </p>
 
 <p align="center" style="font-size: 17px;">
-  Mooncord download is available now : <a href="https://github.com/PeaceOfficial/Moonship/releases/download/Release/Moonship.exe">DOWNLOAD</a>
+  <a href="https://github.com/PeaceOfficial/Moonship/releases/download/Release/Moonship.exe">DOWNLOAD MOONCORD</a>
 </p>
 
 <hr>
