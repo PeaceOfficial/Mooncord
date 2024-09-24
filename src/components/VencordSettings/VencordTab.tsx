@@ -98,7 +98,7 @@ function MooncordSettings() {
         ];
 
     return (
-        <SettingsTab title="Mooncord Settings123">
+        <SettingsTab title="Mooncord Settings">
             <DonateCard image={donateImage} />
             <Forms.FormSection title="Quick Actions">
                 <QuickActionCard>
