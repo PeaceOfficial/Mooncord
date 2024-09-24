@@ -22,6 +22,8 @@ import { classes } from "@utils/misc";
 import { downloadSettingsBackup, uploadSettingsBackup } from "@utils/settingsSync";
 import { Button, Card, Text } from "@webpack/common";
 
+// Import the shell module from Electron
+// Import path to construct the folder path
 import { SettingsTab, wrapTab } from "./shared";
 
 function BackupRestoreTab() {
@@ -48,16 +50,16 @@ function BackupRestoreTab() {
             </Text>
             <Flex>
                 <Button
+                    onClick={() => downloadSettingsBackup()}
+                    size={Button.Sizes.SMALL}
+                >
+                    Export Settings
+                </Button>
+                <Button
                     onClick={() => uploadSettingsBackup()}
                     size={Button.Sizes.SMALL}
                 >
                     Import Settings
-                </Button>
-                <Button
-                    onClick={downloadSettingsBackup}
-                    size={Button.Sizes.SMALL}
-                >
-                    Export Settings
                 </Button>
             </Flex>
         </SettingsTab>
@@ -65,3 +67,7 @@ function BackupRestoreTab() {
 }
 
 export default wrapTab(BackupRestoreTab, "Backup & Restore");
+function userInfo() {
+    throw new Error("Function not implemented.");
+}
+
