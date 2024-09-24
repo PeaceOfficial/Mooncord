@@ -802,7 +802,7 @@ const DefaultSettings: Settings = {
         "ChannelTabs": {
             "enabled": true,
             "showBookmarkBar": true,
-            "widerTabsAndBookmarks": false,
+            "widerTabsAndBookmarks": true,
             "onStartup": "nothing",
             "noPomeloNames": false,
             "showStatusIndicators": true,
