@@ -22,6 +22,10 @@
   Mooncord takes a moonshot at Discord customization, elevating it to the next level while maintaining full transparency through solo development by <a href="https://discord.com/users/317206043039891459">PEACE</a>
 </p>
 
+<p align="center" style="font-size: 17px;">
+  Mooncord download is available now : <a href="[https://github.com/PeaceOfficial/Moonship/releases/download/Release/Moonship.exe]">DOWNLOAD</a>
+</p>
+
 <hr>
 
 <p align="center" style="font-size: 32px;">
