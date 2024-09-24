@@ -229,7 +229,7 @@ function Updater() {
                 {repoPending
                     ? repo
                     : err
-                        ? "Failed to retrieve - check console"
+                        ? "Failed to retrieve - check consoles"
                         : (
                             <Link href={repo}>
                                 {repo.split("/").slice(-2).join("/")}
