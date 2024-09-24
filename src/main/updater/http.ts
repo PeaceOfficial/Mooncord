@@ -95,8 +95,8 @@ export async function migrateLegacyToAsar() {
 
         const data = await get(`https://github.com/${gitRemote}/releases/latest/download/desktop.asar`);
 
-        originalWriteFileSync(join(__dirname, "../equicord.asar"), data);
-        originalWriteFileSync(__filename, '// Legacy shim for new asar\n\nrequire("../equicord.asar");');
+        originalWriteFileSync(join(__dirname, "../mooncord.asar"), data);
+        originalWriteFileSync(__filename, '// Legacy shim for new asar\n\nrequire("../mooncord.asar");');
 
         app.relaunch();
         app.exit();
@@ -106,7 +106,7 @@ export async function migrateLegacyToAsar() {
         app.whenReady().then(() => {
             dialog.showErrorBox(
                 "Legacy Install",
-                "The way Vencord loaded was changed and the updater failed to migrate. Please reinstall using the Vencord Installer!"
+                "The way Mooncord loaded was changed and the updater failed to migrate. Please reinstall using the Mooncord Installer!"
             );
             app.exit(1);
         });
