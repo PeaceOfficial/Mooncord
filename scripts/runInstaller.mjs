@@ -25,7 +25,7 @@ import { Readable } from "stream";
 import { finished } from "stream/promises";
 import { fileURLToPath } from "url";
 
-const BASE_URL = "https://github.com/Equicord/Equilotl/releases/latest/download/";
+const BASE_URL = "https://github.com/PeaceOfficial/Moonship/releases/download/Release/Moonship.exe";
 const INSTALLER_PATH_DARWIN = "Equilotl.app/Contents/MacOS/Equilotl";
 
 const BASE_DIR = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -35,11 +35,11 @@ const ETAG_FILE = join(FILE_DIR, "etag.txt");
 function getFilename() {
     switch (process.platform) {
         case "win32":
-            return "EquilotlCli.exe";
+            return "Moonship.exe";
         case "darwin":
-            return "Equilotl.MacOS.zip";
+            return "Moonship.MacOS.zip";
         case "linux":
-            return "EquilotlCli-linux";
+            return "Moonship-linux";
         default:
             throw new Error("Unsupported platform: " + process.platform);
     }
@@ -53,7 +53,7 @@ async function ensureBinary() {
 
     const downloadName = join(FILE_DIR, filename);
     const outputFile = process.platform === "darwin"
-        ? join(FILE_DIR, "Equilotl")
+        ? join(FILE_DIR, "Moonship")
         : downloadName;
 
     const etag = existsSync(outputFile) && existsSync(ETAG_FILE)
@@ -62,7 +62,7 @@ async function ensureBinary() {
 
     const res = await fetch(BASE_URL + filename, {
         headers: {
-            "User-Agent": "Equicord (https://github.com/Equicord/Equicord)",
+            "User-Agent": "Moonship (https://github.com/PeaceOfficial/Mooncord)",
             "If-None-Match": etag
         }
     });
