@@ -28,7 +28,7 @@
 
 <hr>
 
-### Extra included plugins
+<center>### Extra included plugins<center>
 <details><center>
 <summary>124 additional plugins</summary>
 
