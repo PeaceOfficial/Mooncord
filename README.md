@@ -28,8 +28,8 @@
 
 <hr>
 
-<center>### Extra included plugins<center>
-<details><center>
+### Extra included plugins
+<details>
 <summary>124 additional plugins</summary>
 
 - AllCallTimers by MaxHerbold & D3SOX
@@ -157,6 +157,6 @@
 - Woof by Samwich
 - YoutubeDescription by arHSM
 
-</details><center>
+</details>
 
 <hr>
