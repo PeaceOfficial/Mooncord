@@ -25,8 +25,8 @@ import { Readable } from "stream";
 import { finished } from "stream/promises";
 import { fileURLToPath } from "url";
 
-const BASE_URL = "https://github.com/PeaceOfficial/Moonship/releases/download/Release/Moonship.exe";
-const INSTALLER_PATH_DARWIN = "Equilotl.app/Contents/MacOS/Equilotl";
+const BASE_URL = "https://github.com/PeaceOfficial/Moonship/releases/download/Release/";
+const INSTALLER_PATH_DARWIN = "Moonship.app/Contents/MacOS/Moonship";
 
 const BASE_DIR = join(dirname(fileURLToPath(import.meta.url)), "..");
 const FILE_DIR = join(BASE_DIR, "dist", "Installer");
@@ -96,7 +96,7 @@ async function ensureBinary() {
                 execSync(cmd);
             } catch { }
         };
-        logAndRun(`sudo spctl --add '${outputFile}' --label "Equilotl"`);
+        logAndRun(`sudo spctl --add '${outputFile}' --label "Moonship"`);
         logAndRun(`sudo xattr -d com.apple.quarantine '${outputFile}'`);
     } else {
         // WHY DOES NODE FETCH RETURN A WEB STREAM OH MY GOD
