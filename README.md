@@ -32,7 +32,7 @@
   <strong>" What is available in Mooncord? "</strong>
 </p>
 
-<div style="display: flex; justify-content: center;">
+<div style="display: flex; justify-content: center; align-items: center; text-align: center;">
   <details>
     <summary>124 additional custom plugins</summary>
 
