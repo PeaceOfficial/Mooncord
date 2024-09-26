@@ -28,11 +28,9 @@
 
 <hr>
 
-<center>
 ### Extra included plugins
 <details>
 <summary>124 additional plugins</summary>
-
 - AllCallTimers by MaxHerbold & D3SOX
 - AltKrispSwitch by newwares
 - AmITyping by MrDiamond
@@ -157,18 +155,6 @@
 - WigglyText by nexpid
 - Woof by Samwich
 - YoutubeDescription by arHSM
-
 </details>
-
-</center>
-
-<p align="center" style="font-size: 32px;">
-  <strong>" Journey of Mooncord "</strong>
-</p>
-
-<div align="center">
-  - Added new custom plugin : <a href="https://github.com/PeaceOfficial/Mooncord/blob/main/src/equicordplugins/2FaOnServers/index.tsx">2FaOnServers</a> - (19.09.2024) - STATUS: ✅ <br>
-  - Added new custom plugin : <a href="https://github.com/PeaceOfficial/Mooncord/blob/main/src/equicordplugins/NoMouseNavigation/index.tsx">NoMouseNavigation</a> - (19.09.2024) - STATUS: ✅
-</div>
 
 <hr>
