@@ -32,8 +32,8 @@
   <strong>" What is available in Mooncord? "</strong>
 </p>
 
-<div align="center">
-  <details style="display: inline-block;">
+<div style="text-align: center;">
+  <details>
     <summary>124 additional custom plugins</summary>
 
     - AllCallTimers by MaxHerbold & D3SOX
