@@ -28,8 +28,8 @@
 
 <hr>
 
-<p align="center" style="font-size: 17px;">
-### Extra included plugins
+<p align="center" style="font-size: 62px;">
+  <strong>" Extra included plugins "</strong>
 </p>
 
 <p align="center" style="font-size: 17px;">
