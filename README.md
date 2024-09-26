@@ -32,8 +32,8 @@
   <strong>" What is available in Mooncord? "</strong>
 </p>
 
-<div align="center" style="display: flex; justify-content: center; align-items: center; text-align: center;">
-  <details>
+<div align="center">
+  <details style="display: inline-block;">
     <summary>124 additional custom plugins</summary>
 
     - AllCallTimers by MaxHerbold & D3SOX
@@ -65,7 +65,7 @@
     - DoubleCounterBypass by nyx
     - EmojiDumper by Cortex, Samwich, Woosh
     - Encryptcord by Inbestigator
-    - EquicordCSS by thororen, Panniku, Dablulite, Coolesding, MiniDiscordThemes, LuckFire, gold_me
+    - EquicordCSS (MooncordCSS) by thororen, Panniku, Dablulite, Coolesding, MiniDiscordThemes, LuckFire, gold_me
     - ExportContacts by dat_insanity
     - FindReply by newwares
     - FrequentQuickSwitcher by Samwich
