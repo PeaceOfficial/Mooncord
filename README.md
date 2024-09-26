@@ -28,10 +28,8 @@
 
 <hr>
 
-<p align="center" style="font-size: 62px;">
-  <strong>"### Extra included plugins "</strong>
-</p>
-
+<center>
+### Extra included plugins
 <details>
 <summary>124 additional plugins</summary>
 
@@ -161,6 +159,8 @@
 - YoutubeDescription by arHSM
 
 </details>
+
+</center>
 
 <p align="center" style="font-size: 32px;">
   <strong>" Journey of Mooncord "</strong>
