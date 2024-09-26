@@ -65,7 +65,7 @@
     - DoubleCounterBypass by nyx
     - EmojiDumper by Cortex, Samwich, Woosh
     - Encryptcord by Inbestigator
-    - EquicordCSS (MooncordCSS) by thororen, Panniku, Dablulite, Coolesding, MiniDiscordThemes, LuckFire, gold_me
+    - MooncordCSS by thororen, Panniku, Dablulite, Coolesding, MiniDiscordThemes, LuckFire, gold_me
     - ExportContacts by dat_insanity
     - FindReply by newwares
     - FrequentQuickSwitcher by Samwich
