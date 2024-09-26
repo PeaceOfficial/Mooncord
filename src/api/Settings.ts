@@ -1036,7 +1036,7 @@ const DefaultSettings: Settings = {
             "enabled": true
         },
         "NoNitroUpsell": {
-            "enabled": false
+            "enabled": true
         },
         "NoRoleHeaders": {
             "enabled": false
