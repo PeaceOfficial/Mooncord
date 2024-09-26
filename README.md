@@ -29,12 +29,12 @@
 <hr>
 
 <p align="center" style="font-size: 62px;">
-  <strong>" Extra features only in Mooncord "</strong>
+  <strong>" What is available in Mooncord? "</strong>
 </p>
 
-<div style="text-align: center;">
+<div style="display: flex; justify-content: center;">
   <details>
-    <summary>124 additional plugins</summary>
+    <summary>124 additional custom plugins</summary>
 
     - AllCallTimers by MaxHerbold & D3SOX
     - AltKrispSwitch by newwares
