@@ -28,7 +28,11 @@
 
 <hr>
 
+<p align="center" style="font-size: 17px;">
 ### Extra included plugins
+</p>
+
+<p align="center" style="font-size: 17px;">
 <details>
 <summary>124 additional plugins</summary>
 
@@ -158,5 +162,6 @@
 - YoutubeDescription by arHSM
 
 </details>
+</p>
 
 <hr>
