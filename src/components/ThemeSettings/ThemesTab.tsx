@@ -415,7 +415,6 @@ function ThemesTab() {
 
     function deleteThemeLink(link: string) {
         settings.themeLinks = settings.themeLinks.filter(f => f !== link);
-
         refreshOnlineThemes();
     }
 
