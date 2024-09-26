@@ -29,8 +29,9 @@
 <hr>
 
 ### Extra included plugins
-<details>
+<details><center>
 <summary>124 additional plugins</summary>
+
 - AllCallTimers by MaxHerbold & D3SOX
 - AltKrispSwitch by newwares
 - AmITyping by MrDiamond
@@ -155,6 +156,7 @@
 - WigglyText by nexpid
 - Woof by Samwich
 - YoutubeDescription by arHSM
-</details>
+
+</details><center>
 
 <hr>
