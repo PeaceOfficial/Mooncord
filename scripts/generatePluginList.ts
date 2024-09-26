@@ -275,7 +275,7 @@ function isPluginFile({ name }: { name: string; }) {
     const plugins = [] as PluginData[];
     const readmes = {} as Record<string, string>;
 
-    await Promise.all(["src/plugins", "src/plugins/_core", "src/mooncordplugins"].flatMap(dir =>
+    await Promise.all(["src/plugins", "src/plugins/_core", "src/plugins-mooncord"].flatMap(dir =>
         readdirSync(dir, { withFileTypes: true })
             .filter(isPluginFile)
             .map(async dirent => {
