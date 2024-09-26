@@ -28,7 +28,10 @@
 
 <hr>
 
-### Extra included plugins
+<p align="center" style="font-size: 62px;">
+  <strong>"### Extra included plugins "</strong>
+</p>
+
 <details>
 <summary>124 additional plugins</summary>
 
