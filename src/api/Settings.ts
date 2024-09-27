@@ -841,9 +841,6 @@ const DefaultSettings: Settings = {
         "CutePats": {
             "enabled": false
         },
-        "DeadMembers": {
-            "enabled": false
-        },
         "Demonstration": {
             "enabled": false
         },
@@ -1086,9 +1083,6 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "SekaiStickers": {
-            "enabled": false
-        },
-        "ServerSearch": {
             "enabled": false
         },
         "ShowBadgesInChat": {
