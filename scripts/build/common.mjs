@@ -115,14 +115,16 @@ export const globPlugins = kind => ({
         });
 
         build.onLoad({ filter, namespace: "import-plugins" }, async () => {
-            const pluginDirs = ["plugins/_api", "plugins/_core", "plugins", "userplugins", "equicordplugins"];
+            const pluginDirs = ["plugins/_api", "plugins/_core", "plugins", "plugins-user", "plugins-custom", "plugins-mooncord"];
             let code = "";
             let pluginsCode = "\n";
             let metaCode = "\n";
             let excludedCode = "\n";
             let i = 0;
             for (const dir of pluginDirs) {
-                const userPlugin = dir === "userplugins";
+                const userPlugins = dir === "plugins-user";
+                const customPlugins = dir === "plugins-custom";
+                const mooncordPlugins = dir === "plugins-mooncord";
 
                 const fullDir = `./src/${dir}`;
                 if (!await exists(fullDir)) continue;
@@ -155,7 +157,7 @@ export const globPlugins = kind => ({
                     const mod = `p${i}`;
                     code += `import ${mod} from "./${dir}/${fileName.replace(/\.tsx?$/, "")}";\n`;
                     pluginsCode += `[${mod}.name]:${mod},\n`;
-                    metaCode += `[${mod}.name]:${JSON.stringify({ folderName, userPlugin })},\n`; // TODO: add excluded plugins to display in the UI?
+                    metaCode += `[${mod}.name]:${JSON.stringify({ folderName, userPlugins, customPlugins, mooncordPlugins })},\n`; // TODO: add excluded plugins to display in the UI?
                     i++;
                 }
             }
