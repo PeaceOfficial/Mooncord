@@ -74,8 +74,8 @@ let settingsArray: Array<any> = [];
 let cssArray: Array<any> = [];
 
 export default definePlugin({
-    name: "EquicordCSS",
-    description: "CSS for Equicord users. You will need to look at the settings.",
+    name: "MooncordCSS",
+    description: "CSS for Mooncord users. You will need to look at the settings.",
     authors: [EquicordDevs.thororen, EquicordDevs.Panniku],
     dependencies: ["ThemeAttributes"],
     settings,
