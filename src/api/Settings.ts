@@ -295,7 +295,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "FakeNitro": {
-            "enabled": false,
+            "enabled": true,
             "enableEmojiBypass": true,
             "emojiSize": 48,
             "transformEmojis": true,
@@ -1292,9 +1292,6 @@ const DefaultSettings: Settings = {
         },
         "AtSomeone": {
             "enabled": false
-        },
-        "DiscordFileSplitter": {
-            "enabled": true
         },
         "BannersEverywhere": {
             "enabled": false,
