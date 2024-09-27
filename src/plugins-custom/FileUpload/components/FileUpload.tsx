@@ -5,7 +5,7 @@
  */
 
 import { useState } from "@webpack/common";
-import { ChunkedFile, splitFileIntoChunks } from "plugins-user/FileUpload/components/chunkUtils";
+import { ChunkedFile, splitFileIntoChunks } from "plugins-custom/FileUpload/components/chunkUtils";
 
 interface FileUploadProps {
     onUploadComplete: (fileName: string) => void;
