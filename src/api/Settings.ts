@@ -390,7 +390,7 @@ const DefaultSettings: Settings = {
             "showAtSymbol": true
         },
         "MessageClickActions": {
-            "enabled": false
+            "enabled": true
         },
         "MessageLatency": {
             "enabled": false
@@ -544,7 +544,7 @@ const DefaultSettings: Settings = {
             "enabled": true
         },
         "RelationshipNotifier": {
-            "enabled": false
+            "enabled": true
         },
         "ReplaceGoogleSearch": {
             "enabled": false
