@@ -685,7 +685,7 @@ const DefaultSettings: Settings = {
             "indicatorMode": 3
         },
         "TypingTweaks": {
-            "enabled": false,
+            "enabled": true,
             "showAvatars": true,
             "showRoleColors": true,
             "alternativeFormatting": true
@@ -999,7 +999,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "KeyboardSounds": {
-            "enabled": false,
+            "enabled": true,
             "volume": 100
         },
         "KeywordNotify": {
