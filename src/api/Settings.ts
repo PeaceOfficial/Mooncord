@@ -109,7 +109,7 @@ const DefaultSettings: Settings = {
             "enabled": true
         },
         "MemberListDecoratorsAPI": {
-            "enabled": false
+            "enabled": true
         },
         "MessageAccessoriesAPI": {
             "enabled": true
@@ -136,7 +136,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "AlwaysAnimate": {
-            "enabled": true
+            "enabled": false
         },
         "AlwaysExpandRoles": {
             "enabled": false
@@ -148,10 +148,10 @@ const DefaultSettings: Settings = {
         },
         "AnonymiseFileNames": {
             "enabled": true,
-            "anonymiseByDefault": true,
+            "anonymiseByDefault": false,
             "fixOpusExtensions": true,
             "method": 0,
-            "randomisedLength": 7,
+            "randomisedLength": 10,
             "consistent": "image"
         },
         "AppleMusicRichPresence": {
@@ -172,7 +172,7 @@ const DefaultSettings: Settings = {
             "showFolderIcon": 1
         },
         "BetterGifAltText": {
-            "enabled": true
+            "enabled": false
         },
         "BetterGifPicker": {
             "enabled": false
@@ -187,10 +187,12 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "BetterSessions": {
-            "enabled": false
+            "enabled": false,
+            "backgroundCheck": false,
+            "checkInterval": 20
         },
         "BetterSettings": {
-            "enabled": true,
+            "enabled": false,
             "disableFade": true,
             "organizeMenu": true,
             "eagerLoad": true
@@ -270,7 +272,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "Decor": {
-            "enabled": true,
+            "enabled": false,
             "baseUrl": "https://decor.fieryflames.dev",
             "agreedToGuidelines": true
         },
@@ -390,7 +392,11 @@ const DefaultSettings: Settings = {
             "showAtSymbol": true
         },
         "MessageClickActions": {
-            "enabled": true
+            "enabled": true,
+            "enableDeleteOnClick": true,
+            "enableDoubleClickToEdit": true,
+            "enableDoubleClickToReply": true,
+            "requireModifier": false
         },
         "MessageLatency": {
             "enabled": false
@@ -535,7 +541,8 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "QuickReply": {
-            "enabled": false
+            "enabled": false,
+            "shouldMention": 2
         },
         "ReactErrorDecoder": {
             "enabled": false
@@ -544,7 +551,13 @@ const DefaultSettings: Settings = {
             "enabled": true
         },
         "RelationshipNotifier": {
-            "enabled": true
+            "enabled": true,
+            "notices": true,
+            "offlineRemovals": true,
+            "friends": true,
+            "friendRequestCancels": true,
+            "servers": true,
+            "groups": true
         },
         "ReplaceGoogleSearch": {
             "enabled": false
@@ -691,10 +704,13 @@ const DefaultSettings: Settings = {
             "enabled": true,
             "showInUserProfileModal": true,
             "showInVoiceMemberList": true,
-            "showInMemberList": true
+            "showInMemberList": true,
+            "showInMessages": true
         },
         "USRBG": {
-            "enabled": false
+            "enabled": false,
+            "nitroFirst": true,
+            "voiceBackground": true
         },
         "ValidReply": {
             "enabled": false
@@ -797,7 +813,12 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "BypassStatus": {
-            "enabled": false
+            "enabled": false,
+            "guilds": "",
+            "channels": "",
+            "users": "",
+            "notificationSound": true,
+            "statusToUse": "dnd"
         },
         "ChannelTabs": {
             "enabled": true,
@@ -806,16 +827,25 @@ const DefaultSettings: Settings = {
             "onStartup": "nothing",
             "noPomeloNames": false,
             "showStatusIndicators": true,
-            "bookmarkNotificationDot": true
+            "bookmarkNotificationDot": true,
+            "tabSet": {}
         },
         "CleanChannelName": {
             "enabled": false
         },
         "ClientSideBlock": {
-            "enabled": false
+            "enabled": false,
+            "usersToBlock": "",
+            "hideBlockedUsers": true,
+            "hideBlockedMessages": true,
+            "hideEmptyRoles": true,
+            "blockedReplyDisplay": "displayText",
+            "guildBlackList": "",
+            "guildWhiteList": ""
         },
         "ColorMessage": {
-            "enabled": false
+            "enabled": true,
+            "saturation": 30
         },
         "CommandPalette": {
             "enabled": false,
@@ -863,7 +893,13 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "EquicordCSS": {
-            "enabled": false
+            "enabled": false,
+            "betterAuthApps": false,
+            "betterStatusPicker": false,
+            "gradientButtons": false,
+            "nitroThemesFix": false,
+            "settingsIcons": false,
+            "userReimagined": false
         },
         "ExportContacts": {
             "enabled": false
@@ -887,7 +923,19 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "Glide": {
-            "enabled": false
+            "enabled": false,
+            "serverListAnim": false,
+            "memberListAnim": true,
+            "privacyBlur": false,
+            "tooltips": false,
+            "customFont": "@import url('https://fonts.googleapis.com/css2?family=Poppins&wght@500&display=swap');",
+            "animationSpeed": "0.2",
+            "ColorPreset": 0,
+            "Primary": "000000",
+            "Accent": "313338",
+            "Text": "ffffff",
+            "Brand": "ffffff",
+            "pastelStatuses": true
         },
         "GlobalBadges": {
             "enabled": false,
@@ -922,7 +970,9 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "HopOn": {
-            "enabled": false
+            "enabled": false,
+            "regex": "hop on (?:fortnite|fn)",
+            "url": "com.epicgames.launcher://apps/fn%3A4fe75bbc5a674f4f9b356b5c90567da5%3AFortnite?action=launch&silent=true"
         },
         "Husk": {
             "enabled": false
@@ -949,7 +999,8 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "KeyboardSounds": {
-            "enabled": false
+            "enabled": false,
+            "volume": 100
         },
         "KeywordNotify": {
             "enabled": false
@@ -1030,7 +1081,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "NoModalAnimation": {
-            "enabled": true
+            "enabled": false
         },
         "NoNitroUpsell": {
             "enabled": true
@@ -1114,10 +1165,15 @@ const DefaultSettings: Settings = {
             "IconLocation": "toolbar"
         },
         "StatusWhilePlaying": {
-            "enabled": false
+            "enabled": false,
+            "statusToSet": "dnd"
         },
         "SteamStatusSync": {
-            "enabled": false
+            "enabled": false,
+            "onlineStatus": "online",
+            "idleStatus": "away",
+            "dndStatus": "none",
+            "invisibleStatus": "invisible"
         },
         "StickerBlocker": {
             "enabled": false
@@ -1132,19 +1188,25 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "ThemeLibrary": {
-            "enabled": false
+            "enabled": false,
+            "hideWarningCard": false
         },
         "Timezones": {
             "enabled": false
         },
         "Title": {
-            "enabled": false
+            "enabled": false,
+            "title": "Mooncord"
         },
         "TosuRPC": {
             "enabled": false
         },
         "Translate+": {
-            "enabled": false
+            "enabled": false,
+            "target": "en",
+            "toki": true,
+            "sitelen": true,
+            "shavian": true
         },
         "UnitConverter": {
             "enabled": false
@@ -1156,13 +1218,15 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "UserPFP": {
-            "enabled": false
+            "enabled": false,
+            "preferNitro": true,
+            "urlForDB": "https://userpfp.github.io/UserPFP/source/data.json"
         },
         "UwUifier": {
             "enabled": false
         },
         "VCSupport": {
-            "enabled": true
+            "enabled": false
         },
         "VencordRPC": {
             "enabled": false,
@@ -1185,7 +1249,8 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "WhosWatching": {
-            "enabled": true
+            "enabled": true,
+            "showPanel": true
         },
         "WigglyText": {
             "enabled": false
@@ -1194,7 +1259,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "YoutubeDescription": {
-            "enabled": true
+            "enabled": false
         },
         "NoTrack": {
             "enabled": true,
@@ -1226,6 +1291,19 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "AtSomeone": {
+            "enabled": false
+        },
+        "DiscordFileSplitter": {
+            "enabled": true
+        },
+        "BannersEverywhere": {
+            "enabled": false,
+            "animate": true
+        },
+        "FullUserInChatbox": {
+            "enabled": false
+        },
+        "MooncordCSS": {
             "enabled": false
         }
     },
