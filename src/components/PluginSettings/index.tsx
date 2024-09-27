@@ -350,11 +350,11 @@ export default function PluginSettings() {
 
             <Card className={cl("info-card")} style={{ marginTop: "12px", paddingBottom: "40px", minHeight: "200px" }}>
                 <Forms.FormTitle tag="h5">Plugins Information</Forms.FormTitle>
-                <Forms.FormText>Total Plugins: {totalStockPlugins}
-                    <br /> (Stock: {totalStockPlugins - totalMooncordPlugins}, Mooncord: {totalMooncordPlugins - totalCustomPlugins}, Custom: {totalCustomPlugins - totalUserPlugins}, User: {totalUserPlugins})
+                <Forms.FormText>🌕 ~ Total Plugins: ({totalStockPlugins})
+                    <br /> - Stock: {totalStockPlugins - totalMooncordPlugins}, Mooncord: {totalMooncordPlugins - totalCustomPlugins}, Custom: {totalCustomPlugins - totalUserPlugins}, User: {totalUserPlugins}
                 </Forms.FormText>
-                <Forms.FormText>Enabled Plugins: {enabledStockPlugins}
-                    <br /> (Stock: {enabledStockPlugins - enabledMooncordPlugins}, Mooncord: {enabledMooncordPlugins - enabledCustomPlugins}, Custom: {enabledCustomPlugins - enabledUserPlugins}, User: {enabledUserPlugins})
+                <Forms.FormText>🚀 ~ Enabled Plugins: ({enabledStockPlugins})
+                    <br /> - Stock: {enabledStockPlugins - enabledMooncordPlugins}, Mooncord: {enabledMooncordPlugins - enabledCustomPlugins}, Custom: {enabledCustomPlugins - enabledUserPlugins}, User: {enabledUserPlugins}
                 </Forms.FormText>
             </Card>
 
