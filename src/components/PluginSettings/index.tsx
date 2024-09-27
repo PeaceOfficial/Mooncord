@@ -181,8 +181,8 @@ function ExcludedPluginsList({ search }: { search: string; }) {
         discordDesktop: "Discord Desktop app",
         vencordDesktop: "Vesktop app",
         equicordDesktop: "Equibop app",
-        web: "Vesktop app and the Web version of Discord",
-        dev: "Developer version of Equicord"
+        web: "Mooncord app and the Web version of Discord",
+        dev: "Developer version of Mooncord"
     };
 
     return (
@@ -333,21 +333,31 @@ export default function PluginSettings() {
     const totalPlugins = Object.keys(Plugins).filter(p => !isApiPlugin(p));
     const enabledPlugins = Object.keys(Plugins).filter(p => Vencord.Plugins.isPluginEnabled(p) && !isApiPlugin(p));
 
-    const totalStockPlugins = totalPlugins.filter(p => !PluginMeta[p].userPlugin).length;
-    const totalUserPlugins = totalPlugins.filter(p => PluginMeta[p].userPlugin).length;
-    const enabledStockPlugins = enabledPlugins.filter(p => !PluginMeta[p].userPlugin).length;
-    const enabledUserPlugins = enabledPlugins.filter(p => PluginMeta[p].userPlugin).length;
+    const totalStockPlugins = totalPlugins.filter(p => !PluginMeta[p].userPlugins).length;
+    const totalMooncordPlugins = totalPlugins.filter(p => PluginMeta[p].mooncordPlugins).length;
+    const totalCustomPlugins = totalPlugins.filter(p => PluginMeta[p].customPlugins).length;
+    const totalUserPlugins = totalPlugins.filter(p => PluginMeta[p].userPlugins).length;
+
+    const enabledStockPlugins = enabledPlugins.filter(p => !PluginMeta[p].userPlugins).length;
+    const enabledMooncordPlugins = enabledPlugins.filter(p => PluginMeta[p].mooncordPlugins).length;
+    const enabledCustomPlugins = enabledPlugins.filter(p => PluginMeta[p].customPlugins).length;
+    const enabledUserPlugins = enabledPlugins.filter(p => PluginMeta[p].userPlugins).length;
 
     return (
         <SettingsTab title="Plugins">
 
             <ReloadRequiredCard required={changes.hasChanges} />
 
-            <Card className={cl("info-card")} style={{ marginTop: "12px" }}>
+            <Card className={cl("info-card")} style={{ marginTop: "12px", paddingBottom: "40px", minHeight: "200px" }}>
                 <Forms.FormTitle tag="h5">Plugins Information</Forms.FormTitle>
-                <Forms.FormText>Total Plugins: {totalStockPlugins}, Total User Plugins: {totalUserPlugins}</Forms.FormText>
-                <Forms.FormText>Enabled Plugins: {enabledStockPlugins}, Enabled User Plugins: {enabledUserPlugins}</Forms.FormText>
+                <Forms.FormText>Total Plugins: {totalStockPlugins}
+                    <br /> (Stock: {totalStockPlugins - totalMooncordPlugins}, Mooncord: {totalMooncordPlugins - totalCustomPlugins}, Custom: {totalCustomPlugins - totalUserPlugins}, User: {totalUserPlugins})
+                </Forms.FormText>
+                <Forms.FormText>Enabled Plugins: {enabledStockPlugins}
+                    <br /> (Stock: {enabledStockPlugins - enabledMooncordPlugins}, Mooncord: {enabledMooncordPlugins - enabledCustomPlugins}, Custom: {enabledCustomPlugins - enabledUserPlugins}, User: {enabledUserPlugins})
+                </Forms.FormText>
             </Card>
+
 
             <Forms.FormTitle tag="h5" className={classes(Margins.top20, Margins.bottom8)}>
                 Filters

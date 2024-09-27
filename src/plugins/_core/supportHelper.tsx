@@ -105,7 +105,7 @@ async function generateDebugInfoMessage() {
         "NoRPC enabled": Vencord.Plugins.isPluginEnabled("NoRPC"),
         "Activity Sharing disabled": tryOrElse(() => !ShowCurrentGame.getSetting(), false),
         "Equicord DevBuild": !IS_STANDALONE,
-        "Has UserPlugins": Object.values(PluginMeta).some(m => m.userPlugin),
+        "Has UserPlugins": Object.values(PluginMeta).some(m => m.userPlugins),
         "More than two weeks out of date": BUILD_TIMESTAMP < Date.now() - 12096e5,
     };
 
@@ -123,8 +123,8 @@ function generatePluginList() {
     const enabledPlugins = Object.keys(plugins)
         .filter(p => Vencord.Plugins.isPluginEnabled(p) && !isApiPlugin(p));
 
-    const enabledStockPlugins = enabledPlugins.filter(p => !PluginMeta[p].userPlugin);
-    const enabledUserPlugins = enabledPlugins.filter(p => PluginMeta[p].userPlugin);
+    const enabledStockPlugins = enabledPlugins.filter(p => !PluginMeta[p].userPlugins);
+    const enabledUserPlugins = enabledPlugins.filter(p => PluginMeta[p].userPlugins);
 
 
     let content = `**Enabled Plugins (${enabledStockPlugins.length}):**\n${makeCodeblock(enabledStockPlugins.join(", "))}`;

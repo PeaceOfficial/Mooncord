@@ -714,7 +714,7 @@ const DefaultSettings: Settings = {
             "imgSize": "1024"
         },
         "ViewRaw": {
-            "enabled": true,
+            "enabled": false,
             "clickMethod": "Left"
         },
         "VoiceDownload": {
@@ -1182,7 +1182,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "ViewRaw2": {
-            "enabled": false
+            "enabled": true
         },
         "VoiceChatUtilities": {
             "enabled": false
@@ -1191,7 +1191,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "WhosWatching": {
-            "enabled": false
+            "enabled": true
         },
         "WigglyText": {
             "enabled": false
