@@ -40,6 +40,9 @@ export const watch = process.argv.includes("--watch");
 export const IS_DEV = watch || process.argv.includes("--dev");
 export const IS_REPORTER = process.argv.includes("--reporter");
 export const IS_STANDALONE = process.argv.includes("--standalone");
+export const IS_COMPANION_TEST = IS_REPORTER && process.argv.includes("--companion-test");
+if (!IS_COMPANION_TEST && process.argv.includes("--companion-test"))
+    console.error("--companion-test must be run with --reporter for any effect");
 
 export const IS_UPDATER_DISABLED = process.argv.includes("--disable-updater");
 export const gitHash = process.env.EQUICORD_HASH || execSync("git rev-parse --short HEAD", { encoding: "utf-8" }).trim();
@@ -112,16 +115,14 @@ export const globPlugins = kind => ({
         });
 
         build.onLoad({ filter, namespace: "import-plugins" }, async () => {
-            const pluginDirs = ["plugins/_api", "plugins/_core", "plugins", "plugins-user", "plugins-custom", "plugins-mooncord"];
+            const pluginDirs = ["plugins/_api", "plugins/_core", "plugins", "userplugins", "equicordplugins"];
             let code = "";
             let pluginsCode = "\n";
             let metaCode = "\n";
             let excludedCode = "\n";
             let i = 0;
             for (const dir of pluginDirs) {
-                const userPlugins = dir === "plugins-user";
-                const customPlugins = dir === "plugins-custom";
-                const mooncordPlugins = dir === "plugins-mooncord";
+                const userPlugin = dir === "userplugins";
 
                 const fullDir = `./src/${dir}`;
                 if (!await exists(fullDir)) continue;
@@ -154,7 +155,7 @@ export const globPlugins = kind => ({
                     const mod = `p${i}`;
                     code += `import ${mod} from "./${dir}/${fileName.replace(/\.tsx?$/, "")}";\n`;
                     pluginsCode += `[${mod}.name]:${mod},\n`;
-                    metaCode += `[${mod}.name]:${JSON.stringify({ folderName, userPlugins, customPlugins, mooncordPlugins })},\n`; // TODO: add excluded plugins to display in the UI?
+                    metaCode += `[${mod}.name]:${JSON.stringify({ folderName, userPlugin })},\n`; // TODO: add excluded plugins to display in the UI?
                     i++;
                 }
             }
