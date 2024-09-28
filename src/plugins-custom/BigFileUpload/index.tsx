@@ -844,7 +844,7 @@ export default definePlugin({
                     // Notify the user that the file upload is starting
                     sendBotMessage(cmdCtx.channel.id, { content: "Uploading the file..." });
                     // Upload the file
-                    await uploadFile(file, cmdCtx.channel.id); // Upload the file
+                    await uploadFile(file, cmdCtx.channel.id);
                     // Notify the user after the upload completes
                     sendBotMessage(cmdCtx.channel.id, { content: "File upload completed successfully!" });
                 } else {
