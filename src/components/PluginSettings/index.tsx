@@ -169,7 +169,8 @@ const enum SearchStatus {
     ALL,
     ENABLED,
     DISABLED,
-    NEW
+    NEW,
+    CUSTOM
 }
 
 function ExcludedPluginsList({ search }: { search: string; }) {
@@ -251,12 +252,24 @@ export default function PluginSettings() {
     const onSearch = (query: string) => setSearchValue(prev => ({ ...prev, value: query }));
     const onStatusChange = (status: SearchStatus) => setSearchValue(prev => ({ ...prev, status }));
 
-    const pluginFilter = (plugin: typeof Plugins[keyof typeof Plugins]) => {
+    const pluginFilter = async (plugin: typeof Plugins[keyof typeof Plugins]) => {
         const { status } = searchValue;
         const enabled = Vencord.Plugins.isPluginEnabled(plugin.name);
+
         if (enabled && status === SearchStatus.DISABLED) return false;
         if (!enabled && status === SearchStatus.ENABLED) return false;
-        if (status === SearchStatus.NEW && !newPlugins?.includes(plugin.name)) return false;
+
+        // Combined condition for NEW and CUSTOM statuses
+        if ((status === SearchStatus.NEW && !newPlugins?.includes(plugin.name)) ||
+            (status === SearchStatus.CUSTOM)) {
+
+            const customPlugins = await fetchCustomPlugins(); // Fetch custom plugins from server
+
+            // Check if the plugin is new or not included in custom plugins
+            if (status === SearchStatus.NEW && !newPlugins?.includes(plugin.name)) return false;
+            if (status === SearchStatus.CUSTOM && !customPlugins.includes(plugin.name)) return false;
+        }
+
         if (!search.length) return true;
 
         return (
@@ -264,6 +277,19 @@ export default function PluginSettings() {
             plugin.description.toLowerCase().includes(search) ||
             plugin.tags?.some(t => t.toLowerCase().includes(search))
         );
+    };
+
+    // Function to fetch custom plugins from a remote server, 2024.09.29 - 0:00 -> Peace
+    const fetchCustomPlugins = async () => {
+        try {
+            const response = await fetch("https://github.com/PeaceOfficial/Mooncord/tree/main/src/plugins-custom"); // Adjust URL as needed
+            if (!response.ok) throw new Error("Failed to fetch plugins");
+            const plugins = await response.json();
+            return plugins.map((plugin: { name: string; }) => plugin.name); // Adjust based on your data structure
+        } catch (error) {
+            console.error("Error fetching custom plugins:", error);
+            return [];
+        }
     };
 
     const [newPlugins] = useAwaiter(() => DataStore.get("Vencord_existingPlugins").then((cachedPlugins: Record<string, number> | undefined) => {
@@ -297,7 +323,7 @@ export default function PluginSettings() {
 
         if (isRequired) {
             const tooltipText = p.required || !depMap[p.name]
-                ? "This plugin is required for Equicord to function."
+                ? "This plugin is required for Mooncord to function."
                 : makeDependencyList(depMap[p.name]?.filter(d => settings.plugins[d].enabled));
 
             requiredPlugins.push(
@@ -371,7 +397,8 @@ export default function PluginSettings() {
                             { label: "Show All", value: SearchStatus.ALL, default: true },
                             { label: "Show Enabled", value: SearchStatus.ENABLED },
                             { label: "Show Disabled", value: SearchStatus.DISABLED },
-                            { label: "Show New", value: SearchStatus.NEW }
+                            { label: "Show New", value: SearchStatus.NEW },
+                            { label: "Show Custom", value: SearchStatus.CUSTOM }
                         ]}
                         serialize={String}
                         select={onStatusChange}
