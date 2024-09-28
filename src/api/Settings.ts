@@ -1317,7 +1317,7 @@ const DefaultSettings: Settings = {
         "CustomFolderIcons": {
             "enabled": true,
             "folderIcons": {
-                "1323094666": null
+                "1323094666": {}
             },
             "solidIcon": false
         },
@@ -1343,7 +1343,7 @@ const DefaultSettings: Settings = {
         }
     },
     "notifications": {
-        "timeout": 5000,
+        "timeout": 2000,
         "position": "bottom-right",
         "useNative": "not-focused",
         "logLimit": 50
