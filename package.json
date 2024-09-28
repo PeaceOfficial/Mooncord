@@ -1,7 +1,7 @@
 {
     "name": "mooncord",
     "private": "true",
-    "version": "1.1",
+    "version": "1.3",
     "description": "Mooncord enhances the functionality of Discord by introducing a variety of new features.",
     "homepage": "https://github.com/PeaceOfficial/Mooncord#readme",
     "bugs": {
