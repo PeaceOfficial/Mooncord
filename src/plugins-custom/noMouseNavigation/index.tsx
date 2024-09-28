@@ -4,8 +4,6 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-// import { Devs, EquicordDevs } from "@utils/constants";
-
 import { MooncordDevs } from "@utils/constants";
 import definePlugin from "@utils/types";
 
