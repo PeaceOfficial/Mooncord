@@ -18,7 +18,7 @@
 
 import { showNotification } from "@api/Notifications";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, EquicordDevs } from "@utils/constants";
+import { Devs, EquicordDevs, MooncordDevs } from "@utils/constants";
 import { getTheme, Theme } from "@utils/discord";
 import { classes } from "@utils/misc";
 import definePlugin from "@utils/types";
@@ -208,7 +208,7 @@ async function openCompleteQuestUI() {
 export default definePlugin({
     name: "QuestCompleter",
     description: "A plugin to complete quests without having the game installed.",
-    authors: [Devs.HappyEnderman, EquicordDevs.SerStars, EquicordDevs.thororen],
+    authors: [Devs.HappyEnderman, EquicordDevs.SerStars, EquicordDevs.thororen, MooncordDevs.peaceofficial],
     patches: [
         {
             find: "\"invite-button\"",

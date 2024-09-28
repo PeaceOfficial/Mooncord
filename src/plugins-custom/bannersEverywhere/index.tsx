@@ -7,7 +7,7 @@
 import * as DataStore from "@api/DataStore";
 import { definePluginSettings } from "@api/Settings";
 import { disableStyle, enableStyle } from "@api/Styles";
-import { MooncordDevs } from "@utils/constants";
+import { Devs, MooncordDevs } from "@utils/constants";
 import definePlugin, { OptionType, Plugin } from "@utils/types";
 import { findStoreLazy } from "@webpack";
 import { User } from "discord-types/general";
@@ -35,7 +35,7 @@ const UserProfileStore = findStoreLazy("UserProfileStore");
 export default definePlugin({
     name: "BannersEverywhere",
     description: "Displays banners in the member list ",
-    authors: [MooncordDevs.peaceofficial],
+    authors: [Devs.ImLvna, Devs.AutumnVN, MooncordDevs.peaceofficial],
     settings,
     patches: [
         {
