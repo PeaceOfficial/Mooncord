@@ -1,0 +1,34 @@
+[
+    {
+        "name": "2FaOnServers",
+        "description": "This is a description for Plugin A.",
+        "tags": [
+            "tag1",
+            "tag2"
+        ]
+    },
+    {
+        "name": "bannersEverywhere",
+        "description": "This is a description for Plugin B.",
+        "tags": [
+            "tag3",
+            "tag4"
+        ]
+    },
+    {
+        "name": "BigFileUpload",
+        "description": "This is a description for Plugin B.",
+        "tags": [
+            "tag3",
+            "tag4"
+        ]
+    },
+    {
+        "name": "CustomFolderIcons",
+        "description": "This is a description for Plugin C.",
+        "tags": [
+            "tag1",
+            "tag4"
+        ]
+    }
+]

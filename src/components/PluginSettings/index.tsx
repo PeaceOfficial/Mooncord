@@ -282,7 +282,7 @@ export default function PluginSettings() {
     // Function to fetch custom plugins from a remote server, 2024.09.29 - 0:00 -> Peace
     const fetchCustomPlugins = async () => {
         try {
-            const response = await fetch("https://github.com/PeaceOfficial/Mooncord/tree/main/src/plugins-custom"); // Adjust URL as needed
+            const response = await fetch("https://github.com/PeaceOfficial/Mooncord/main/src/plugins-custom"); // Adjust URL as needed
             if (!response.ok) throw new Error("Failed to fetch plugins");
             const plugins = await response.json();
             return plugins.map((plugin: { name: string; }) => plugin.name); // Adjust based on your data structure
