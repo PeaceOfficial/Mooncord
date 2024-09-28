@@ -12,7 +12,7 @@ import { findByCodeLazy, findByPropsLazy } from "@webpack";
 import { ChannelStore, FluxDispatcher, MessageActions, MessageStore, RelationshipStore, SelectedChannelStore, UserStore } from "@webpack/common";
 import { Message, User } from "discord-types/general";
 
-const createBotMessage = findByCodeLazy('username:"Clyde"');
+const createBotMessage = findByCodeLazy('username:"Mooncord"');
 const SortedVoiceStateStore = findByPropsLazy("getVoiceStatesForChannel", "getCurrentClientVoiceChannelId");
 
 const settings = definePluginSettings({
