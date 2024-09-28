@@ -833,11 +833,22 @@ export default definePlugin({
                     required: true,
                 },
             ],
+            // Todo.: this should be the message to send: `The file has been uploaded: ||(${file})||`
             execute: async (opts, cmdCtx) => {
+                // Notify the user before uploading the file
+                sendBotMessage(cmdCtx.channel.id, { content: "Preparing to upload the file..." });
+
                 const file = await resolveFile(opts, cmdCtx);
+
                 if (file) {
-                    await uploadFile(file, cmdCtx.channel.id);
+                    // Notify the user that the file upload is starting
+                    sendBotMessage(cmdCtx.channel.id, { content: "Uploading the file..." });
+                    // Upload the file
+                    await uploadFile(file, cmdCtx.channel.id); // Upload the file
+                    // Notify the user after the upload completes
+                    sendBotMessage(cmdCtx.channel.id, { content: "File upload completed successfully!" });
                 } else {
+                    // If no file is specified, show a notification
                     showNotification({
                         title: "Notification: BigFileUpload - Plugin",
                         body: "No file specified!",
@@ -845,10 +856,13 @@ export default definePlugin({
                             Notices.popNotice();
                         }
                     });
+                    // Send a bot message indicating that no file was specified
                     sendBotMessage(cmdCtx.channel.id, { content: "No file specified!" });
+                    // Clear the upload manager
                     UploadManager.clearAll(cmdCtx.channel.id, DraftType.SlashCommand);
                 }
             },
+
         },
     ],
 });
