@@ -215,7 +215,7 @@ const DefaultSettings: Settings = {
         },
         "ClientTheme": {
             "enabled": false,
-            "color": "313338"
+            "color": "525048"
         },
         "ColorSighted": {
             "enabled": false
@@ -295,7 +295,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "FakeNitro": {
-            "enabled": true,
+            "enabled": false,
             "enableEmojiBypass": true,
             "emojiSize": 48,
             "transformEmojis": true,
@@ -494,7 +494,8 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "Oneko": {
-            "enabled": false
+            "enabled": false,
+            "speed": 10
         },
         "OpenInApp": {
             "enabled": false
@@ -523,7 +524,7 @@ const DefaultSettings: Settings = {
         "PinDMs": {
             "enabled": true,
             "pinOrder": 1,
-            "dmSectioncollapsed": false
+            "dmSectioncollapsed": true
         },
         "PlainFolderIcon": {
             "enabled": true
@@ -872,7 +873,10 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "Demonstration": {
-            "enabled": false
+            "enabled": false,
+            "keyBind": "F6",
+            "soundVolume": 0.5,
+            "showConfirmationModal": true
         },
         "DisableCameras": {
             "enabled": false
@@ -931,10 +935,10 @@ const DefaultSettings: Settings = {
             "customFont": "@import url('https://fonts.googleapis.com/css2?family=Poppins&wght@500&display=swap');",
             "animationSpeed": "0.2",
             "ColorPreset": 0,
-            "Primary": "000000",
-            "Accent": "313338",
-            "Text": "ffffff",
-            "Brand": "ffffff",
+            "Primary": "582e52",
+            "Accent": "53294d",
+            "Text": "ddd0d0",
+            "Brand": "582e52",
             "pastelStatuses": true
         },
         "GlobalBadges": {
@@ -1063,7 +1067,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "NewPluginsManager": {
-            "enabled": false
+            "enabled": true
         },
         "NoAppsAllowed": {
             "enabled": false
@@ -1103,7 +1107,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "QuestCompleter": {
-            "enabled": false
+            "enabled": true
         },
         "QuestionMarkReplacement": {
             "enabled": false
@@ -1192,7 +1196,10 @@ const DefaultSettings: Settings = {
             "hideWarningCard": false
         },
         "Timezones": {
-            "enabled": false
+            "enabled": false,
+            "24h Time": false,
+            "showMessageHeaderTime": true,
+            "showProfileTime": true
         },
         "Title": {
             "enabled": false,
@@ -1246,7 +1253,8 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "WebpackTarball": {
-            "enabled": false
+            "enabled": false,
+            "patched": true
         },
         "WhosWatching": {
             "enabled": true,
@@ -1293,6 +1301,9 @@ const DefaultSettings: Settings = {
         "AtSomeone": {
             "enabled": false
         },
+        "DiscordFileSplitter": {
+            "enabled": false
+        },
         "BannersEverywhere": {
             "enabled": false,
             "animate": true
@@ -1302,6 +1313,33 @@ const DefaultSettings: Settings = {
         },
         "MooncordCSS": {
             "enabled": false
+        },
+        "CustomFolderIcons": {
+            "enabled": true,
+            "folderIcons": {
+                "1323094666": null
+            },
+            "solidIcon": false
+        },
+        "BetterQuests": {
+            "enabled": false
+        },
+        "FileUploadBypass": {
+            "enabled": true
+        },
+        "BigFileUpload": {
+            "enabled": true,
+            "fileUploader": "Catbox",
+            "customUploaderName": "",
+            "customUploaderRequestURL": "",
+            "customUploaderFileFormName": "",
+            "customUploaderResponseType": "Text",
+            "customUploaderURL": "",
+            "customUploaderThumbnailURL": "",
+            "customUploaderHeaders": "{}",
+            "customUploaderArgs": "{}",
+            "catboxUserHash": "",
+            "litterboxTime": "72h"
         }
     },
     "notifications": {
