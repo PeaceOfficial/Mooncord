@@ -295,7 +295,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "FakeNitro": {
-            "enabled": false,
+            "enabled": true,
             "enableEmojiBypass": true,
             "emojiSize": 48,
             "transformEmojis": true,
