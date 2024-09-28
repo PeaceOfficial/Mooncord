@@ -24,7 +24,7 @@ import type { PartialDeep } from "type-fest";
 
 import { Argument } from "./types";
 
-const createBotMessage = findByCodeLazy('username:"Mooncord"');
+const createBotMessage = findByCodeLazy('username:"Clyde"');
 
 export function generateId() {
     return `-${SnowflakeUtils.fromTimestamp(Date.now())}`;

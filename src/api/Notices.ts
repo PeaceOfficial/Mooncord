@@ -32,7 +32,7 @@ export function nextNotice() {
     currentNotice = noticesQueue.shift();
 
     if (currentNotice) {
-        NoticesModule.show(...currentNotice, "EquicordNotice");
+        NoticesModule.show(...currentNotice, "MooncordNotice");
     }
 }
 
@@ -40,3 +40,7 @@ export function showNotice(message: string, buttonText: string, onOkClick: () =>
     noticesQueue.push(["GENERIC", message, buttonText, onOkClick]);
     if (!currentNotice) nextNotice();
 }
+export function dismiss() {
+    throw new Error("Function not implemented.");
+}
+

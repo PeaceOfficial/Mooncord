@@ -199,7 +199,7 @@ page.on("console", async e => {
 
     const firstArg = await rawArgs[0]?.jsonValue();
 
-    const isEquicord = firstArg === "[Equicord]";
+    const isEquicord = firstArg === "[Mooncord]";
     const isDebug = firstArg === "[PUP_DEBUG]";
 
     outer:

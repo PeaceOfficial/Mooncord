@@ -6,6 +6,8 @@
 
 import { ApplicationCommandInputType, ApplicationCommandOptionType, Argument, CommandContext, sendBotMessage } from "@api/Commands";
 import { NavContextMenuPatchCallback } from "@api/ContextMenu";
+import { Notices } from "@api/index";
+import { showNotification } from "@api/Notifications";
 import { definePluginSettings } from "@api/Settings";
 import { Flex } from "@components/Flex";
 import { OpenExternalIcon } from "@components/Icons";
@@ -99,6 +101,13 @@ function SettingsComponent(props: { setValue(v: any): void; }) {
             settings.store[key] = value;
         } else {
             console.error(`Invalid setting key: ${key}`);
+            showNotification({
+                title: "Notification: BigFileUpload - Plugin",
+                body: "Invalid setting key: " + `${key}`,
+                onClick: () => {
+                    Notices.popNotice();
+                }
+            });
         }
     }
 
@@ -147,6 +156,13 @@ function SettingsComponent(props: { setValue(v: any): void; }) {
                     showToast("ShareX config imported successfully!");
                 } catch (error) {
                     console.error("Error parsing ShareX config:", error);
+                    showNotification({
+                        title: "Notification: BigFileUpload - Plugin",
+                        body: "Error parsing ShareX config: " + `${error}`,
+                        onClick: () => {
+                            Notices.popNotice();
+                        }
+                    });
                     showToast("Error importing ShareX config. Check console for details.");
                 }
             };
@@ -544,11 +560,25 @@ async function uploadFileToGofile(file: File, channelId: string) {
             UploadManager.clearAll(channelId, DraftType.SlashCommand);
         } else {
             console.error("Error uploading file:", uploadResult);
+            showNotification({
+                title: "Notification: BigFileUpload - Plugin",
+                body: "Error uploading file: " + `${uploadResult}`,
+                onClick: () => {
+                    Notices.popNotice();
+                }
+            });
             sendBotMessage(channelId, { content: "Error uploading file. Check the console for more info." });
             UploadManager.clearAll(channelId, DraftType.SlashCommand);
         }
     } catch (error) {
         console.error("Error uploading file:", error);
+        showNotification({
+            title: "Notification: BigFileUpload - Plugin",
+            body: "Error uploading file: " + `${error}`,
+            onClick: () => {
+                Notices.popNotice();
+            }
+        });
         sendBotMessage(channelId, { content: "Error uploading file. Check the console for more info." });
         UploadManager.clearAll(channelId, DraftType.SlashCommand);
     }
@@ -577,11 +607,25 @@ async function uploadFileToCatbox(file: File, channelId: string) {
             UploadManager.clearAll(channelId, DraftType.SlashCommand);
         } else {
             console.error("Error uploading file:", uploadResult);
+            showNotification({
+                title: "Notification: BigFileUpload - Plugin",
+                body: "Error uploading file: " + `${uploadResult}`,
+                onClick: () => {
+                    Notices.popNotice();
+                }
+            });
             sendBotMessage(channelId, { content: "Error uploading file. Check the console for more info." });
             UploadManager.clearAll(channelId, DraftType.SlashCommand);
         }
     } catch (error) {
         console.error("Error uploading file:", error);
+        showNotification({
+            title: "Notification: BigFileUpload - Plugin",
+            body: "Error uploading file: " + `${error}`,
+            onClick: () => {
+                Notices.popNotice();
+            }
+        });
         sendBotMessage(channelId, { content: "Error uploading file. Check the console for more info." });
         UploadManager.clearAll(channelId, DraftType.SlashCommand);
     }
@@ -609,11 +653,25 @@ async function uploadFileToLitterbox(file: File, channelId: string) {
             UploadManager.clearAll(channelId, DraftType.SlashCommand);
         } else {
             console.error("Error uploading file:", uploadResult);
+            showNotification({
+                title: "Notification: BigFileUpload - Plugin",
+                body: "Error uploading file: " + `${uploadResult}`,
+                onClick: () => {
+                    Notices.popNotice();
+                }
+            });
             sendBotMessage(channelId, { content: "Error uploading file. Check the console for more info." });
             UploadManager.clearAll(channelId, DraftType.SlashCommand);
         }
     } catch (error) {
         console.error("Error uploading file:", error);
+        showNotification({
+            title: "Notification: BigFileUpload - Plugin",
+            body: "Error uploading file: " + `${error}`,
+            onClick: () => {
+                Notices.popNotice();
+            }
+        });
         sendBotMessage(channelId, { content: "Error uploading file. Check the console for more info." });
         UploadManager.clearAll(channelId, DraftType.SlashCommand);
     }
@@ -645,11 +703,25 @@ async function uploadFileCustom(file: File, channelId: string) {
             UploadManager.clearAll(channelId, DraftType.SlashCommand);
         } else {
             console.error("Error uploading file: Invalid URL returned");
+            showNotification({
+                title: "Notification: BigFileUpload - Plugin",
+                body: "Error uploading file. Check the console for more info.",
+                onClick: () => {
+                    Notices.popNotice();
+                }
+            });
             sendBotMessage(channelId, { content: "Error uploading file. Check the console for more info." });
             UploadManager.clearAll(channelId, DraftType.SlashCommand);
         }
     } catch (error) {
         console.error("Error uploading file:", error);
+        showNotification({
+            title: "Notification: BigFileUpload - Plugin",
+            body: "Error uploading file: " + `${error}`,
+            onClick: () => {
+                Notices.popNotice();
+            }
+        });
         sendBotMessage(channelId, { content: `Error uploading file: ${error}. Check the console for more info.` });
         UploadManager.clearAll(channelId, DraftType.SlashCommand);
     }
@@ -672,6 +744,13 @@ async function uploadFile(file: File, channelId: string) {
             break;
         default:
             console.error("Unknown uploader:", uploader);
+            showNotification({
+                title: "Notification: BigFileUpload - Plugin",
+                body: "Error: Unknown uploader selected.",
+                onClick: () => {
+                    Notices.popNotice();
+                }
+            });
             sendBotMessage(channelId, { content: "Error: Unknown uploader selected." });
             UploadManager.clearAll(channelId, DraftType.SlashCommand);
     }
@@ -682,11 +761,26 @@ function triggerFileUpload() {
     fileInput.type = "file";
     fileInput.style.display = "none";
 
+    showNotification({
+        title: "Notification: BigFileUpload - Plugin",
+        body: "Please choose your specified file to upload...",
+        onClick: () => {
+            Notices.popNotice();
+        }
+    });
+
     fileInput.onchange = async event => {
         const target = event.target as HTMLInputElement;
         if (target && target.files && target.files.length > 0) {
             const file = target.files[0];
             if (file) {
+                showNotification({
+                    title: "Notification: BigFileUpload - Plugin",
+                    body: "Upload Finished!",
+                    onClick: () => {
+                        Notices.popNotice();
+                    }
+                });
                 const channelId = SelectedChannelStore.getChannelId();
                 await uploadFile(file, channelId);
             } else {
@@ -744,6 +838,13 @@ export default definePlugin({
                 if (file) {
                     await uploadFile(file, cmdCtx.channel.id);
                 } else {
+                    showNotification({
+                        title: "Notification: BigFileUpload - Plugin",
+                        body: "No file specified!",
+                        onClick: () => {
+                            Notices.popNotice();
+                        }
+                    });
                     sendBotMessage(cmdCtx.channel.id, { content: "No file specified!" });
                     UploadManager.clearAll(cmdCtx.channel.id, DraftType.SlashCommand);
                 }

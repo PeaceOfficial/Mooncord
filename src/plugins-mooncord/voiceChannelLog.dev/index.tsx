@@ -17,7 +17,7 @@ import { openVoiceChannelLog } from "./components/VoiceChannelLogModal";
 import { addLogEntry } from "./logs";
 
 export const cl = classNameFactory("vc-voice-channel-log-");
-const createBotMessage = findByCodeLazy('username:"Mooncord"');
+const createBotMessage = findByCodeLazy('username:"Clyde"');
 
 const settings = definePluginSettings({
     mode: {
