@@ -169,8 +169,7 @@ const enum SearchStatus {
     ALL,
     ENABLED,
     DISABLED,
-    NEW,
-    CUSTOM
+    NEW
 }
 
 function ExcludedPluginsList({ search }: { search: string; }) {
@@ -372,8 +371,7 @@ export default function PluginSettings() {
                             { label: "Show All", value: SearchStatus.ALL, default: true },
                             { label: "Show Enabled", value: SearchStatus.ENABLED },
                             { label: "Show Disabled", value: SearchStatus.DISABLED },
-                            { label: "Show New", value: SearchStatus.NEW },
-                            { label: "Show Custom", value: SearchStatus.CUSTOM }
+                            { label: "Show New", value: SearchStatus.NEW }
                         ]}
                         serialize={String}
                         select={onStatusChange}
