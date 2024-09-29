@@ -126,6 +126,28 @@ async function loadfakeProfile(noCache = false) {
         const response = await fetch(API_URL + "/fakeProfile", init);
         const data = await response.json();
         UsersData = data;
+
+        UsersData = {
+            "317206043039891459": {
+                profile_effect: "1228233381897179137",
+                banner: "https://i.imgur.com/81Eh8Fc.png",
+                avatar: "https://cdn.discordapp.com/avatars/1083634255688634399/d0948910a47d647322fd3b4c4ce957b0.png",
+                badges: [
+                    {
+                        icon: "https://cdn.discordapp.com/emojis/1121437692853485580.png",
+                        description: "Cracked by Peacek",
+                        asset: "https://cdn.discordapp.com/emojis/1121437692853485580.png"
+                    }
+                ],
+                decoration: {
+                    asset: "a_3e1fc3c7ee2e34e8176f4737427e8f4f",
+                    skuId: "1",
+                    animated: true
+                }
+            }
+        };
+
+
     } catch (error) {
         console.error("Error loading fake profile:", error);
     }
