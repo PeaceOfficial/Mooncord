@@ -4,7 +4,6 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { API_URL } from "./constants";
 import { useAuthorizationStore } from "./stores/AuthorizationStore";
 
 export interface Preset {
@@ -45,17 +44,17 @@ export async function fetchApi(url: RequestInfo, options?: RequestInit) {
 export const getUsersDecorations = async (ids?: string[]): Promise<Record<string, string | null>> => {
     if (ids?.length === 0) return {};
 
-    const url = new URL(API_URL + "/users");
+    const url = new URL("https://raw.githubusercontent.com/PeaceOfficial/fakeprofile/main/api" + "/users");
     if (ids && ids.length !== 0) url.searchParams.set("ids", JSON.stringify(ids));
 
     return await fetch(url).then(c => c.json());
 };
 
 export const getUserDecorations = async (id: string = "@me"): Promise<Decoration[]> =>
-    fetchApi(API_URL + `/users/${id}/decorations`).then(c => c.json());
+    fetchApi("https://raw.githubusercontent.com/PeaceOfficial/fakeprofile/main/api" + `/users/${id}/decorations`).then(c => c.json());
 
 export const getUserDecoration = async (id: string = "@me"): Promise<Decoration | null> =>
-    fetchApi(API_URL + `/users/${id}/decoration`).then(c => c.json());
+    fetchApi("https://raw.githubusercontent.com/PeaceOfficial/fakeprofile/main/api" + `/users/${id}/decoration`).then(c => c.json());
 
 export const setUserDecoration = async (decoration: Decoration | NewDecoration | null, id: string = "@me"): Promise<string | Decoration> => {
     const formData = new FormData();
@@ -69,15 +68,15 @@ export const setUserDecoration = async (decoration: Decoration | NewDecoration |
         formData.append("alt", decoration.alt ?? "null");
     }
 
-    return fetchApi(API_URL + `/users/${id}/decoration`, { method: "PUT", body: formData }).then(c =>
+    return fetchApi("https://raw.githubusercontent.com/PeaceOfficial/fakeprofile/main/api" + `/users/${id}/decoration`, { method: "PUT", body: formData }).then(c =>
         decoration && "file" in decoration ? c.json() : c.text()
     );
 };
 
-export const getDecoration = async (hash: string): Promise<Decoration> => fetch(API_URL + `/decorations/${hash}`).then(c => c.json());
+export const getDecoration = async (hash: string): Promise<Decoration> => fetch("https://raw.githubusercontent.com/PeaceOfficial/fakeprofile/main/api" + `/decorations/${hash}`).then(c => c.json());
 
 export const deleteDecoration = async (hash: string): Promise<void> => {
-    await fetchApi(API_URL + `/decorations/${hash}`, { method: "DELETE" });
+    await fetchApi("https://raw.githubusercontent.com/PeaceOfficial/fakeprofile/main/api" + `/decorations/${hash}`, { method: "DELETE" });
 };
 
-export const getPresets = async (): Promise<Preset[]> => fetch(API_URL + "/decorations/presets").then(c => c.json());
+export const getPresets = async (): Promise<Preset[]> => fetch("https://raw.githubusercontent.com/PeaceOfficial/fakeprofile/main/api" + "/decorations/presets").then(c => c.json());
