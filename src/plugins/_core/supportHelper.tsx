@@ -41,15 +41,15 @@ import plugins, { PluginMeta } from "~plugins";
 import SettingsPlugin from "./settings";
 
 const VENCORD_GUILD_ID = "1015060230222131221";
-const EQUICORD_GUILD_ID = "1015060230222131221";
+const EQUICORD_GUILD_ID = "1285734980416307200";
 const VENBOT_USER_ID = "1017176847865352332";
 const KNOWN_ISSUES_CHANNEL_ID = "1222936386626129920";
 const CodeBlockRe = /```js\n(.+?)```/s;
 
 const AllowedChannelIds = [
     SUPPORT_CHANNEL_ID,
-    "1173659827881390160", // Equicord > #dev
-    "1173342942858055721", // Equicord > #support
+    "1290010418365992981", // Equicord > #dev
+    "1289000342322937876", // Equicord > #support
 ];
 
 const TrustedRolesIds = [
