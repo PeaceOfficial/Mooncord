@@ -129,9 +129,9 @@ async function loadfakeProfile(noCache = false) {
         // CRACKED XDDDDDDDDDDDDDDDDDDD -> https://i.sampath.tech/v3/users/fakeProfile
         UsersData = {
             "317206043039891459": {
-                profile_effect: "1228233381897179137",
+                profile_effect: "1174460912699191336",
                 banner: "https://i.imgur.com/81Eh8Fc.png",
-                avatar: "https://cdn.discordapp.com/avatars/1083634255688634399/d0948910a47d647322fd3b4c4ce957b0.png",
+                avatar: "https://i.imgur.com/04Knhwp.jpeg",
                 badges: [
                     {
                         icon: "https://cdn.discordapp.com/emojis/1121437692853485580.png",
@@ -140,8 +140,8 @@ async function loadfakeProfile(noCache = false) {
                     }
                 ],
                 decoration: {
-                    asset: "a_3e1fc3c7ee2e34e8176f4737427e8f4f",
-                    skuId: "1",
+                    asset: "a_0830085f29712a6f3a23a123302050b4",
+                    skuId: "1252405010608951358",
                     animated: true
                 }
             }
@@ -158,6 +158,7 @@ async function loadCustomEffects(noCache = false) {
         if (noCache)
             init.cache = "no-cache";
 
+        // CRACKED XDDDDDDDDDDDDDDDDDDD -> https://i.sampath.tech/profile-effects
         const response = await fetch(BASE_URL + "/profile-effects", init);
         const data = await response.json();
         CustomEffectsData = data;
