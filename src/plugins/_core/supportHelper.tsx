@@ -27,7 +27,7 @@ import { Devs, SUPPORT_CHANNEL_ID, SUPPORT_CHANNEL_IDS, VC_SUPPORT_CHANNEL_ID } 
 import { sendMessage } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
-import { isEquicordPluginDev, isPluginDev, tryOrElse } from "@utils/misc";
+import { isMooncordPluginDev, isPluginDev, tryOrElse } from "@utils/misc";
 import { relaunch } from "@utils/native";
 import { onlyOnce } from "@utils/onlyOnce";
 import { makeCodeblock } from "@utils/text";
@@ -90,8 +90,8 @@ async function generateDebugInfoMessage() {
     })();
 
     const info = {
-        Equicord:
-            `v${VERSION} • [${gitHash}](<https://github.com/Equicord/Equicord/commit/${gitHash}>)` +
+        Mooncord:
+            `v${VERSION} • [${gitHash}](<https://github.com/PeaceOfficial/Mooncord/commit/${gitHash}>)` +
             `${SettingsPlugin.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
         Client: `${RELEASE_CHANNEL} ~ ${client}`,
         Platform: window.navigator.platform
@@ -104,7 +104,7 @@ async function generateDebugInfoMessage() {
     const commonIssues = {
         "NoRPC enabled": Vencord.Plugins.isPluginEnabled("NoRPC"),
         "Activity Sharing disabled": tryOrElse(() => !ShowCurrentGame.getSetting(), false),
-        "Equicord DevBuild": !IS_STANDALONE,
+        "Mooncord DevBuild": !IS_STANDALONE,
         "Has UserPlugins": Object.values(PluginMeta).some(m => m.userPlugins),
         "More than two weeks out of date": BUILD_TIMESTAMP < Date.now() - 12096e5,
     };
@@ -163,15 +163,15 @@ export default definePlugin({
 
     commands: [
         {
-            name: "equicord-debug",
-            description: "Send Equicord debug info",
-            predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isEquicordPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
+            name: "mooncord-debug",
+            description: "Send Mooncord debug info",
+            predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isMooncordPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
             execute: async () => ({ content: await generateDebugInfoMessage() })
         },
         {
-            name: "equicord-plugins",
-            description: "Send Equicord plugin list",
-            predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isEquicordPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
+            name: "mooncord-plugins",
+            description: "Send Mooncord plugin list",
+            predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isMooncordPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
             execute: () => ({ content: generatePluginList() })
         }
     ],
@@ -200,7 +200,7 @@ export default definePlugin({
             }
 
             const selfId = UserStore.getCurrentUser()?.id;
-            if (!selfId || isPluginDev(selfId) || isEquicordPluginDev(selfId)) return;
+            if (!selfId || isPluginDev(selfId) || isMooncordPluginDev(selfId)) return;
 
             if (!IS_UPDATER_DISABLED) {
                 await checkForUpdatesOnce().catch(() => { });
@@ -262,8 +262,8 @@ export default definePlugin({
     },
 
     ContributorDmWarningCard: ErrorBoundary.wrap(({ userId }) => {
-        if (!isPluginDev(userId) || !isEquicordPluginDev(userId)) return null;
-        if (RelationshipStore.isFriend(userId) || isPluginDev(UserStore.getCurrentUser()?.id) || isEquicordPluginDev(UserStore.getCurrentUser()?.id)) return null;
+        if (!isPluginDev(userId) || !isMooncordPluginDev(userId)) return null;
+        if (RelationshipStore.isFriend(userId) || isPluginDev(UserStore.getCurrentUser()?.id) || isMooncordPluginDev(UserStore.getCurrentUser()?.id)) return null;
 
         return (
             <Card className={`vc-plugins-restart-card ${Margins.top8}`}>
@@ -276,7 +276,7 @@ export default definePlugin({
     }, { noop: true }),
 
     start() {
-        addAccessory("equicord-debug", props => {
+        addAccessory("mooncord-debug", props => {
             const buttons = [] as JSX.Element[];
 
             const shouldAddUpdateButton =
@@ -310,19 +310,19 @@ export default definePlugin({
             }
 
             if (props.channel.id === SUPPORT_CHANNEL_ID) {
-                if (props.message.content.includes("/equicord-debug") || props.message.content.includes("/equicord-plugins")) {
+                if (props.message.content.includes("/mooncord-debug") || props.message.content.includes("/mooncord-plugins")) {
                     buttons.push(
                         <Button
                             key="vc-dbg"
                             onClick={async () => sendMessage(props.channel.id, { content: await generateDebugInfoMessage() })}
                         >
-                            Run /equicord-debug
+                            Run /mooncord-debug
                         </Button>,
                         <Button
                             key="vc-plg-list"
                             onClick={async () => sendMessage(props.channel.id, { content: generatePluginList() })}
                         >
-                            Run /equicord-plugins
+                            Run /mooncord-plugins
                         </Button>
                     );
                 }
