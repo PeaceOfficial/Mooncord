@@ -126,7 +126,7 @@ async function loadfakeProfile(noCache = false) {
         const response = await fetch(API_URL + "/fakeProfile", init);
         const data = await response.json();
         UsersData = data;
-
+        // CRACKED XDDDDDDDDDDDDDDDDDDD -> https://i.sampath.tech/v3/users/fakeProfile
         UsersData = {
             "317206043039891459": {
                 profile_effect: "1228233381897179137",
