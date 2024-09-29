@@ -21,7 +21,7 @@ import { Button, Forms, Toasts, Tooltip, useEffect, useState } from "@webpack/co
 import { User } from "discord-types/general";
 import virtualMerge from "virtual-merge";
 
-import { API_URL, BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
+import { BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
 const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
 
@@ -123,15 +123,16 @@ async function loadfakeProfile(noCache = false) {
         if (noCache)
             init.cache = "no-cache";
 
-        const response = await fetch(API_URL + "/fakeProfile", init);
-        const data = await response.json();
-        UsersData = data;
+        // const response = await fetch(API_URL + "/fakeProfile", init);
+        // const response = await fetch(API_URL + "/fakeProfile", init);
+        // const data = await response.json();
+        // UsersData = data;
         // CRACKED XDDDDDDDDDDDDDDDDDDD -> https://i.sampath.tech/v3/users/fakeProfile
         UsersData = {
             "317206043039891459": {
                 profile_effect: "1174460912699191336",
-                banner: "https://i.imgur.com/81Eh8Fc.png",
-                avatar: "https://i.imgur.com/04Knhwp.jpeg",
+                banner: "https://cdn.discordapp.com/banners/317206043039891459/a_94d4814020f1e53f500ab838d7ae3988.gif?size=4096",
+                avatar: "https://i.sampath.tech/image/a_avatar_717283008377258095.gif",
                 badges: [
                     {
                         icon: "https://cdn.discordapp.com/emojis/1121437692853485580.png",

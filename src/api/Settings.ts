@@ -295,7 +295,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "FakeNitro": {
-            "enabled": true,
+            "enabled": false,
             "enableEmojiBypass": true,
             "emojiSize": 48,
             "transformEmojis": true,
@@ -309,7 +309,8 @@ const DefaultSettings: Settings = {
             "disableEmbedPermissionCheck": false
         },
         "FakeProfileThemes": {
-            "enabled": false
+            "enabled": false,
+            "nitroFirst": true
         },
         "FavoriteEmojiFirst": {
             "enabled": false
@@ -524,7 +525,7 @@ const DefaultSettings: Settings = {
         "PinDMs": {
             "enabled": true,
             "pinOrder": 1,
-            "dmSectioncollapsed": true
+            "dmSectioncollapsed": false
         },
         "PlainFolderIcon": {
             "enabled": true
@@ -1340,11 +1341,30 @@ const DefaultSettings: Settings = {
             "customUploaderArgs": "{}",
             "catboxUserHash": "",
             "litterboxTime": "72h"
+        },
+        "fakeProfile": {
+            "enabled": true,
+            "voiceBackground": true,
+            "nitroFirst": false,
+            "enableAvatarDecorations": true,
+            "enableCustomBadges": true,
+            "showCustomBadgesinmessage": true,
+            "enableProfileEffects": true,
+            "enableProfileThemes": true
+        },
+        "FakeProfileThemesAndEffects": {
+            "enabled": true,
+            "prioritizeNitro": false,
+            "hideBuilder": false
+        },
+        "fakeProfileDeco": {
+            "enabled": false,
+            "nitroFirst": false
         }
     },
     "notifications": {
         "timeout": 2000,
-        "position": "bottom-right",
+        "position": "top-right",
         "useNative": "not-focused",
         "logLimit": 50
     },
