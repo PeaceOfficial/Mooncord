@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-export let BASE_URL = "https://decor.fieryflames.dev";
+export let BASE_URL = "https://raw.githubusercontent.com/PeaceOfficial/fakeprofile/main";
 export let API_URL = BASE_URL + "/api";
 export let AUTHORIZE_URL = API_URL + "/authorize";
 export let CDN_URL = "https://ugc.decor.fieryflames.dev";

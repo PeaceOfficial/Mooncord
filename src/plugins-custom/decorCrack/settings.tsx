@@ -19,8 +19,8 @@ export const settings = definePluginSettings({
         type: OptionType.COMPONENT,
         description: "Change your avatar decoration",
         component() {
-            if (!Vencord.Plugins.plugins.Decor.started) return <Forms.FormText>
-                Enable Decor and restart your client to change your avatar decoration.
+            if (!Vencord.Plugins.plugins.decorCrack.started) return <Forms.FormText>
+                Enable decorCrack and restart your client to change your avatar decoration.
             </Forms.FormText>;
 
             return <div>

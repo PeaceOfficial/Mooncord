@@ -145,7 +145,7 @@ function CreateDecorationModal(props: ModalProps) {
         <ModalFooter className={cl("modal-footer")}>
             <Button
                 onClick={() => {
-                    setSubmitting(true);
+                    // setSubmitting(true); // disabled submiting
                     createDecoration({ alt: name, file: file! })
                         .then(props.onClose).catch(e => { setSubmitting(false); setError(e); });
                 }}
