@@ -50,7 +50,8 @@
         "usercss-meta": "^0.12.0",
         "openai": "^4.30.0",
         "discord.js": "^14.16.3",
-        "virtual-merge": "^1.0.1"
+        "virtual-merge": "^1.0.1",
+        "dotenv": "16.4.5"
     },
     "devDependencies": {
         "@stylistic/eslint-plugin": "^2.6.1",
