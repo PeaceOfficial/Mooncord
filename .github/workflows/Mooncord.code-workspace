@@ -1,8 +1,14 @@
 {
-	"folders": [
-		{
-			"path": "../.."
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "../.."
+        },
+        {
+            "path": "../../../Moonship"
+        },
+        {
+            "path": "../../../Moonlight"
+        }
+    ],
+    "settings": {}
 }
