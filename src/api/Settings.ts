@@ -101,6 +101,7 @@ const DefaultSettings: Settings = {
     macosVibrancyStyle: undefined,
     disableMinSize: false,
     winNativeTitleBar: false,
+
     "plugins": {
         "ChatInputButtonAPI": {
             "enabled": true
@@ -222,7 +223,7 @@ const DefaultSettings: Settings = {
         },
         "ConsoleJanitor": {
             "enabled": true,
-            "disableNoisyLoggers": false,
+            "disableNoisyLoggers": true,
             "disableSpotifyLogger": true
         },
         "ConsoleShortcuts": {
@@ -675,7 +676,7 @@ const DefaultSettings: Settings = {
             "autoTranslate": false,
             "showAutoTranslateTooltip": true,
             "receivedInput": "auto",
-            "receivedOutput": "en",
+            "receivedOutput": "hu",
             "sentInput": "auto",
             "sentOutput": "en"
         },
@@ -1343,7 +1344,7 @@ const DefaultSettings: Settings = {
             "litterboxTime": "72h"
         },
         "fakeProfile": {
-            "enabled": true,
+            "enabled": false,
             "voiceBackground": true,
             "nitroFirst": false,
             "enableAvatarDecorations": true,
@@ -1356,10 +1357,6 @@ const DefaultSettings: Settings = {
             "enabled": true,
             "prioritizeNitro": false,
             "hideBuilder": false
-        },
-        "fakeProfileDeco": {
-            "enabled": false,
-            "nitroFirst": false
         }
     },
     "notifications": {
