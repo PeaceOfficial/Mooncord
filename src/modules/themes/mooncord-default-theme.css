@@ -1,32 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://raw.githubusercontent.com/DTACat/Custom-Effects-And-Decorations-Discord-Theme/main/src/main.css');
-@import url('https://raw.githubusercontent.com/DTACat/Custom-Effects-And-Decorations-Discord-Theme/main/src/banner.css');
-
 
 /* customize things here */
 :root {
-
-    /**
-     * Change the URL below to the link of an image/gif you want to be everyone's profile effect
-     * Default is set to Ki Detonate
-     */
-    --profile-effect-image: url("https://cdn.discordapp.com/assets/profile_effects/effects/2024-02-28/ki-detonate/intro.png");
-    /**
-     * Change the URL below to the link of an image/gif you want to be everyone's avatar decoration
-     * Default is set to Balance
-     */
-    --avatar-decoration-image: url("https://cdn.discordapp.com/avatar-decoration-presets/a_82e4df4028396ad5ccaaafb397fa6248.png?size=240&passthrough=true");
-}
-
-	/* Apply the profile effect and avatar decoration globally to all users */
-	[class*="userPopout-"], [class*="userAvatarInner-"], [class*="avatarDecoration-"] {
-		background-image: var(--profile-effect-image) !important;
-	}
-	
-	[class*="avatarWrapper-"], [class*="avatar-"] {
-		mask-image: var(--avatar-decoration-image) !important;
-	}
-
 	/* font, change to 'gg sans' for default discord font*/
 	--font: 'figtree';
 
