@@ -1,9 +1,4 @@
-/**
- * @name Mooncord - Default Theme
- * @description Original dark rounded appearance of Mooncord, based on: [Midnight Theme]
- * @author PEACE
- * @version 1.0.0
-*/
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* stylelint-disable at-rule-empty-line-before */
 /* stylelint-disable custom-property-empty-line-before */
@@ -21,8 +16,6 @@
 /* stylelint-disable hue-degree-notation */
 /* stylelint-disable color-function-notation */
 /* stylelint-disable comment-whitespace-inside */
-
-@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* customize things here */
 :root {
@@ -84,6 +77,13 @@
 	--roundness-s: 12px; /* members, settings inputs */
 	--roundness-xs: 10px; /* channels, buttons */
 	--roundness-xxs: 8px; /* searchbar, small elements */
+
+	/* direct messages moon icon */
+	/* change to block to show, none to hide */
+	--discord-icon: none; /* discord icon */
+	--moon-icon: block; /* moon icon */
+	--moon-icon-url: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg'); /* custom icon url */
+	--moon-icon-size: auto;
 
 	/* filter uncolorable elements to fit theme */
 	/* (just set to none, they're too much work to configure) */
