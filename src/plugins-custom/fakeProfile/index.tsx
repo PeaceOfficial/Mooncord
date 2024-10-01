@@ -11,7 +11,7 @@ import { classNameFactory, enableStyle } from "@api/Styles";
 import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
-import { MooncordDevs } from "@utils/constants";
+import { Devs } from "@utils/constants";
 import { Margins } from "@utils/margins";
 import { copyWithToast } from "@utils/misc";
 import { closeModal, Modals, openModal } from "@utils/modal";
@@ -24,11 +24,6 @@ import virtualMerge from "virtual-merge";
 import { API_URL, BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
 const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
-
-
-
-import { Notices } from "@api/index";
-import { showNotification } from "@api/Notifications";
 
 import style from "./index.css?managed";
 import { AvatarDecoration, Colors, fakeProfileSectionProps, ProfileEffectConfig, UserProfile, UserProfileData } from "./types";
@@ -122,35 +117,6 @@ const updateBadgesForAllUsers = () => {
     });
 };
 
-// async function loadfakeProfile(interaction: CommandInteraction) {
-// const API_URL = "https://your.api.url";
-// const init = {}; // Define any necessary init options like headers, etc.
-//
-// try {
-//    // Fetch the profile data from the API
-//    const response = await fetch(API_URL + "/fakeProfile", init);
-//    if (!response.ok) throw new Error("Network response was not ok");
-//
-//    const data = await response.json();
-//    UsersData = data;
-//
-//    // Send a success message back to Discord
-//    await interaction.reply({
-//        content: "We got the profiles successfully!",
-//        ephemeral: true // You can set this to false if you want everyone to see the message
-//    });
-//
-// } catch (error) {
-//    console.error("Error loading fake profile:", error);
-//
-//    // Send an error message to Discord
-//    await interaction.reply({
-//        content: "Error loading the profiles. Please try again later.",
-//        ephemeral: true // Set to false if you want the error to be public
-//    });
-// }
-// }
-
 async function loadfakeProfile(noCache = false) {
     try {
         const init = {} as RequestInit;
@@ -160,53 +126,16 @@ async function loadfakeProfile(noCache = false) {
         const response = await fetch(API_URL + "/fakeProfile", init);
         const data = await response.json();
         UsersData = data;
-        showNotification({
-            title: "We got the fucking profiles",
-            body: "We got the fucking profiles",
-            onClick: () => {
-                Notices.popNotice();
-            }
-        });
     } catch (error) {
         console.error("Error loading fake profile:", error);
-        showNotification({
-            title: "Error loading fake profiles",
-            body: "Error loading fake profiles",
-            onClick: () => {
-                Notices.popNotice();
-            }
-        });
     }
 }
-
-// CRACKED XDDDDDDDDDDDDDDDDDDD -> https://i.sampath.tech/v3/users/fakeProfile
-// UsersData = {
-//     "317206043039891459": {
-//         profile_effect: "1174460912699191336",
-//         banner: "https://cdn.discordapp.com/banners/317206043039891459/a_94d4814020f1e53f500ab838d7ae3988.gif?size=4096",
-//         avatar: "https://i.sampath.tech/image/a_avatar_717283008377258095.gif",
-//         badges: [
-//             {
-//                 icon: "https://cdn.discordapp.com/emojis/1121437692853485580.png",
-//                 description: "Cracked by Peacek",
-//                 asset: "https://cdn.discordapp.com/emojis/1121437692853485580.png"
-//             }
-//         ],
-//         decoration: {
-//             asset: "a_0830085f29712a6f3a23a123302050b4",
-//             skuId: "1252405010608951358",
-//             animated: true
-//         }
-//     }
-// };
-
 async function loadCustomEffects(noCache = false) {
     try {
         const init = {} as RequestInit;
         if (noCache)
             init.cache = "no-cache";
 
-        // CRACKED XDDDDDDDDDDDDDDDDDDD -> https://i.sampath.tech/profile-effects
         const response = await fetch(BASE_URL + "/profile-effects", init);
         const data = await response.json();
         CustomEffectsData = data;
@@ -308,7 +237,7 @@ function fakeProfileSection({ hideTitle = false, hideDivider = false, noMargin =
             <Button
                 onClick={async () => {
                     await loadCustomEffects(true);
-                    // await loadfakeProfile(true);
+                    await loadfakeProfile(true);
                     updateBadgesForAllUsers();
                     Toasts.show({
                         message: "Successfully refetched fakeProfile!",
@@ -427,12 +356,12 @@ const BadgeMain = ({ user, wantMargin = true, wantTopMargin = false }: { user: U
 export default definePlugin({
     name: "fakeProfile",
     description: "Unlock Discord profile effects, themes, avatar decorations, and custom badges without the need for Nitro.",
-    authors: [MooncordDevs.peaceofficial],
+    authors: [{ name: "Sampath", id: 984015688807100419n, }, Devs.Alyxia, Devs.Remty, Devs.AutumnVN, Devs.pylix, Devs.TheKodeToad],
     dependencies: ["MessageDecorationsAPI"],
     start: async () => {
         enableStyle(style);
         await loadCustomEffects(true);
-        // await loadfakeProfile(true);
+        await loadfakeProfile(true);
         if (settings.store.enableCustomBadges) {
             updateBadgesForAllUsers();
         }
@@ -457,7 +386,7 @@ export default definePlugin({
         }
         setInterval(async () => {
             await loadCustomEffects(true);
-            // await loadfakeProfile(true);
+            await loadfakeProfile(true);
             if (settings.store.enableCustomBadges) {
                 updateBadgesForAllUsers();
             }
@@ -724,7 +653,7 @@ export default definePlugin({
     toolboxActions: {
         async "Refetch fakeProfile"() {
             await loadCustomEffects(true);
-            // await loadfakeProfile(true);
+            await loadfakeProfile(true);
             updateBadgesForAllUsers();
             Toasts.show({
                 message: "Successfully refetched fakeProfile!",
