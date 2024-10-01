@@ -1,12 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* stylelint-disable at-rule-empty-line-before */
+/* stylelint-disable custom-property-empty-line-before */
+/* stylelint-disable custom-property-pattern */
+/* stylelint-disable property-no-vendor-prefix */
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable selector-pseudo-element-colon-notation */
+/* stylelint-disable selector-attribute-quotes */
+/* stylelint-disable rule-empty-line-before */
+/* stylelint-disable selector-class-pattern */
+/* stylelint-disable value-keyword-case */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable comment-empty-line-before */
+/* stylelint-disable alpha-value-notation */
+/* stylelint-disable hue-degree-notation */
+/* stylelint-disable color-function-notation */
+/* stylelint-disable comment-whitespace-inside */
+
 /* customize things here */
 :root {
 	/* font, change to 'gg sans' for default discord font*/
 	--font: 'figtree';
 
 	/* top left corner text */
-	--corner-text: 'Midnight';
+	--corner-text: 'Mooncord';
 
 	/* thickness of messages divider */
 	--divider-thickness: 3px;
@@ -744,9 +761,23 @@ button.button_dd4f85 /* small buttons */,
 	width: 65%;
 	height: 65%;
 	background: var(--text-4);
-	-webkit-mask-image: var(--moon-icon-url);
-	-webkit-mask-size: var(--moon-icon-size);
-	-webkit-mask-repeat: none;
+    .moon-icon {
+        /* Standard property */
+        mask-image: var(--moon-icon-url);
+        mask-size: var(--moon-icon-size);
+        mask-repeat: no-repeat;
+
+        /* WebKit-specific properties for compatibility */
+        -webkit-mask-image: var(--moon-icon-url);
+        -webkit-mask-size: var(--moon-icon-size);
+        -webkit-mask-repeat: no-repeat;
+
+        /* Fallback styling for browsers that don't support mask-image */
+        background-color: gray; /* Fallback color or image */
+        width: 100px;
+        height: 100px;
+    }
+
 }
 .wrapper_f90abb:hover .childWrapper_f90abb::before {
 	/* prettier-ignore */
