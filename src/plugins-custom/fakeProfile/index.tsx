@@ -25,6 +25,9 @@ import { BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
 const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
 
+
+import { CommandInteraction } from "discord.js";
+
 import style from "./index.css?managed";
 import { AvatarDecoration, Colors, fakeProfileSectionProps, ProfileEffectConfig, UserProfile, UserProfileData } from "./types";
 
@@ -117,42 +120,84 @@ const updateBadgesForAllUsers = () => {
     });
 };
 
-async function loadfakeProfile(noCache = false) {
+async function loadfakeProfile(interaction: CommandInteraction) {
+    const API_URL = "https://your.api.url";
+    const init = {}; // Define any necessary init options like headers, etc.
+
     try {
-        const init = {} as RequestInit;
-        if (noCache)
-            init.cache = "no-cache";
+        // Fetch the profile data from the API
+        const response = await fetch(API_URL + "/fakeProfile", init);
+        if (!response.ok) throw new Error("Network response was not ok");
 
-        // const response = await fetch(API_URL + "/fakeProfile", init);
-        // const response = await fetch(API_URL + "/fakeProfile", init);
-        // const data = await response.json();
-        // UsersData = data;
-        // CRACKED XDDDDDDDDDDDDDDDDDDD -> https://i.sampath.tech/v3/users/fakeProfile
-        UsersData = {
-            "317206043039891459": {
-                profile_effect: "1174460912699191336",
-                banner: "https://cdn.discordapp.com/banners/317206043039891459/a_94d4814020f1e53f500ab838d7ae3988.gif?size=4096",
-                avatar: "https://i.sampath.tech/image/a_avatar_717283008377258095.gif",
-                badges: [
-                    {
-                        icon: "https://cdn.discordapp.com/emojis/1121437692853485580.png",
-                        description: "Cracked by Peacek",
-                        asset: "https://cdn.discordapp.com/emojis/1121437692853485580.png"
-                    }
-                ],
-                decoration: {
-                    asset: "a_0830085f29712a6f3a23a123302050b4",
-                    skuId: "1252405010608951358",
-                    animated: true
-                }
-            }
-        };
+        const data = await response.json();
+        UsersData = data;
 
+        // Send a success message back to Discord
+        await interaction.reply({
+            content: "We got the profiles successfully!",
+            ephemeral: true // You can set this to false if you want everyone to see the message
+        });
 
     } catch (error) {
         console.error("Error loading fake profile:", error);
+
+        // Send an error message to Discord
+        await interaction.reply({
+            content: "Error loading the profiles. Please try again later.",
+            ephemeral: true // Set to false if you want the error to be public
+        });
     }
 }
+
+//    async function loadfakeProfile(noCache = false) {
+//        try {
+//            const init = {} as RequestInit;
+//            if (noCache)
+//                init.cache = "no-cache";
+//
+//            const response = await fetch(API_URL + "/fakeProfile", init);
+//            const data = await response.json();
+//            UsersData = data;
+//            showNotification({
+//                title: "We got the fucking profiles",
+//                body: "We got the fucking profiles",
+//                onClick: () => {
+//                    Notices.popNotice();
+//                }
+//            });
+//        } catch (error) {
+//            console.error("Error loading fake profile:", error);
+//            showNotification({
+//                title: "Error loading fake profiles",
+//                body: "Error loading fake profiles",
+//                onClick: () => {
+//                    Notices.popNotice();
+//                }
+//            });
+//        }
+//    }
+
+// CRACKED XDDDDDDDDDDDDDDDDDDD -> https://i.sampath.tech/v3/users/fakeProfile
+// UsersData = {
+//     "317206043039891459": {
+//         profile_effect: "1174460912699191336",
+//         banner: "https://cdn.discordapp.com/banners/317206043039891459/a_94d4814020f1e53f500ab838d7ae3988.gif?size=4096",
+//         avatar: "https://i.sampath.tech/image/a_avatar_717283008377258095.gif",
+//         badges: [
+//             {
+//                 icon: "https://cdn.discordapp.com/emojis/1121437692853485580.png",
+//                 description: "Cracked by Peacek",
+//                 asset: "https://cdn.discordapp.com/emojis/1121437692853485580.png"
+//             }
+//         ],
+//         decoration: {
+//             asset: "a_0830085f29712a6f3a23a123302050b4",
+//             skuId: "1252405010608951358",
+//             animated: true
+//         }
+//     }
+// };
+
 async function loadCustomEffects(noCache = false) {
     try {
         const init = {} as RequestInit;
@@ -261,7 +306,7 @@ function fakeProfileSection({ hideTitle = false, hideDivider = false, noMargin =
             <Button
                 onClick={async () => {
                     await loadCustomEffects(true);
-                    await loadfakeProfile(true);
+                    // await loadfakeProfile(true);
                     updateBadgesForAllUsers();
                     Toasts.show({
                         message: "Successfully refetched fakeProfile!",
@@ -385,7 +430,7 @@ export default definePlugin({
     start: async () => {
         enableStyle(style);
         await loadCustomEffects(true);
-        await loadfakeProfile(true);
+        // await loadfakeProfile(true);
         if (settings.store.enableCustomBadges) {
             updateBadgesForAllUsers();
         }
@@ -410,7 +455,7 @@ export default definePlugin({
         }
         setInterval(async () => {
             await loadCustomEffects(true);
-            await loadfakeProfile(true);
+            // await loadfakeProfile(true);
             if (settings.store.enableCustomBadges) {
                 updateBadgesForAllUsers();
             }
@@ -677,7 +722,7 @@ export default definePlugin({
     toolboxActions: {
         async "Refetch fakeProfile"() {
             await loadCustomEffects(true);
-            await loadfakeProfile(true);
+            // await loadfakeProfile(true);
             updateBadgesForAllUsers();
             Toasts.show({
                 message: "Successfully refetched fakeProfile!",
