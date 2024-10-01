@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-export const BASE_URL = "https://localhost";
+export const BASE_URL = "https://192.168.178.65";
 export const API_URL = BASE_URL + "/v3/users";
 export const SKU_ID_DISCORD = "100101099222222";
 export const SKU_ID = "100101099222224";
