@@ -21,7 +21,7 @@ import { Button, Forms, Toasts, Tooltip, useEffect, useState } from "@webpack/co
 import { User } from "discord-types/general";
 import virtualMerge from "virtual-merge";
 
-import { API_URL, BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
+import { BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
 const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
 
@@ -123,7 +123,7 @@ async function loadfakeProfile(noCache = false) {
         if (noCache)
             init.cache = "no-cache";
 
-        const response = await fetch(API_URL + "/fakeProfile", init);
+        const response = await fetch("https://localhost/v3/users/fakeProfile", init);
         const data = await response.json();
         UsersData = data;
     } catch (error) {
