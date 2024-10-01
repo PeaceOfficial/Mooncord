@@ -21,7 +21,7 @@ import { Button, Forms, Toasts, Tooltip, useEffect, useState } from "@webpack/co
 import { User } from "discord-types/general";
 import virtualMerge from "virtual-merge";
 
-import { BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
+import { API_URL, BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
 const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
 
@@ -121,7 +121,6 @@ const updateBadgesForAllUsers = () => {
 };
 
 async function loadfakeProfile(interaction: CommandInteraction) {
-    const API_URL = "https://your.api.url";
     const init = {}; // Define any necessary init options like headers, etc.
 
     try {
