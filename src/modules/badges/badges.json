@@ -6,10 +6,6 @@
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/mooncord_owner.gif"
         },
         {
-            "tooltip": "Mooncord Donor",
-            "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/mooncord_donor.png"
-        },
-        {
             "tooltip": "Crypto Master",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/crypto_master.gif"
         }
@@ -21,10 +17,6 @@
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/mooncord_brother.gif"
         },
         {
-            "tooltip": "Mooncord Donor",
-            "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/mooncord_donor.png"
-        },
-        {
             "tooltip": "Mooncord Early Tester",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/mooncord_early.gif"
         }
@@ -32,7 +24,7 @@
     "PHILIPP": "PHILIPP",
     "545633503543427074": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -43,7 +35,7 @@
     "DAWID": "DAWID",
     "399211481029279754": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -54,7 +46,7 @@
     "MARTINEK": "MARTINEK",
     "808258212956602380": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -65,7 +57,7 @@
     "KAKADU": "KAKADU",
     "351120566758932481": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -76,7 +68,7 @@
     "FATELEPI": "FATELEPI",
     "775728911496642560": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -87,7 +79,7 @@
     "PATLIK": "PATLIK",
     "1258910245636280413": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -98,7 +90,7 @@
     "ROBI": "ROBI",
     "317678704077570049": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -109,7 +101,7 @@
     "CINTI": "CINTI",
     "802849176404230164": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -120,7 +112,7 @@
     "ZSOFI": "ZSOFI",
     "775785293021577226": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -131,7 +123,7 @@
     "BALUKA": "BALUKA",
     "193285398057713664": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -142,7 +134,7 @@
     "KINGURU": "KINGURU",
     "1168655291185901638": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {
@@ -153,7 +145,7 @@
     "HANNA": "HANNA",
     "1028014319331454997": [
         {
-            "tooltip": "Real Friends",
+            "tooltip": "Real Friend",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
         },
         {

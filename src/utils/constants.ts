@@ -810,11 +810,7 @@ export const MooncordDevs = Object.freeze({
     peaceofficial: {
         name: "peaceofficial",
         id: 317206043039891459n,
-    },
-    fiji: {
-        name: "1fiji",
-        id: 526750150660456451n,
-    },
+    }
 } satisfies Record<string, Dev>);
 
 // iife so #__PURE__ works correctly
