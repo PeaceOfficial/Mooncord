@@ -26,7 +26,9 @@ const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
 
 
-import { CommandInteraction } from "discord.js";
+
+import { Notices } from "@api/index";
+import { showNotification } from "@api/Notifications";
 
 import style from "./index.css?managed";
 import { AvatarDecoration, Colors, fakeProfileSectionProps, ProfileEffectConfig, UserProfile, UserProfileData } from "./types";
@@ -120,61 +122,62 @@ const updateBadgesForAllUsers = () => {
     });
 };
 
-async function loadfakeProfile(interaction: CommandInteraction) {
-    const init = {}; // Define any necessary init options like headers, etc.
+// async function loadfakeProfile(interaction: CommandInteraction) {
+// const API_URL = "https://your.api.url";
+// const init = {}; // Define any necessary init options like headers, etc.
+//
+// try {
+//    // Fetch the profile data from the API
+//    const response = await fetch(API_URL + "/fakeProfile", init);
+//    if (!response.ok) throw new Error("Network response was not ok");
+//
+//    const data = await response.json();
+//    UsersData = data;
+//
+//    // Send a success message back to Discord
+//    await interaction.reply({
+//        content: "We got the profiles successfully!",
+//        ephemeral: true // You can set this to false if you want everyone to see the message
+//    });
+//
+// } catch (error) {
+//    console.error("Error loading fake profile:", error);
+//
+//    // Send an error message to Discord
+//    await interaction.reply({
+//        content: "Error loading the profiles. Please try again later.",
+//        ephemeral: true // Set to false if you want the error to be public
+//    });
+// }
+// }
 
+async function loadfakeProfile(noCache = false) {
     try {
-        // Fetch the profile data from the API
-        const response = await fetch(API_URL + "/fakeProfile", init);
-        if (!response.ok) throw new Error("Network response was not ok");
+        const init = {} as RequestInit;
+        if (noCache)
+            init.cache = "no-cache";
 
+        const response = await fetch(API_URL + "/fakeProfile", init);
         const data = await response.json();
         UsersData = data;
-
-        // Send a success message back to Discord
-        await interaction.reply({
-            content: "We got the profiles successfully!",
-            ephemeral: true // You can set this to false if you want everyone to see the message
+        showNotification({
+            title: "We got the fucking profiles",
+            body: "We got the fucking profiles",
+            onClick: () => {
+                Notices.popNotice();
+            }
         });
-
     } catch (error) {
         console.error("Error loading fake profile:", error);
-
-        // Send an error message to Discord
-        await interaction.reply({
-            content: "Error loading the profiles. Please try again later.",
-            ephemeral: true // Set to false if you want the error to be public
+        showNotification({
+            title: "Error loading fake profiles",
+            body: "Error loading fake profiles",
+            onClick: () => {
+                Notices.popNotice();
+            }
         });
     }
 }
-
-//    async function loadfakeProfile(noCache = false) {
-//        try {
-//            const init = {} as RequestInit;
-//            if (noCache)
-//                init.cache = "no-cache";
-//
-//            const response = await fetch(API_URL + "/fakeProfile", init);
-//            const data = await response.json();
-//            UsersData = data;
-//            showNotification({
-//                title: "We got the fucking profiles",
-//                body: "We got the fucking profiles",
-//                onClick: () => {
-//                    Notices.popNotice();
-//                }
-//            });
-//        } catch (error) {
-//            console.error("Error loading fake profile:", error);
-//            showNotification({
-//                title: "Error loading fake profiles",
-//                body: "Error loading fake profiles",
-//                onClick: () => {
-//                    Notices.popNotice();
-//                }
-//            });
-//        }
-//    }
 
 // CRACKED XDDDDDDDDDDDDDDDDDDD -> https://i.sampath.tech/v3/users/fakeProfile
 // UsersData = {
