@@ -343,7 +343,7 @@ export default definePlugin({
                                 </Flex>
                                 <div style={{ padding: "1em" }}>
                                     <Forms.FormText>
-                                        This Badge is a special perk for Mooncord (Not Vencord,Equicord) Donors
+                                        This Badge is a special perk for Mooncord Donors
                                     </Forms.FormText>
                                     <Forms.FormText className={Margins.top20}>
                                         Please consider supporting the development of Mooncord by becoming a donor. It would mean a lot! :3
