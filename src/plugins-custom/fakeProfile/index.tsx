@@ -21,14 +21,15 @@ import { Button, Forms, Toasts, Tooltip, useEffect, useState } from "@webpack/co
 import { User } from "discord-types/general";
 import virtualMerge from "virtual-merge";
 
-import { API_URL, BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
+import { BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
 const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
+
 
 import style from "./index.css?managed";
 import { AvatarDecoration, Colors, fakeProfileSectionProps, ProfileEffectConfig, UserProfile, UserProfileData } from "./types";
 
-let UsersData = {} as Record<string, UserProfileData>;
+const UsersData = {} as Record<string, UserProfileData>;
 let CustomEffectsData: Record<string, ProfileEffectConfig> = {};
 
 const UserBadges: Record<string, ProfileBadge[]> = {};
@@ -117,76 +118,13 @@ const updateBadgesForAllUsers = () => {
     });
 };
 
-async function loadfakeProfile(noCache = false) {
-    try {
-        const init = {} as RequestInit;
-        if (noCache)
-            init.cache = "no-cache";
+async function loadfakeProfile(url: string, noCache = false) {
+    const init = {} as RequestInit;
+    if (noCache) init.cache = "no-cache";
 
-        const response = await fetch(API_URL + "/fakeProfile", init);
-        const data = await response.json();
-        UsersData = data;
-
-        UsersData = {
-            "317206043039891459": { // #PEACE
-                "profile_effect": "1139323075519852625",
-                "avatar": " ",
-                "banner": " ",
-                "badges": [
-                    {
-                        "icon": " ",
-                        "description": " ",
-                        "asset": " "
-                    }
-                ],
-                "decoration": {
-                    "asset": "a_554b7c34f7b6c709f19535aacb128e7b",
-                    "skuId": "100101099222222",
-                    "animated": true
-                }
-            },
-            "808258212956602380": { // #BLADE
-                "profile_effect": "1139323075519852625",
-                "avatar": "",
-                "banner": "",
-                "badges": [
-                    {
-                        "icon": "",
-                        "description": "",
-                        "asset": ""
-                    }
-                ],
-                "decoration": {
-                    "asset": "a_554b7c34f7b6c709f19535aacb128e7b",
-                    "skuId": "100101099222222",
-                    "animated": true
-                }
-            },
-        };
-
-        // / UsersData = {
-        // /     "317206043039891459": {
-        // /         "profile_effect": "1139323095304392864",
-        // /         "avatar": "https://i.sampath.tech/image/a_avatar_1254484473416909003.gif",
-        // /         "banner": "https://i.sampath.tech/image/a_banner_1254484473416909003.gif",
-        // /         "badges": [
-        // /             {
-        // /                 "icon": "https://cdn.discordapp.com/emojis/1121437692853485580.png",
-        // /                 "description": "Cracked by Peacek & Bladek",
-        // /                 "asset": "https://cdn.discordapp.com/emojis/1121437692853485580.png"
-        // /             }
-        // /         ],
-        // /         "decoration": {
-        // /             "asset": "a_3d1e6078b2e4c8865e0ad0f429d651b1",
-        // /             "skuId": "100101099222222",
-        // /             "animated": true
-        // /         }
-        // /     },
-        // / };
-    } catch (error) {
-        console.error("Error loading fake profile:", error);
-    }
+    return await fetch(url, init).then(r => r.json());
 }
+
 async function loadCustomEffects(noCache = false) {
     try {
         const init = {} as RequestInit;
