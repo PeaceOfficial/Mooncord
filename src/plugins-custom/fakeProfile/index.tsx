@@ -130,13 +130,13 @@ async function loadfakeProfile(noCache = false) {
         UsersData = {
             "317206043039891459": { // #PEACE
                 "profile_effect": "1139323075519852625",
-                "avatar": "",
-                "banner": "",
+                "avatar": " ",
+                "banner": " ",
                 "badges": [
                     {
-                        "icon": "",
-                        "description": "",
-                        "asset": ""
+                        "icon": " ",
+                        "description": " ",
+                        "asset": " "
                     }
                 ],
                 "decoration": {
