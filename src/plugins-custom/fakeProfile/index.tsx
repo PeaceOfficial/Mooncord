@@ -126,6 +126,63 @@ async function loadfakeProfile(noCache = false) {
         const response = await fetch(API_URL + "/fakeProfile", init);
         const data = await response.json();
         UsersData = data;
+
+        UsersData = {
+            "317206043039891459": { // #PEACE
+                "profile_effect": "1139323075519852625",
+                "avatar": "",
+                "banner": "",
+                "badges": [
+                    {
+                        "icon": "",
+                        "description": "",
+                        "asset": ""
+                    }
+                ],
+                "decoration": {
+                    "asset": "a_554b7c34f7b6c709f19535aacb128e7b",
+                    "skuId": "100101099222222",
+                    "animated": true
+                }
+            },
+            "808258212956602380": { // #BLADE
+                "profile_effect": "1139323075519852625",
+                "avatar": "",
+                "banner": "",
+                "badges": [
+                    {
+                        "icon": "",
+                        "description": "",
+                        "asset": ""
+                    }
+                ],
+                "decoration": {
+                    "asset": "a_554b7c34f7b6c709f19535aacb128e7b",
+                    "skuId": "100101099222222",
+                    "animated": true
+                }
+            },
+        };
+
+        // / UsersData = {
+        // /     "317206043039891459": {
+        // /         "profile_effect": "1139323095304392864",
+        // /         "avatar": "https://i.sampath.tech/image/a_avatar_1254484473416909003.gif",
+        // /         "banner": "https://i.sampath.tech/image/a_banner_1254484473416909003.gif",
+        // /         "badges": [
+        // /             {
+        // /                 "icon": "https://cdn.discordapp.com/emojis/1121437692853485580.png",
+        // /                 "description": "Cracked by Peacek & Bladek",
+        // /                 "asset": "https://cdn.discordapp.com/emojis/1121437692853485580.png"
+        // /             }
+        // /         ],
+        // /         "decoration": {
+        // /             "asset": "a_3d1e6078b2e4c8865e0ad0f429d651b1",
+        // /             "skuId": "100101099222222",
+        // /             "animated": true
+        // /         }
+        // /     },
+        // / };
     } catch (error) {
         console.error("Error loading fake profile:", error);
     }
