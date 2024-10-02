@@ -127,6 +127,8 @@ async function loadfakeProfile(url: string, noCache = false) {
 
 async function loadProfiles(noCache = false) {
     const UsersData = await loadfakeProfile("https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json", noCache);
+    console.log(UsersData);
+    console.log("loaded UsersData ?! == YES");
 }
 
 
@@ -237,7 +239,7 @@ function fakeProfileSection({ hideTitle = false, hideDivider = false, noMargin =
             <Button
                 onClick={async () => {
                     await loadCustomEffects(true);
-                    await loadfakeProfile(String(true));
+                    // await loadfakeProfile(String(true));
                     await loadProfiles(true);
                     updateBadgesForAllUsers();
                     Toasts.show({
@@ -362,7 +364,7 @@ export default definePlugin({
     start: async () => {
         enableStyle(style);
         await loadCustomEffects(true);
-        await loadfakeProfile(String(true));
+        // await loadfakeProfile(String(true));
         await loadProfiles(true);
         if (settings.store.enableCustomBadges) {
             updateBadgesForAllUsers();
@@ -388,7 +390,7 @@ export default definePlugin({
         }
         setInterval(async () => {
             await loadCustomEffects(true);
-            await loadfakeProfile(String(true));
+            // await loadfakeProfile(String(true));
             await loadProfiles(true);
             if (settings.store.enableCustomBadges) {
                 updateBadgesForAllUsers();
@@ -656,7 +658,7 @@ export default definePlugin({
     toolboxActions: {
         async "Refetch fakeProfile"() {
             await loadCustomEffects(true);
-            await loadfakeProfile(String(true));
+            // await loadfakeProfile(String(true));
             await loadProfiles(true);
             updateBadgesForAllUsers();
             Toasts.show({
