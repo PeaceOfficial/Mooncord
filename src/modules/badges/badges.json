@@ -4,10 +4,6 @@
         {
             "tooltip": "Mooncord Owner",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/mooncord_owner.gif"
-        },
-        {
-            "tooltip": "Crypto Master",
-            "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/crypto_master.gif"
         }
     ],
     "BENI": "BENI",
