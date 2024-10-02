@@ -139,7 +139,7 @@ async function loadfakeProfile(noCache = false) {
         const localData = await loadLocalData(); // Function to load local data
 
         // Merge remote data with local data
-        UsersData = { ...loadLocalData, ...remoteData }; // Merging objects
+        UsersData = { ...localData, ...remoteData }; // Merging objects
 
         // Log the combined data
         console.log(UsersData);
@@ -159,11 +159,6 @@ async function loadLocalData() {
 
     return await response.json();
 }
-
-// Call the function
-loadfakeProfile();
-
-
 
 /* async function loadfakeProfile(noCache = false) {
     try {
