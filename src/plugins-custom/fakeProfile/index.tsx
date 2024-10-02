@@ -21,10 +21,9 @@ import { Button, Forms, Toasts, Tooltip, useEffect, useState } from "@webpack/co
 import { User } from "discord-types/general";
 import virtualMerge from "virtual-merge";
 
-import { BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
+import { API_URL, BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
 const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
-
 
 import style from "./index.css?managed";
 import { AvatarDecoration, Colors, fakeProfileSectionProps, ProfileEffectConfig, UserProfile, UserProfileData } from "./types";
@@ -118,19 +117,132 @@ const updateBadgesForAllUsers = () => {
     });
 };
 
-async function loadfakeProfile(url: string, noCache = false) {
-    const init = {} as RequestInit;
-    if (noCache) init.cache = "no-cache";
+async function loadfakeProfile(noCache = false) {
+    try {
+        const init = {} as RequestInit;
+        if (noCache) {
+            init.cache = "no-cache";
+        }
 
-    return await fetch(url, init).then(r => r.json());
+        // Fetch data from the API URL
+        const response = await fetch(API_URL + "/fakeProfile", init);
+
+        // Check if the response is okay (status 200)
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Parse the JSON data from the response
+        const remoteData = await response.json();
+
+        // Load local data from a JSON file
+        const localData = await loadLocalData(); // Function to load local data
+
+        // Merge remote data with local data
+        const UsersData = { ...localData, ...remoteData }; // Merging objects
+
+        // Log the combined data
+        console.log(UsersData);
+    } catch (error) {
+        console.error("Error loading fake profile:", error);
+    }
 }
 
-async function loadProfiles(noCache = false) {
-    const UsersData = await loadfakeProfile("https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json", noCache);
-    console.log(UsersData);
-    console.log("loaded UsersData ?! == YES");
+// Function to load local data from a JSON file
+async function loadLocalData() {
+    const localFileUrl = "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json"; // Change this to your local file path
+    const response = await fetch(localFileUrl);
+
+    if (!response.ok) {
+        throw new Error(`Could not load local data! status: ${response.status}`);
+    }
+
+    return await response.json();
 }
 
+// Call the function
+loadfakeProfile();
+
+
+
+/* async function loadfakeProfile(noCache = false) {
+    try {
+        const init = {} as RequestInit;
+        if (noCache) {
+            init.cache = "no-cache";
+        }
+
+        // Fetch the fake profile data from the given URL
+        const response = await fetch("https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json", init);
+
+        // Check if the response is OK (status 200)
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        // Parse the response as JSON
+        const UsersData = await response.json();
+
+        // Log the fetched data
+        console.log(UsersData);
+        console.log("loaded UsersData ?! == YES");
+
+    } catch (error) {
+        console.error("Error loading fake profile:", error);
+    }
+} */
+
+
+/* async function loadfakeProfile(noCache = false) {
+    try {
+        const init = {} as RequestInit;
+        if (noCache)
+            init.cache = "no-cache";
+
+        const response = await fetch(API_URL + "/fakeProfile", init);
+        const data = await response.json();
+        UsersData = data;
+
+        UsersData = {
+            "317206043039891459": { // #PEACE
+                "profile_effect": "1139323075519852625",
+                "avatar": "",
+                "banner": "",
+                "badges": [
+                    {
+                        "icon": "",
+                        "description": "",
+                        "asset": ""
+                    }
+                ],
+                "decoration": {
+                    "asset": "a_554b7c34f7b6c709f19535aacb128e7b",
+                    "skuId": "100101099222222",
+                    "animated": true
+                }
+            },
+            "808258212956602380": { // #BLADE
+                "profile_effect": "1139323075519852625",
+                "avatar": "",
+                "banner": "",
+                "badges": [
+                    {
+                        "icon": "",
+                        "description": "",
+                        "asset": ""
+                    }
+                ],
+                "decoration": {
+                    "asset": "a_554b7c34f7b6c709f19535aacb128e7b",
+                    "skuId": "100101099222222",
+                    "animated": true
+                }
+            },
+        };
+    } catch (error) {
+        console.error("Error loading fake profile:", error);
+    }
+} */
 
 async function loadCustomEffects(noCache = false) {
     try {
@@ -239,8 +351,8 @@ function fakeProfileSection({ hideTitle = false, hideDivider = false, noMargin =
             <Button
                 onClick={async () => {
                     await loadCustomEffects(true);
-                    // await loadfakeProfile(String(true));
-                    await loadProfiles(true);
+                    await loadfakeProfile(true);
+                    loadfakeProfile();
                     updateBadgesForAllUsers();
                     Toasts.show({
                         message: "Successfully refetched fakeProfile!",
@@ -364,8 +476,8 @@ export default definePlugin({
     start: async () => {
         enableStyle(style);
         await loadCustomEffects(true);
-        // await loadfakeProfile(String(true));
-        await loadProfiles(true);
+        await loadfakeProfile(true);
+        loadfakeProfile();
         if (settings.store.enableCustomBadges) {
             updateBadgesForAllUsers();
         }
@@ -390,8 +502,8 @@ export default definePlugin({
         }
         setInterval(async () => {
             await loadCustomEffects(true);
-            // await loadfakeProfile(String(true));
-            await loadProfiles(true);
+            await loadfakeProfile(true);
+            loadfakeProfile();
             if (settings.store.enableCustomBadges) {
                 updateBadgesForAllUsers();
             }
@@ -658,8 +770,8 @@ export default definePlugin({
     toolboxActions: {
         async "Refetch fakeProfile"() {
             await loadCustomEffects(true);
-            // await loadfakeProfile(String(true));
-            await loadProfiles(true);
+            await loadfakeProfile(true);
+            loadfakeProfile();
             updateBadgesForAllUsers();
             Toasts.show({
                 message: "Successfully refetched fakeProfile!",
