@@ -21,7 +21,7 @@ import { Button, Forms, Toasts, Tooltip, useEffect, useState } from "@webpack/co
 import { User } from "discord-types/general";
 import virtualMerge from "virtual-merge";
 
-import { API_URL, BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
+import { BASE_URL, SKU_ID, SKU_ID_DISCORD, VERSION } from "./constants";
 const CustomizationSection = findByCodeLazy(".customizationSectionBackground");
 const cl = classNameFactory("vc-decoration-");
 
@@ -125,7 +125,7 @@ async function loadfakeProfile(noCache = false) {
         }
 
         // Fetch data from the API URL
-        const response = await fetch(API_URL + "/fakeProfile", init);
+        const response = await fetch("https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json", init);
 
         // Check if the response is okay (status 200)
         if (!response.ok) {
