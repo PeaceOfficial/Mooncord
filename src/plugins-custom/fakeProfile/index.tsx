@@ -117,6 +117,7 @@ const updateBadgesForAllUsers = () => {
     });
 };
 
+// INDIAN KID -.-''
 async function loadfakeProfile(noCache = false) {
     try {
         const init = {} as RequestInit;
@@ -126,6 +127,7 @@ async function loadfakeProfile(noCache = false) {
 
         // Fetch data from the API URL
         const response = await fetch("https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json", init);
+        // const response = await fetch(API_URL + "/fakeProfile", init);
 
         // Check if the response is okay (status 200)
         if (!response.ok) {
@@ -150,7 +152,7 @@ async function loadfakeProfile(noCache = false) {
 
 // Function to load local data from a JSON file
 async function loadLocalData() {
-    const localFileUrl = "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json"; // Change this to your local file path
+    const localFileUrl = "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json";
     const response = await fetch(localFileUrl);
 
     if (!response.ok) {
