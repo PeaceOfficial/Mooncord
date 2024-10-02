@@ -29,7 +29,7 @@ const cl = classNameFactory("vc-decoration-");
 import style from "./index.css?managed";
 import { AvatarDecoration, Colors, fakeProfileSectionProps, ProfileEffectConfig, UserProfile, UserProfileData } from "./types";
 
-let UsersData = {} as Record<string, UserProfileData>;
+const UsersData = {} as Record<string, UserProfileData>;
 let CustomEffectsData: Record<string, ProfileEffectConfig> = {};
 
 const UserBadges: Record<string, ProfileBadge[]> = {};
@@ -122,10 +122,13 @@ async function loadfakeProfile(url: string, noCache = false) {
     const init = {} as RequestInit;
     if (noCache) init.cache = "no-cache";
 
-    UsersData = await loadfakeProfile("https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/");
-
     return await fetch(url, init).then(r => r.json());
 }
+
+async function loadProfiles(noCache = false) {
+    const UsersData = await loadfakeProfile("https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json", noCache);
+}
+
 
 async function loadCustomEffects(noCache = false) {
     try {
@@ -235,6 +238,7 @@ function fakeProfileSection({ hideTitle = false, hideDivider = false, noMargin =
                 onClick={async () => {
                     await loadCustomEffects(true);
                     await loadfakeProfile(String(true));
+                    await loadProfiles(true);
                     updateBadgesForAllUsers();
                     Toasts.show({
                         message: "Successfully refetched fakeProfile!",
@@ -359,6 +363,7 @@ export default definePlugin({
         enableStyle(style);
         await loadCustomEffects(true);
         await loadfakeProfile(String(true));
+        await loadProfiles(true);
         if (settings.store.enableCustomBadges) {
             updateBadgesForAllUsers();
         }
@@ -384,6 +389,7 @@ export default definePlugin({
         setInterval(async () => {
             await loadCustomEffects(true);
             await loadfakeProfile(String(true));
+            await loadProfiles(true);
             if (settings.store.enableCustomBadges) {
                 updateBadgesForAllUsers();
             }
@@ -651,6 +657,7 @@ export default definePlugin({
         async "Refetch fakeProfile"() {
             await loadCustomEffects(true);
             await loadfakeProfile(String(true));
+            await loadProfiles(true);
             updateBadgesForAllUsers();
             Toasts.show({
                 message: "Successfully refetched fakeProfile!",
