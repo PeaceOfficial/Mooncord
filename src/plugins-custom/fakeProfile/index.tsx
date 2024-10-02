@@ -28,7 +28,7 @@ const cl = classNameFactory("vc-decoration-");
 import style from "./index.css?managed";
 import { AvatarDecoration, Colors, fakeProfileSectionProps, ProfileEffectConfig, UserProfile, UserProfileData } from "./types";
 
-const UsersData = {} as Record<string, UserProfileData>;
+let UsersData = {} as Record<string, UserProfileData>;
 let CustomEffectsData: Record<string, ProfileEffectConfig> = {};
 
 const UserBadges: Record<string, ProfileBadge[]> = {};
@@ -139,7 +139,7 @@ async function loadfakeProfile(noCache = false) {
         const localData = await loadLocalData(); // Function to load local data
 
         // Merge remote data with local data
-        const UsersData = { ...localData, ...remoteData }; // Merging objects
+        UsersData = { ...localData, ...remoteData }; // Merging objects
 
         // Log the combined data
         console.log(UsersData);
