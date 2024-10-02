@@ -1323,12 +1323,6 @@ const DefaultSettings: Settings = {
             },
             "solidIcon": false
         },
-        "BetterQuests": {
-            "enabled": false
-        },
-        "FileUploadBypass": {
-            "enabled": true
-        },
         "BigFileUpload": {
             "enabled": true,
             "fileUploader": "Catbox",
@@ -1344,9 +1338,9 @@ const DefaultSettings: Settings = {
             "litterboxTime": "72h"
         },
         "fakeProfile": {
-            "enabled": false,
+            "enabled": true,
             "voiceBackground": true,
-            "nitroFirst": false,
+            "nitroFirst": true,
             "enableAvatarDecorations": true,
             "enableCustomBadges": true,
             "showCustomBadgesinmessage": true,
@@ -1354,14 +1348,14 @@ const DefaultSettings: Settings = {
             "enableProfileThemes": true
         },
         "FakeProfileThemesAndEffects": {
-            "enabled": true,
+            "enabled": false,
             "prioritizeNitro": false,
             "hideBuilder": false
         }
     },
     "notifications": {
         "timeout": 2000,
-        "position": "top-right",
+        "position": "bottom-right",
         "useNative": "not-focused",
         "logLimit": 50
     },
