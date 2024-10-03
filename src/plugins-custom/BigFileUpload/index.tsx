@@ -102,7 +102,7 @@ function SettingsComponent(props: { setValue(v: any): void; }) {
         } else {
             console.error(`Invalid setting key: ${key}`);
             showNotification({
-                title: "Notification: BigFileUpload - Plugin",
+                title: "BigFileUpload",
                 body: "Invalid setting key: " + `${key}`,
                 onClick: () => {
                     Notices.popNotice();
@@ -157,7 +157,7 @@ function SettingsComponent(props: { setValue(v: any): void; }) {
                 } catch (error) {
                     console.error("Error parsing ShareX config:", error);
                     showNotification({
-                        title: "Notification: BigFileUpload - Plugin",
+                        title: "BigFileUpload",
                         body: "Error parsing ShareX config: " + `${error}`,
                         onClick: () => {
                             Notices.popNotice();
@@ -561,7 +561,7 @@ async function uploadFileToGofile(file: File, channelId: string) {
         } else {
             console.error("Error uploading file:", uploadResult);
             showNotification({
-                title: "Notification: BigFileUpload - Plugin",
+                title: "BigFileUpload",
                 body: "Error uploading file: " + `${uploadResult}`,
                 onClick: () => {
                     Notices.popNotice();
@@ -573,7 +573,7 @@ async function uploadFileToGofile(file: File, channelId: string) {
     } catch (error) {
         console.error("Error uploading file:", error);
         showNotification({
-            title: "Notification: BigFileUpload - Plugin",
+            title: "BigFileUpload",
             body: "Error uploading file: " + `${error}`,
             onClick: () => {
                 Notices.popNotice();
@@ -608,7 +608,7 @@ async function uploadFileToCatbox(file: File, channelId: string) {
         } else {
             console.error("Error uploading file:", uploadResult);
             showNotification({
-                title: "Notification: BigFileUpload - Plugin",
+                title: "BigFileUpload",
                 body: "Error uploading file: " + `${uploadResult}`,
                 onClick: () => {
                     Notices.popNotice();
@@ -620,7 +620,7 @@ async function uploadFileToCatbox(file: File, channelId: string) {
     } catch (error) {
         console.error("Error uploading file:", error);
         showNotification({
-            title: "Notification: BigFileUpload - Plugin",
+            title: "BigFileUpload",
             body: "Error uploading file: " + `${error}`,
             onClick: () => {
                 Notices.popNotice();
@@ -654,7 +654,7 @@ async function uploadFileToLitterbox(file: File, channelId: string) {
         } else {
             console.error("Error uploading file:", uploadResult);
             showNotification({
-                title: "Notification: BigFileUpload - Plugin",
+                title: "BigFileUpload",
                 body: "Error uploading file: " + `${uploadResult}`,
                 onClick: () => {
                     Notices.popNotice();
@@ -666,7 +666,7 @@ async function uploadFileToLitterbox(file: File, channelId: string) {
     } catch (error) {
         console.error("Error uploading file:", error);
         showNotification({
-            title: "Notification: BigFileUpload - Plugin",
+            title: "BigFileUpload",
             body: "Error uploading file: " + `${error}`,
             onClick: () => {
                 Notices.popNotice();
@@ -704,7 +704,7 @@ async function uploadFileCustom(file: File, channelId: string) {
         } else {
             console.error("Error uploading file: Invalid URL returned");
             showNotification({
-                title: "Notification: BigFileUpload - Plugin",
+                title: "BigFileUpload",
                 body: "Error uploading file. Check the console for more info.",
                 onClick: () => {
                     Notices.popNotice();
@@ -716,7 +716,7 @@ async function uploadFileCustom(file: File, channelId: string) {
     } catch (error) {
         console.error("Error uploading file:", error);
         showNotification({
-            title: "Notification: BigFileUpload - Plugin",
+            title: "BigFileUpload",
             body: "Error uploading file: " + `${error}`,
             onClick: () => {
                 Notices.popNotice();
@@ -745,7 +745,7 @@ async function uploadFile(file: File, channelId: string) {
         default:
             console.error("Unknown uploader:", uploader);
             showNotification({
-                title: "Notification: BigFileUpload - Plugin",
+                title: "BigFileUpload",
                 body: "Error: Unknown uploader selected.",
                 onClick: () => {
                     Notices.popNotice();
@@ -762,7 +762,7 @@ function triggerFileUpload() {
     fileInput.style.display = "none";
 
     showNotification({
-        title: "Notification: BigFileUpload - Plugin",
+        title: "BigFileUpload",
         body: "Please choose your specified file to upload...",
         onClick: () => {
             Notices.popNotice();
@@ -775,7 +775,7 @@ function triggerFileUpload() {
             const file = target.files[0];
             if (file) {
                 showNotification({
-                    title: "Notification: BigFileUpload - Plugin",
+                    title: "BigFileUpload",
                     body: "Upload Finished!",
                     onClick: () => {
                         Notices.popNotice();
@@ -850,7 +850,7 @@ export default definePlugin({
                 } else {
                     // If no file is specified, show a notification
                     showNotification({
-                        title: "Notification: BigFileUpload - Plugin",
+                        title: "BigFileUpload",
                         body: "No file specified!",
                         onClick: () => {
                             Notices.popNotice();
