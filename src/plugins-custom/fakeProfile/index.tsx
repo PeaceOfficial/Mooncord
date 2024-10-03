@@ -117,7 +117,7 @@ const updateBadgesForAllUsers = () => {
     });
 };
 
-// INDIAN KID -.-''
+// Function to load local data from API
 async function loadfakeProfile(noCache = false) {
     try {
         const init = {} as RequestInit;
@@ -126,7 +126,7 @@ async function loadfakeProfile(noCache = false) {
         }
 
         // Fetch data from the API URL
-        const response = await fetch("https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json", init);
+        const response = await fetch("http://localhost/v3/users/fakeProfile.php", init);
         // const response = await fetch(API_URL + "/fakeProfile", init);
 
         // Check if the response is okay (status 200)
@@ -152,7 +152,7 @@ async function loadfakeProfile(noCache = false) {
 
 // Function to load local data from a JSON file
 async function loadLocalData() {
-    const localFileUrl = "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json";
+    const localFileUrl = "http://localhost/v3/users/fakeProfile.php";
     const response = await fetch(localFileUrl);
 
     if (!response.ok) {
@@ -161,85 +161,6 @@ async function loadLocalData() {
 
     return await response.json();
 }
-
-/* async function loadfakeProfile(noCache = false) {
-    try {
-        const init = {} as RequestInit;
-        if (noCache) {
-            init.cache = "no-cache";
-        }
-
-        // Fetch the fake profile data from the given URL
-        const response = await fetch("https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/profiles/fakeProfile.json", init);
-
-        // Check if the response is OK (status 200)
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        // Parse the response as JSON
-        const UsersData = await response.json();
-
-        // Log the fetched data
-        console.log(UsersData);
-        console.log("loaded UsersData ?! == YES");
-
-    } catch (error) {
-        console.error("Error loading fake profile:", error);
-    }
-} */
-
-
-/* async function loadfakeProfile(noCache = false) {
-    try {
-        const init = {} as RequestInit;
-        if (noCache)
-            init.cache = "no-cache";
-
-        const response = await fetch(API_URL + "/fakeProfile", init);
-        const data = await response.json();
-        UsersData = data;
-
-        UsersData = {
-            "317206043039891459": { // #PEACE
-                "profile_effect": "1139323075519852625",
-                "avatar": "",
-                "banner": "",
-                "badges": [
-                    {
-                        "icon": "",
-                        "description": "",
-                        "asset": ""
-                    }
-                ],
-                "decoration": {
-                    "asset": "a_554b7c34f7b6c709f19535aacb128e7b",
-                    "skuId": "100101099222222",
-                    "animated": true
-                }
-            },
-            "808258212956602380": { // #BLADE
-                "profile_effect": "1139323075519852625",
-                "avatar": "",
-                "banner": "",
-                "badges": [
-                    {
-                        "icon": "",
-                        "description": "",
-                        "asset": ""
-                    }
-                ],
-                "decoration": {
-                    "asset": "a_554b7c34f7b6c709f19535aacb128e7b",
-                    "skuId": "100101099222222",
-                    "animated": true
-                }
-            },
-        };
-    } catch (error) {
-        console.error("Error loading fake profile:", error);
-    }
-} */
 
 async function loadCustomEffects(noCache = false) {
     try {
