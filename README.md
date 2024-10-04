@@ -58,6 +58,7 @@
     - CuteAnimeBoys by ShadyGoat
     - CuteNekos by echo
     - CutePats by thororen
+    - DeadMembers by Kyuuhachi
     - Demonstration by Samwich
     - DisableCameras by Joona
     - DoNotLeak by Perny
@@ -128,6 +129,7 @@
     - ScreenRecorder by AutumnVN (Vesktop & Equibop only)
     - SearchFix by Jaxx
     - SekaiStickers by MaiKokain
+    - ServerSearch by Camila314
     - Shakespearean by vmohammad (Dev build only)
     - ShowBadgesInChat by Inbestigator & KrystalSkull
     - Slap by Korbo
