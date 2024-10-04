@@ -156,5 +156,16 @@
             "tooltip": "Stitch",
             "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/stitch.gif"
         }
+    ],
+    "KOWY": "KOWY",
+    "650804443570372690": [
+        {
+            "tooltip": "Real Friend",
+            "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/real_friends.gif"
+        },
+        {
+            "tooltip": "Mooncord Early Tester",
+            "badge": "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/badges/icons/mooncord_early.gif"
+        }
     ]
 }
