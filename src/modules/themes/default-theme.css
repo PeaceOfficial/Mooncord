@@ -15,18 +15,6 @@
 /*@import url('https://refact0r.github.io/midnight-discord/midnight.css');*/
 
 @import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/main/src/modules/themes/mooncord-default-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/amaryllis-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/biscuit-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/cookie-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/frappe-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/macchiato-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/mocha-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/night-owl-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nocturne-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nord-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/pichu-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/rose-pine-theme.css');
-@import url('https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/spotify-theme.css');
 
 /* customize things here */
 :root {
