@@ -429,6 +429,7 @@ function ThemesTab() {
                             <Button onClick={() => addThemeLink(currentThemeLink)} disabled={!themeLinkValid}>Add</Button>
                         </Flex>
                         {currentThemeLink && <Validator link={currentThemeLink} onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css" onValidate={setThemeLinkValid} />}
                         {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/amaryllis-theme.css" onValidate={setThemeLinkValid} />}
                         {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/biscuit-theme.css" onValidate={setThemeLinkValid} />}
                         {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/cookie-theme.css" onValidate={setThemeLinkValid} />}
