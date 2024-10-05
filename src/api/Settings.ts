@@ -749,7 +749,8 @@ const DefaultSettings: Settings = {
             "multiplier": 2
         },
         "WhoReacted": {
-            "enabled": true
+            "enabled": true,
+            "avatarClick": false
         },
         "XSOverlay": {
             "enabled": false
@@ -1152,14 +1153,14 @@ const DefaultSettings: Settings = {
             "showDiscordNitro": true,
             "EquicordDonorPosition": 3,
             "VencordDonorPosition": 4,
-            "DiscordNitroPosition": 7,
+            "DiscordNitroPosition": 3,
             "EquicordContributorPosition": 2,
-            "DiscordProfilePosition": 6,
+            "DiscordProfilePosition": 1,
             "VencordContributorPosition": 5,
             "showMooncordDonor": true,
-            "MooncordDonorPosition": 1,
+            "MooncordDonorPosition": 0,
             "showMooncordContributor": true,
-            "MooncordContributorPosition": 0
+            "MooncordContributorPosition": 2
         },
         "Slap": {
             "enabled": false
@@ -1325,7 +1326,7 @@ const DefaultSettings: Settings = {
         },
         "BigFileUpload": {
             "enabled": true,
-            "fileUploader": "Catbox",
+            "fileUploader": "Litterbox",
             "customUploaderName": "",
             "customUploaderRequestURL": "",
             "customUploaderFileFormName": "",
@@ -1337,20 +1338,21 @@ const DefaultSettings: Settings = {
             "catboxUserHash": "",
             "litterboxTime": "72h"
         },
-        "fakeProfile": {
-            "enabled": true,
-            "voiceBackground": true,
-            "nitroFirst": true,
-            "enableAvatarDecorations": true,
-            "enableCustomBadges": true,
-            "showCustomBadgesinmessage": true,
-            "enableProfileEffects": true,
-            "enableProfileThemes": true
+        "DeadMembers": {
+            "enabled": false
         },
-        "FakeProfileThemesAndEffects": {
-            "enabled": false,
-            "prioritizeNitro": false,
-            "hideBuilder": false
+        "ServerSearch": {
+            "enabled": false
+        },
+        "Moonlink": {
+            "enabled": true,
+            "enableProfileEffects": true,
+            "enableProfileThemes": true,
+            "enableCustomBadges": true,
+            "enableAvatarDecorations": true,
+            "showCustomBadgesinmessage": true,
+            "nitroFirst": true,
+            "voiceBackground": true
         }
     },
     "notifications": {

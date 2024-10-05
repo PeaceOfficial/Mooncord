@@ -72,7 +72,7 @@ export interface Colors {
     accent: number;
 }
 
-export interface fakeProfileSectionProps {
+export interface ProfileSectionProps {
     hideTitle?: boolean;
     hideDivider?: boolean;
     noMargin?: boolean;
