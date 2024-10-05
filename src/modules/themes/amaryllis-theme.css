@@ -83,7 +83,6 @@
 	/* change to block to show, none to hide */
 	--discord-icon: none; /* discord icon */
 	--moon-icon: block; /* moon icon */
-    --moon-icon-color: rosybrown !important;
 	--moon-icon-url: url("https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg"); /* custom icon url */
 	--moon-icon-size: auto;
 
@@ -92,4 +91,11 @@
 	--login-bg-filter: none; /* login background artwork */
 	--green-to-accent-3-filter: none; /* add friend page explore icon */
 	--blurple-to-accent-3-filter: none; /* add friend page school icon */
+}
+
+.childWrapper_f90abb:has(> svg:not(.favoriteIcon_dcc7a4)) {
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg');
+	background-color: transparent !important;
+	background-size: cover;
+	background-position: center;
 }
