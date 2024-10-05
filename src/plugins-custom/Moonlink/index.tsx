@@ -35,7 +35,7 @@ let CustomEffectsData: Record<string, ProfileEffectConfig> = {};
 const UserBadges: Record<string, ProfileBadge[]> = {};
 const updateBadgesForAllUsers = () => {
     Object.keys(UsersData).forEach(userId => {
-        const newBadges = UsersData[userId].badges;
+        const newBadges = UsersData[userId].badges; // TODO.: HERE !!!
         const existingBadges = UserBadges[userId] || [];
         if (newBadges) {
             newBadges.forEach((badge, index) => {

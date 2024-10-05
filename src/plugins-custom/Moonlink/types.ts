@@ -34,7 +34,7 @@ export interface UserProfileData {
     custom_profile_effect?: string;
     banner: string;
     avatar: string;
-    badges: Badge[];
+    badges: Badge[]; // TODO.: HERE !!!
     decoration: DecorationData;
 }
 
