@@ -78,23 +78,9 @@
 	--roundness-xs: 10px; /* channels, buttons */
 	--roundness-xxs: 8px; /* searchbar, small elements */
 
-	/* direct messages moon icon */
-	/* change to block to show, none to hide */
-	--discord-icon: none; /* discord icon */
-	--moon-icon: none; /* moon icon */
-	--moon-icon-url: none;
-	--moon-icon-size: auto;
-
 	/* filter uncolorable elements to fit theme */
 	/* (just set to none, they're too much work to configure) */
 	--login-bg-filter: none; /* login background artwork */
 	--green-to-accent-3-filter: none; /* add friend page explore icon */
 	--blurple-to-accent-3-filter: none; /* add friend page school icon */
-}
-.childWrapper_f90abb:has(> svg:not(.favoriteIcon_dcc7a4)) {
-	background-image: url('https://raw.githubusercontent.com/Biscuit-Colorscheme/.github/main/assets/icon-dark-nobg.png');
-	background-color: transparent !important;
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
 }
