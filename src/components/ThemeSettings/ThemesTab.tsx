@@ -429,6 +429,18 @@ function ThemesTab() {
                             <Button onClick={() => addThemeLink(currentThemeLink)} disabled={!themeLinkValid}>Add</Button>
                         </Flex>
                         {currentThemeLink && <Validator link={currentThemeLink} onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/amaryllis-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/biscuit-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/cookie-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/frappe-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/macchiato-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/mocha-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/night-owl-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nocturne-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nord-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/pichu-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/rose-pine-theme.css" onValidate={setThemeLinkValid} />}
+                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/spotify-theme.css" onValidate={setThemeLinkValid} />}
                     </Card>
 
                     <div className={cl("grid")}>
