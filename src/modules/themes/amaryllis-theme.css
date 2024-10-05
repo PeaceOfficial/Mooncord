@@ -94,8 +94,8 @@
 }
 
 .childWrapper_f90abb:has(> svg:not(.favoriteIcon_dcc7a4)) {
-	background-image: url('https://github.com/yuhkix/midnight-discord/blob/master/assets/amaryllis/amaryllis.png?raw=true');
-	background-color: transparent !important;
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg');
+	background-color: rosybrown !important;
 	background-size: cover;
 	background-position: center;
 }
