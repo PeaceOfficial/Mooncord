@@ -419,29 +419,50 @@ function ThemesTab() {
     }
 
     function OnlineThemes() {
+        const themeLinks = [
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/amaryllis-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/biscuit-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/cookie-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/frappe-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/macchiato-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/mocha-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/night-owl-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nocturne-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nord-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/pichu-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/rose-pine-theme.css",
+            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/spotify-theme.css"
+        ];
+
         return (
             <>
                 <Forms.FormSection title="Online Themes" tag="h5">
                     <Card className="vc-settings-theme-add-card">
                         <Forms.FormText>Make sure to use direct links to files (raw or github.io)!</Forms.FormText>
                         <Flex flexDirection="row">
-                            <TextInput placeholder="Theme Link" className="vc-settings-theme-link-input" value={currentThemeLink} onChange={setCurrentThemeLink} />
-                            <Button onClick={() => addThemeLink(currentThemeLink)} disabled={!themeLinkValid}>Add</Button>
+                            <TextInput
+                                placeholder="Theme Link"
+                                className="vc-settings-theme-link-input"
+                                value={currentThemeLink}
+                                onChange={setCurrentThemeLink}
+                            />
+                            <Button onClick={() => addThemeLink(currentThemeLink)} disabled={!themeLinkValid}>
+                                Add
+                            </Button>
                         </Flex>
+
+                        {/* Validator for the theme link input */}
                         {currentThemeLink && <Validator link={currentThemeLink} onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/amaryllis-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/biscuit-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/cookie-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/frappe-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/macchiato-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/mocha-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/night-owl-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nocturne-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nord-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/pichu-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/rose-pine-theme.css" onValidate={setThemeLinkValid} />}
-                        {currentThemeLink && <Validator link="https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/spotify-theme.css" onValidate={setThemeLinkValid} />}
+
+                        {/* Validators for each hardcoded theme link */}
+                        {themeLinks.map((link, index) => (
+                            <Validator
+                                key={index}
+                                link={link}
+                                onValidate={setThemeLinkValid}
+                            />
+                        ))}
                     </Card>
 
                     <div className={cl("grid")}>

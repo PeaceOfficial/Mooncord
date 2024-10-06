@@ -274,7 +274,7 @@ const DefaultSettings: Settings = {
             "imageSmall": "moonlight",
             "imageSmallTooltip": "Mooncord, featuring a variety of new enhancements, including: \"Themes, Plugins, Optimizations\".",
             "details": "Mooncord takes a Moonshot at Discord customization, elevating it through solo development by: \"PEACE\", with full transparency.",
-            "state": "Version: \"1.3 - RELEASE\" 🌙🌚🌕",
+            "state": "Version: \"1.4 - RELEASE\" 🌙🌚🌕",
             "buttonOneText": "GITHUB",
             "buttonOneURL": "https://github.com/PeaceOfficial/Mooncord",
             "buttonTwoText": "WEBSITE",
@@ -456,7 +456,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "NoDevtoolsWarning": {
-            "enabled": false
+            "enabled": true
         },
         "NoF1": {
             "enabled": true
@@ -1330,7 +1330,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "CustomFolderIcons": {
-            "enabled": true,
+            "enabled": false,
             "folderIcons": {
                 "1323094666": {}
             },
