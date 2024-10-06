@@ -85,17 +85,11 @@
 	--discord-icon: none; /* discord icon */
 	--moon-icon: block; /* moon icon */
 	--moon-icon-url: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg');
-	--moon-icon-size: cover;
+	--moon-icon-size: auto;
 
 	/* filter uncolorable elements to fit theme */
 	/* (just set to none, they're too much work to configure) */
 	--login-bg-filter: saturate(0.3) hue-rotate(-15deg) brightness(0.4); /* login background artwork */
 	--green-to-accent-3-filter: hue-rotate(56deg) saturate(1.43); /* add friend page explore icon */
 	--blurple-to-accent-3-filter: hue-rotate(304deg) saturate(0.84) brightness(1.2); /* add friend page school icon */
-}
-.childWrapper_f90abb:has(> svg:not(.favoriteIcon_dcc7a4)) {
-	background-image: url('https://raw.githubusercontent.com/NYRI4/LilyPichu/main/assets/icon.png');
-	background-color: transparent !important;
-	background-size: cover;
-	background-position: center;
 }

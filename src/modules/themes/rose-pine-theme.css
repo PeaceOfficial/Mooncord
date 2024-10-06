@@ -88,10 +88,3 @@
 	--green-to-accent-3-filter: none; /* add friend page explore icon */
 	--blurple-to-accent-3-filter: none; /* add friend page school icon */
 }
-
-.childWrapper_f90abb:has(> svg:not(.favoriteIcon_dcc7a4)) {
-	background-image: url('https://raw.githubusercontent.com/rose-pine/rose-pine-theme/main/assets/icon.png');
-	background-color: transparent !important;
-	background-size: cover;
-	background-position: center;
-}
