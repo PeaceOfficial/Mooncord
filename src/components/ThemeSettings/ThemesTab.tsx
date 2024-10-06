@@ -418,55 +418,119 @@ function ThemesTab() {
         refreshOnlineThemes();
     }
 
-    function OnlineThemes() {
-        const themeLinks = [
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/amaryllis-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/biscuit-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/cookie-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/frappe-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/macchiato-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/mocha-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/night-owl-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nocturne-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nord-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/pichu-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/rose-pine-theme.css",
-            "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/spotify-theme.css"
-        ];
+    const predefinedThemes = [
+        {
+            fileName: "default-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css",
+            name: "Mooncord - Default Theme",
+            author: "PEACE",
+            description: "Original dark rounded appearance of Mooncord.",
+        },
+        {
+            fileName: "amaryllis-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/amaryllis-theme.css",
+            name: "Mooncord - Amaryllis Theme",
+            author: "PEACE",
+            description: "Soft hues of gentle rose pink blend with deep dark midnight black colors."
+        },
+        {
+            fileName: "biscuit-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/biscuit-theme.css",
+            name: "Mooncord - Biscuit Theme",
+            author: "PEACE",
+            description: "Buttery beige hues, flaky layers of a biscuit, blended with warm brown colors.",
+        },
+        {
+            fileName: "cookie-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/cookie-theme.css",
+            name: "Mooncord - Cookie Theme",
+            author: "PEACE",
+            description: "Golden-brown hues, soft chocolate tones, and a touch of creamy sweetness.",
+        },
+        {
+            fileName: "frappe-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/frappe-theme.css",
+            name: "Mooncord - Frappé Theme",
+            author: "PEACE",
+            description: "Creamy beige hues, blended with coffee browns and swirls of frothy white.",
+        },
+        {
+            fileName: "macchiato-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/macchiato-theme.css",
+            name: "Mooncord - Macchiato Theme",
+            author: "PEACE",
+            description: "Rich espresso hues, layered with creamy beige and a touch of caramel tones.",
+        },
+        {
+            fileName: "mocha-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/mocha-theme.css",
+            name: "Mooncord - Mocha Theme",
+            author: "PEACE",
+            description: "Deep black blended with warm purple hues and creamy blue undertones.",
+        },
+        {
+            fileName: "nocturne-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nocturne-theme.css",
+            name: "Mooncord - Nocturne Theme",
+            author: "PEACE",
+            description: "Black and deep purple tones, illuminated by soft silver highlights.",
+        },
+        {
+            fileName: "nord-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nord-theme.css",
+            name: "Mooncord - Nord Theme",
+            author: "PEACE",
+            description: "Cool blues and icy grays, evoking the serene beauty of the Arctic landscape.",
+        },
+        {
+            fileName: "pichu-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/pichu-theme.css",
+            name: "Mooncord - Pichu Theme",
+            author: "PEACE",
+            description: "Vibrant rose and deep red hues, capturing the playful spirit of Pichu.",
+        },
+        {
+            fileName: "rose-pine-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/rose-pine-theme.css",
+            name: "Mooncord - Rose Pine Theme",
+            author: "PEACE",
+            description: "Deep purple and rich rose tones, blending warmth with a hint of mystery.",
+        },
+        {
+            fileName: "spotify-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/spotify-theme.css",
+            name: "Mooncord - Spotify Theme",
+            author: "PEACE",
+            description: "Bold greens and dark blacks, the vibe of music, inspired on: (Spotify) - theme.",
+        },
+        {
+            fileName: "visual-theme.css",
+            link: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/visual-theme.css",
+            name: "Mooncord - Visual Theme",
+            author: "PEACE",
+            description: "Deep inky blues and shadowy grays, inspired on: (Visual Studio) - theme.",
+        },
+        // Additional predefined themes can be added here - 2024.10.06 by @PeaceOfficial
+    ];
 
+    // Combine online themes with predefined themes
+    const combinedThemes = [...(onlineThemes || []), ...predefinedThemes];
+
+    function OnlineThemes() {
         return (
             <>
                 <Forms.FormSection title="Online Themes" tag="h5">
                     <Card className="vc-settings-theme-add-card">
                         <Forms.FormText>Make sure to use direct links to files (raw or github.io)!</Forms.FormText>
                         <Flex flexDirection="row">
-                            <TextInput
-                                placeholder="Theme Link"
-                                className="vc-settings-theme-link-input"
-                                value={currentThemeLink}
-                                onChange={setCurrentThemeLink}
-                            />
-                            <Button onClick={() => addThemeLink(currentThemeLink)} disabled={!themeLinkValid}>
-                                Add
-                            </Button>
+                            <TextInput placeholder="Theme Link" className="vc-settings-theme-link-input" value={currentThemeLink} onChange={setCurrentThemeLink} />
+                            <Button onClick={() => addThemeLink(currentThemeLink)} disabled={!themeLinkValid}>Add</Button>
                         </Flex>
-
-                        {/* Validator for the theme link input */}
                         {currentThemeLink && <Validator link={currentThemeLink} onValidate={setThemeLinkValid} />}
-
-                        {/* Validators for each hardcoded theme link */}
-                        {themeLinks.map((link, index) => (
-                            <Validator
-                                key={index}
-                                link={link}
-                                onValidate={setThemeLinkValid}
-                            />
-                        ))}
                     </Card>
 
                     <div className={cl("grid")}>
-                        {onlineThemes?.map(rawLink => {
+                        {combinedThemes.map(rawLink => {
                             const { label, link } = (() => {
                                 const match = /^@(light|dark) (.*)/.exec(rawLink.link);
                                 if (!match) return { label: rawLink, link: rawLink };
@@ -475,19 +539,28 @@ function ThemesTab() {
                                 return { label: `[${mode} mode only] ${link}`, link };
                             })();
 
-                            return <OtherThemeCard
-                                key={rawLink.fileName}
-                                enabled={settings.enabledThemeLinks.includes(rawLink.link)}
-                                onChange={enabled => onThemeLinkEnabledChange(rawLink.link, enabled)}
-                                onDelete={async () => {
-                                    onThemeLinkEnabledChange(rawLink.link, false);
-                                    deleteThemeLink(rawLink.link);
-                                }}
-                                showDeleteButton
-                                theme={rawLink}
-                            />;
+                            // Check if the theme is a predefined theme
+                            const isPredefinedTheme = predefinedThemes.some(theme => theme.fileName === rawLink.fileName);
+
+                            return (
+                                <OtherThemeCard
+                                    key={rawLink.fileName}
+                                    enabled={settings.enabledThemeLinks.includes(rawLink.link)}
+                                    onChange={enabled => onThemeLinkEnabledChange(rawLink.link, enabled)}
+                                    onDelete={async () => {
+                                        // Prevent deletion if it's a predefined theme
+                                        if (!isPredefinedTheme) {
+                                            onThemeLinkEnabledChange(rawLink.link, false);
+                                            deleteThemeLink(rawLink.link);
+                                        }
+                                    }}
+                                    showDeleteButton={!isPredefinedTheme} // Hide the delete button for predefined themes
+                                    theme={rawLink}
+                                />
+                            );
                         })}
                     </div>
+
                 </Forms.FormSection>
             </>
         );

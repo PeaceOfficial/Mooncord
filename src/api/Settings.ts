@@ -87,29 +87,13 @@ const DefaultSettings: Settings = {
     autoUpdate: false,
     autoUpdateNotification: false,
     useQuickCss: true,
-    "themeLinks": [
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/amaryllis-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/biscuit-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/cookie-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/frappe-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/macchiato-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/mocha-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/night-owl-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nocturne-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/nord-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/pichu-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/rose-pine-theme.css",
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/spotify-theme.css"
-    ],
+    "themeLinks": [],
     "enabledThemes": [],
-    "enabledThemeLinks": [
-        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css"
-    ],
+    "enabledThemeLinks": [],
     enableReactDevtools: false,
     frameless: false,
     transparent: false,
-    winCtrlQ: false,
+    winCtrlQ: true,
     macosVibrancyStyle: undefined,
     disableMinSize: false,
     winNativeTitleBar: false,
@@ -722,11 +706,6 @@ const DefaultSettings: Settings = {
             "showInMemberList": true,
             "showInMessages": true
         },
-        "USRBG": {
-            "enabled": false,
-            "nitroFirst": true,
-            "voiceBackground": true
-        },
         "ValidReply": {
             "enabled": false
         },
@@ -911,7 +890,7 @@ const DefaultSettings: Settings = {
         "Encryptcord": {
             "enabled": false
         },
-        "EquicordCSS": {
+        "MooncordCSS": {
             "enabled": false,
             "betterAuthApps": false,
             "betterStatusPicker": false,
@@ -1139,16 +1118,6 @@ const DefaultSettings: Settings = {
         "ReplyPingControl": {
             "enabled": false
         },
-        "RPCStats": {
-            "enabled": false,
-            "assetURL": "",
-            "RPCTitle": "RPCStats",
-            "statDisplay": 0,
-            "lastFMApiKey": "",
-            "lastFMUsername": "",
-            "albumCoverImage": true,
-            "lastFMStatFormat": "Top album this week: \"$album - $artist\""
-        },
         "SearchFix": {
             "enabled": false
         },
@@ -1220,9 +1189,6 @@ const DefaultSettings: Settings = {
             "enabled": false,
             "title": "Mooncord"
         },
-        "TosuRPC": {
-            "enabled": false
-        },
         "Translate+": {
             "enabled": false,
             "target": "en",
@@ -1239,24 +1205,11 @@ const DefaultSettings: Settings = {
         "UnreadCountBadge": {
             "enabled": false
         },
-        "UserPFP": {
-            "enabled": false,
-            "preferNitro": true,
-            "urlForDB": "https://userpfp.github.io/UserPFP/source/data.json"
-        },
         "UwUifier": {
             "enabled": false
         },
         "VCSupport": {
             "enabled": false
-        },
-        "VencordRPC": {
-            "enabled": false,
-            "userAvatarAsSmallImage": false,
-            "exposeDmsUsername": false,
-            "type": 0,
-            "timestampMode": 0,
-            "appID": "1285734980416307200"
         },
         "VideoSpeed": {
             "enabled": false
@@ -1316,9 +1269,6 @@ const DefaultSettings: Settings = {
         "AtSomeone": {
             "enabled": false
         },
-        "DiscordFileSplitter": {
-            "enabled": false
-        },
         "BannersEverywhere": {
             "enabled": false,
             "animate": true
@@ -1326,15 +1276,16 @@ const DefaultSettings: Settings = {
         "FullUserInChatbox": {
             "enabled": false
         },
-        "MooncordCSS": {
-            "enabled": false
-        },
         "CustomFolderIcons": {
             "enabled": false,
-            "folderIcons": {
-                "1323094666": {}
-            },
+            "folderIcons": {},
             "solidIcon": false
+        },
+        "DeadMembers": {
+            "enabled": false
+        },
+        "ServerSearch": {
+            "enabled": false
         },
         "BigFileUpload": {
             "enabled": true,
@@ -1350,12 +1301,6 @@ const DefaultSettings: Settings = {
             "catboxUserHash": "",
             "litterboxTime": "72h"
         },
-        "DeadMembers": {
-            "enabled": false
-        },
-        "ServerSearch": {
-            "enabled": false
-        },
         "Moonlink": {
             "enabled": true,
             "enableProfileEffects": true,
@@ -1367,6 +1312,7 @@ const DefaultSettings: Settings = {
             "voiceBackground": true
         }
     },
+
     "notifications": {
         "timeout": 2000,
         "position": "bottom-right",
@@ -1376,7 +1322,7 @@ const DefaultSettings: Settings = {
 
     cloud: {
         authenticated: false,
-        url: "https://cloud.equicord.fyi/",
+        url: "https://cloud.mooncord.fyi/",
         settingsSync: false,
         settingsSyncVersion: 0
     },

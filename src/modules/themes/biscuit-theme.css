@@ -81,8 +81,8 @@
 	/* direct messages moon icon */
 	/* change to block to show, none to hide */
 	--discord-icon: none; /* discord icon */
-	--moon-icon: none; /* moon icon */
-	--moon-icon-url: none;
+	--moon-icon: block; /* moon icon */
+	--moon-icon-url: url('https://upload.wikimedia.org/wikipedia/commons/c/c4/Font_Awesome_5_solid_moon.svg');
 	--moon-icon-size: auto;
 
 	/* filter uncolorable elements to fit theme */
