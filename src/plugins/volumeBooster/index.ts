@@ -109,7 +109,7 @@ export default definePlugin({
         },
         // Prevent the MediaEngineStore from overwriting our LocalVolumes above 200 with the ones the Discord Audio Context Settings sync sends
         {
-            find: '="MediaEngineStore",',
+            find: '"MediaEngineStore"',
             replacement: [
                 {
                     match: /(\.settings\.audioContextSettings.+?)(\i\[\i\])=(\i\.volume)(.+?setLocalVolume\(\i,).+?\)/,

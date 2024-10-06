@@ -106,7 +106,7 @@ export default definePlugin({
         {
             find: "Slow dispatch on",
             replacement: {
-                match: /\i\.totalTime>\i&&\i\.verbose\("Slow dispatch on ".+?\)\);/,
+                match: /\i\.totalTime>100&&\i\.verbose\("Slow dispatch on ".+?\)\);/,
                 replace: ""
             }
         },
