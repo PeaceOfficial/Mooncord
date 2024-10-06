@@ -5,8 +5,8 @@
 /* stylelint-disable comment-empty-line-before */
 /* stylelint-disable comment-whitespace-inside */
 /**
- * @name Mooncord - Night Owl Theme
- * @description Night Owl appearance of Mooncord, based on: [Midnight Night Owl Theme]
+ * @name Mooncord - Visual Theme
+ * @description Deep inky blues and shadowy grays, inspired on: (Visual Studio) - theme.
  * @author PEACE
  * @version 1.0.0
 */
@@ -21,7 +21,7 @@
 	--font: 'figtree';
 
 	/* top left corner text */
-	--corner-text: 'Midnight - Night Owl';
+	--corner-text: 'Mooncord - Visual';
 
 	/* thickness of messages divider */
 	--divider-thickness: 3px;
