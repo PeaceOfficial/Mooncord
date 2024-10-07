@@ -58,7 +58,7 @@ window.VencordNative = {
     },
 
     updater: {
-        getRepo: async () => ({ ok: true, value: "https://github.com/Equicord/Equicord" }),
+        getRepo: async () => ({ ok: true, value: "https://github.com/PeaceOfficial/Mooncord" }),
         getUpdates: async () => ({ ok: true, value: [] }),
         update: async () => ({ ok: true, value: false }),
         rebuild: async () => ({ ok: true, value: true }),
@@ -105,7 +105,8 @@ window.VencordNative = {
             }
         },
         set: async (s: Settings) => localStorage.setItem("EquicordSettings", JSON.stringify(s)),
-        getSettingsDir: async () => "LocalStorage"
+        getSettingsDir: async () => "LocalStorage",
+        getThemesDir: async () => "LocalStorage"
     },
 
     pluginHelpers: {} as any,
