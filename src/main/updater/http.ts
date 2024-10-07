@@ -91,7 +91,7 @@ ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));
 export async function migrateLegacyToAsar() {
     try {
         const isFlatpak = process.platform === "linux" && !!process.env.FLATPAK_ID;
-        if (isFlatpak) throw "Flatpak Discord can't automatically be migrated.";
+        if (isFlatpak) throw "Flatpak Discord can't automatically be migrated...";
 
         const data = await get(`https://github.com/${gitRemote}/releases/download/RELEASE/desktop.asar`);
 
