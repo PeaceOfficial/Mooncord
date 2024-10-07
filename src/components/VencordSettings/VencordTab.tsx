@@ -283,19 +283,26 @@ function MooncordSettings() {
                         </Button>
                     </Flex>
                 </Card>
-                {/*                 <Flex>
-                    <Button
-                        onClick={() => downloadSettingsBackup()}
-                    >
-                        Export Settings
-                    </Button>
-                    <Button
-                        onClick={() => uploadSettingsBackup()}
-                    >
-                        Import Settings
-                    </Button>
-                </Flex> */}
             </Forms.FormSection>
+
+            <div style={{ marginTop: "25px" }}></div> {/* Spacer with specific margin */}
+
+            {/*             <Forms.FormSection className={Margins.top16} title="Mooncord Updates" tag="h5">
+                <Card className={classes("vc-settings-card", "vc-backup-restore-card")}>
+                    <Flex flexDirection="column">
+
+                        <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+                            <strong>Update inside Mooncord made simpler</strong>
+                        </div>
+
+                        <Button
+                            onClick={() => useForceUpdater()}
+                        >
+                            🚀 Update Mooncord 🚀
+                        </Button>
+                    </Flex>
+                </Card>
+            </Forms.FormSection> */}
 
 
         </SettingsTab>

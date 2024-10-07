@@ -58,7 +58,7 @@ async function calculateGitChanges() {
 }
 
 async function fetchUpdates() {
-    const release = await githubGet("/releases/releases");
+    const release = await githubGet("/releases/latest");
 
     const data = JSON.parse(release.toString());
     const hash = data.name.slice(data.name.lastIndexOf(" ") + 1);
@@ -83,7 +83,7 @@ async function applyUpdates() {
     return true;
 }
 
-ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => "https://github.com/PeaceOfficial/Mooncord"));
+ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => "https://github.com/${gitRemote}"));
 ipcMain.handle(IpcEvents.GET_UPDATES, serializeErrors(calculateGitChanges));
 ipcMain.handle(IpcEvents.UPDATE, serializeErrors(fetchUpdates));
 ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));
@@ -91,9 +91,9 @@ ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));
 export async function migrateLegacyToAsar() {
     try {
         const isFlatpak = process.platform === "linux" && !!process.env.FLATPAK_ID;
-        if (isFlatpak) throw "Flatpak Discord can't automatically be migrated.";
+        if (isFlatpak) throw "Flatpak Discord can't automatically be migrated...";
 
-        const data = await get("https://github.com/PeaceOfficial/Mooncord/releases/latest/download/desktop.asar");
+        const data = await get("https://github.com/PeaceOfficial/Mooncord/releases/download/RELEASE/desktop.asar");
 
         originalWriteFileSync(join(__dirname, "../desktop.asar"), data);
         originalWriteFileSync(__filename, '// Legacy shim for new asar\n\nrequire("../desktop.asar");');

@@ -18,7 +18,6 @@
 
 import { Settings } from "@api/Settings";
 import PluginsTab from "@components/VencordSettings/PluginsTab";
-import UpdaterTab from "@components/VencordSettings/UpdaterTab";
 import VencordTab from "@components/VencordSettings/VencordTab";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
@@ -124,12 +123,12 @@ export default definePlugin({
             },
             */
 
-            !IS_UPDATER_DISABLED && {
-                section: "EquicordUpdater",
-                label: "Updater",
-                element: UpdaterTab,
-                className: "vc-updater"
-            },
+            /*             !IS_UPDATER_DISABLED && {
+                            section: "EquicordUpdater",
+                            label: "Updater",
+                            element: UpdaterTab,
+                            className: "vc-updater"
+                        }, */
 
             /*
             {
