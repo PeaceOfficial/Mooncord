@@ -914,9 +914,6 @@ const DefaultSettings: Settings = {
         "FriendTags": {
             "enabled": false
         },
-        "GensokyoRadioRPC": {
-            "enabled": false
-        },
         "GifRoulette": {
             "enabled": false
         },
