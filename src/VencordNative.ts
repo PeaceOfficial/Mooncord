@@ -49,6 +49,7 @@ export default {
         get: () => sendSync<Settings>(IpcEvents.GET_SETTINGS),
         set: (settings: Settings, pathToNotify?: string) => invoke<void>(IpcEvents.SET_SETTINGS, settings, pathToNotify),
         getSettingsDir: () => invoke<string>(IpcEvents.GET_SETTINGS_DIR),
+        getThemesDir: () => invoke<string>(IpcEvents.GET_THEMES_DIR),
     },
 
     quickCss: {

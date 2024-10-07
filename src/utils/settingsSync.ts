@@ -73,6 +73,42 @@ const toastSuccess = () =>
 const toastFailure = (err: any) =>
     toast(Toasts.Type.FAILURE, `Failed to import settings: ${String(err)}`);
 
+export async function MooncordSettings(showToast = true): Promise<void> {
+    if (IS_DISCORD_DESKTOP) {
+        const [file] = await DiscordNative.fileManager.openFiles({
+            filters: [
+                { name: "Mooncord Settings Backup", extensions: ["json"] },
+                { name: "all", extensions: ["*"] }
+            ]
+        });
+
+        if (file) {
+            try {
+                await importSettings(new TextDecoder().decode(file.data));
+                if (showToast) toastSuccess();
+            } catch (err) {
+                new Logger("SettingsSync").error(err);
+                if (showToast) toastFailure(err);
+            }
+        }
+    } else {
+        const file = await chooseFile("application/json");
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = async () => {
+            try {
+                await importSettings(reader.result as string);
+                if (showToast) toastSuccess();
+            } catch (err) {
+                new Logger("SettingsSync").error(err);
+                if (showToast) toastFailure(err);
+            }
+        };
+        reader.readAsText(file);
+    }
+}
+
 export async function uploadSettingsBackup(showToast = true): Promise<void> {
     if (IS_DISCORD_DESKTOP) {
         const [file] = await DiscordNative.fileManager.openFiles({

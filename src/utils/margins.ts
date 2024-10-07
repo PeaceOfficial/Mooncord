@@ -18,7 +18,7 @@
 
 let styleStr = "";
 
-export const Margins: Record<`${"top" | "bottom" | "left" | "right"}${8 | 16 | 20}`, string> = {} as any;
+export const Margins: Record<`${"top" | "bottom" | "left" | "right"}${8 | 16 | 20 | 32}`, string> = {} as any;
 
 for (const dir of ["top", "bottom", "left", "right"] as const) {
     for (const size of [8, 16, 20] as const) {

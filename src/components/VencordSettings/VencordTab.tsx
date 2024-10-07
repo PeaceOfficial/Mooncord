@@ -23,9 +23,10 @@ import DonateButton from "@components/DonateButton";
 import { openPluginModal } from "@components/PluginSettings/PluginModal";
 import { gitRemote } from "@shared/vencordUserAgent";
 import { Margins } from "@utils/margins";
-import { identity } from "@utils/misc";
+import { classes, identity } from "@utils/misc";
 import { relaunch, showItemInFolder } from "@utils/native";
 import { useAwaiter } from "@utils/react";
+import { downloadSettingsBackup, uploadSettingsBackup } from "@utils/settingsSync";
 import { Button, Card, Forms, React, Select, Switch } from "@webpack/common";
 
 import { Flex, FolderIcon, GithubIcon, LogIcon, PaintbrushIcon, RestartIcon } from "..";
@@ -45,6 +46,9 @@ type KeysOfType<Object, Type> = {
 
 function MooncordSettings() {
     const [settingsDir, , settingsDirPending] = useAwaiter(VencordNative.settings.getSettingsDir, {
+        fallbackValue: "Loading..."
+    });
+    const [themesDir, , themesDirPending] = useAwaiter(VencordNative.settings.getThemesDir, {
         fallbackValue: "Loading..."
     });
     const settings = useSettings();
@@ -130,6 +134,11 @@ function MooncordSettings() {
                         Icon={GithubIcon}
                         text="View Source Code"
                         action={() => VencordNative.native.openExternal("https://github.com/" + gitRemote)}
+                    />
+                    <QuickAction // added 2024.10.07 - open themes folder @PeaceOfficial
+                        Icon={FolderIcon}
+                        text="Open Themes Folder"
+                        action={() => showItemInFolder(themesDir)}
                     />
                 </QuickActionCard>
             </Forms.FormSection>
@@ -226,15 +235,69 @@ function MooncordSettings() {
             </>}
 
             <Forms.FormSection className={Margins.top16} title="Mooncord Notifications" tag="h5">
-                <Flex>
-                    <Button onClick={openNotificationSettingsModal}>
-                        Notification Settings
-                    </Button>
-                    <Button onClick={openNotificationLogModal}>
-                        View Notification Log
-                    </Button>
-                </Flex>
+                <Forms.FormSection className={Margins.bottom20}>
+                    <Flex>
+                        <Button onClick={openNotificationSettingsModal}>
+                            Notification Settings
+                        </Button>
+                        <Button onClick={openNotificationLogModal}>
+                            View Notification Log
+                        </Button>
+                    </Flex>
+                </Forms.FormSection>
             </Forms.FormSection>
+
+            <div style={{ marginTop: "25px" }}></div> {/* Spacer with specific margin */}
+
+            <Forms.FormSection className={Margins.top16} title="Mooncord Backup & Recover" tag="h5">
+                <Card className={classes("vc-settings-card", "vc-backup-restore-card")}>
+                    <Flex flexDirection="column">
+
+                        <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+                            <strong>Sharing settings inside Mooncord made simpler</strong>
+                        </div>
+
+                        <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
+                            <strong>⚠️ Information ⚠️</strong>
+                        </div>
+
+                        <div style={{ marginBottom: "16px", textAlign: "center" }}>
+                            <span>Importing a settings file will overwrite your current settings.</span><br />
+                            <span>Export contains: Custom QuickCSS, Theme Links, Plugin Settings.</span>
+                        </div>
+
+                        <div style={{ marginBottom: "8px", textAlign: "center" }}>
+                            <span>Export and Import Mooncord settings as a "JSON" file.</span><br />
+                            <span>Save with Export Settings & Load with Import Settings.</span>
+                        </div>
+
+                        <Button
+                            onClick={() => downloadSettingsBackup()}
+                        >
+                            💾 Export Settings 💾
+                        </Button>
+                        <Button
+                            onClick={() => uploadSettingsBackup()}
+                        >
+                            🚀 Import Settings 🚀
+                        </Button>
+                    </Flex>
+                </Card>
+                {/*                 <Flex>
+                    <Button
+                        onClick={() => downloadSettingsBackup()}
+                    >
+                        Export Settings
+                    </Button>
+                    <Button
+                        onClick={() => uploadSettingsBackup()}
+                    >
+                        Import Settings
+                    </Button>
+                </Flex> */}
+            </Forms.FormSection>
+
+
         </SettingsTab>
     );
 }

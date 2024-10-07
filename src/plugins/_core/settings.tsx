@@ -17,8 +17,8 @@
 */
 
 import { Settings } from "@api/Settings";
-import BackupAndRestoreTab from "@components/VencordSettings/BackupAndRestoreTab";
 import PluginsTab from "@components/VencordSettings/PluginsTab";
+import UpdaterTab from "@components/VencordSettings/UpdaterTab";
 import VencordTab from "@components/VencordSettings/VencordTab";
 import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
@@ -115,20 +115,23 @@ export default definePlugin({
                 className: "vc-themes"
             },
 
+            /* //MOVED TO MOONCORD TAB !!! 2024.10.07 - @PeaceOfficial
             {
                 section: "EquicordSettingsSync",
-                label: "Backup & Restore",
+                label: "Settings",
                 element: BackupAndRestoreTab,
                 className: "vc-backup-restore"
             },
+            */
 
-            /*
             !IS_UPDATER_DISABLED && {
                 section: "EquicordUpdater",
-                label: "Updater",
+                label: "Updates",
                 element: UpdaterTab,
                 className: "vc-updater"
             },
+
+            /*
             {
                 section: "EquicordCloud",
                 label: "Cloud",
