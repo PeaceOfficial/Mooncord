@@ -159,7 +159,7 @@ function Updatable(props: CommonProps) {
                         if (outdated) {
                             setUpdates(changes);
                         } else {
-                            setUpdates(changes);
+                            setUpdates([]); x;
                             Toasts.show({
                                 message: "No updates found!",
                                 id: Toasts.genId(),
