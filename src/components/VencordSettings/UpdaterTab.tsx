@@ -78,7 +78,7 @@ interface CommonProps {
 }
 
 function HashLink({ repo, hash, disabled = false }: { repo: string, hash: string, disabled?: boolean; }) {
-    return <Link href={`${repo}/commit/${hash}`} disabled={disabled}>
+    return <Link href={`https://github.com/PeaceOfficial/Mooncord/commit/${hash}`} disabled={disabled}>
         {hash}
     </Link>;
 }
