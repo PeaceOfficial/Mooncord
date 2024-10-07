@@ -126,7 +126,7 @@ export default definePlugin({
 
             !IS_UPDATER_DISABLED && {
                 section: "EquicordUpdater",
-                label: "Updates",
+                label: "Updater",
                 element: UpdaterTab,
                 className: "vc-updater"
             },

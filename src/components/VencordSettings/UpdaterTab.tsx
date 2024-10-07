@@ -205,7 +205,7 @@ function Updater() {
     };
 
     return (
-        <SettingsTab title="Mooncord Updater">
+        <SettingsTab title="Updater">
             <Forms.FormTitle tag="h5">Updater Settings</Forms.FormTitle>
             <Switch
                 value={settings.autoUpdate}
@@ -231,8 +231,7 @@ function Updater() {
                     : err
                         ? "Failed to retrieve - check console"
                         : (
-                            <Link href={repo}>
-                                {repo.split("/").slice(-2).join("/")}
+                            <Link href={repo}>{repo.split("/").slice(-2).join("/")}
                             </Link>
                         )
                 }

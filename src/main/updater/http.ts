@@ -83,7 +83,7 @@ async function applyUpdates() {
     return true;
 }
 
-ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => "https://github.com/${gitRemote}"));
+ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => `https://github.com/${gitRemote}`));
 ipcMain.handle(IpcEvents.GET_UPDATES, serializeErrors(calculateGitChanges));
 ipcMain.handle(IpcEvents.UPDATE, serializeErrors(fetchUpdates));
 ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));
@@ -91,12 +91,12 @@ ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));
 export async function migrateLegacyToAsar() {
     try {
         const isFlatpak = process.platform === "linux" && !!process.env.FLATPAK_ID;
-        if (isFlatpak) throw "Flatpak Discord can't automatically be migrated...";
+        if (isFlatpak) throw "Flatpak Discord can't automatically be migrated.";
 
-        const data = await get(`https://github.com/${gitRemote}/releases/download/RELEASE/desktop.asar`);
+        const data = await get(`https://github.com/${gitRemote}/releases/latest/download/desktop.asar`);
 
-        originalWriteFileSync(join(__dirname, "../desktop.asar"), data);
-        originalWriteFileSync(__filename, '// Legacy shim for new asar\n\nrequire("../desktop.asar");');
+        originalWriteFileSync(join(__dirname, "../equicord.asar"), data);
+        originalWriteFileSync(__filename, '// Legacy shim for new asar\n\nrequire("../equicord.asar");');
 
         app.relaunch();
         app.exit();
@@ -106,7 +106,7 @@ export async function migrateLegacyToAsar() {
         app.whenReady().then(() => {
             dialog.showErrorBox(
                 "Legacy Install",
-                "The way Mooncord loaded was changed and the updater failed to migrate. Please reinstall using the Mooncord Installer!"
+                "The way Vencord loaded was changed and the updater failed to migrate. Please reinstall using the Vencord Installer!"
             );
             app.exit(1);
         });
