@@ -101,6 +101,60 @@ function MooncordSettings() {
             },
         ];
 
+    /**
+     * Downloads a file from a raw GitHub link and saves it to the user's local file system.
+     * @param githubRawUrl The URL to the raw file on GitHub.
+     * @param destinationFileName The name of the file to save in the default downloads directory.
+     */
+    async function useForceUpdater(githubRawUrl: string, destinationFileName?: string): Promise<void> {
+        // Validate the URL
+        try {
+            new URL(githubRawUrl);
+        } catch {
+            throw new Error("Invalid GitHub URL provided.");
+        }
+
+        // Use a CORS proxy
+        const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
+        const response = await fetch(corsProxyUrl + githubRawUrl);
+
+        // Check if the response is okay
+        if (!response.ok) {
+            throw new Error(`Failed to download file: Status code ${response.status}`);
+        }
+
+        // Get the blob from the response
+        const blob = await response.blob();
+
+        // Use the provided destination file name or set a default
+        if (!destinationFileName) {
+            destinationFileName = "desktop.asar";
+        }
+
+        // Ensure the file name includes an appropriate extension
+        const fileExtension = githubRawUrl.split(".").pop(); // Extracting extension from URL
+        if (!destinationFileName.includes(".")) {
+            destinationFileName += `.${fileExtension}`; // Add extension if missing
+        }
+
+        // Create a link element to download the file
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = destinationFileName; // Browser will handle the download
+
+        // Append to the document and trigger a click to download
+        document.body.appendChild(link);
+        link.click();
+
+        // Clean up
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(link.href);
+
+        // Alert user to move the file
+        alert(`File downloaded as: ${destinationFileName}. Please move it to %APPDATA%\\Mooncord manually.`);
+    }
+
+
     return (
         <SettingsTab title="Mooncord Settings">
             <DonateCard image={donateImage} />
@@ -287,7 +341,7 @@ function MooncordSettings() {
 
             <div style={{ marginTop: "25px" }}></div> {/* Spacer with specific margin */}
 
-            {/*             <Forms.FormSection className={Margins.top16} title="Mooncord Updates" tag="h5">
+            {<Forms.FormSection className={Margins.top16} title="Mooncord Updates" tag="h5">
                 <Card className={classes("vc-settings-card", "vc-backup-restore-card")}>
                     <Flex flexDirection="column">
 
@@ -296,13 +350,14 @@ function MooncordSettings() {
                         </div>
 
                         <Button
-                            onClick={() => useForceUpdater()}
+                            onClick={() => useForceUpdater("https://github.com/PeaceOfficial/Mooncord/releases/download/RELEASE/desktop.asar", "desktop.asar")}
                         >
                             🚀 Update Mooncord 🚀
                         </Button>
                     </Flex>
                 </Card>
-            </Forms.FormSection> */}
+            </Forms.FormSection>
+            }
 
 
         </SettingsTab>
