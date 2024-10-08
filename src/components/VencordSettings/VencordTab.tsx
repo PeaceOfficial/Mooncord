@@ -101,6 +101,7 @@ function MooncordSettings() {
             },
         ];
 
+
     /**
      * Downloads a file from a raw GitHub link and saves it to the user's local file system.
      * @param githubRawUrl The URL to the raw file on GitHub.
