@@ -34,8 +34,11 @@ export interface UserProfileData {
     custom_profile_effect?: string;
     banner: string;
     avatar: string;
-    badges: Badge[]; // TODO.: HERE !!!
     decoration: DecorationData;
+}
+
+export interface UserProfileDataBadge {
+    badges: Badge[];
 }
 
 export interface ProfileEffectConfig {

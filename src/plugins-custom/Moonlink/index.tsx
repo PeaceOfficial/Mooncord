@@ -27,15 +27,16 @@ const cl = classNameFactory("vc-decoration-");
 import { MooncordDevs } from "@utils/constants";
 
 import style from "./index.css?managed";
-import { AvatarDecoration, Colors, ProfileEffectConfig, ProfileSectionProps, UserProfile, UserProfileData } from "./types";
+import { AvatarDecoration, Colors, ProfileEffectConfig, ProfileSectionProps, UserProfile, UserProfileData, UserProfileDataBadge } from "./types";
 
 let UsersData = {} as Record<string, UserProfileData>;
 let CustomEffectsData: Record<string, ProfileEffectConfig> = {};
+let CustomBadgesData = {} as Record<string, UserProfileDataBadge>;
 
 const UserBadges: Record<string, ProfileBadge[]> = {};
 const updateBadgesForAllUsers = () => {
-    Object.keys(UsersData).forEach(userId => {
-        const newBadges = UsersData[userId].badges; // TODO.: HERE !!!
+    Object.keys(CustomBadgesData).forEach(userId => {
+        const newBadges = CustomBadgesData[userId].badges;
         const existingBadges = UserBadges[userId] || [];
         if (newBadges) {
             newBadges.forEach((badge, index) => {
@@ -130,6 +131,7 @@ async function loadProfiles(noCache = false) {
         // Fetch data from the API URL
         const response_profiles = await fetch("http://localhost/moonlink/profiles/profiles.php", init);
         const response_effects = await fetch("http://localhost/moonlink/profile-effects.php", init);
+        const response_badges = await fetch("http://localhost/moonlink/badges/badges.php", init);
 
         // Check if the response is okay (status 200)
         if (!response_profiles.ok) {
@@ -138,25 +140,33 @@ async function loadProfiles(noCache = false) {
         if (!response_effects.ok) {
             throw new Error(`HTTP error! status: ${response_effects.status}`);
         }
+        if (!response_badges.ok) {
+            throw new Error(`HTTP error! status: ${response_badges.status}`);
+        }
 
         // Parse the JSON data from the response
         const remoteProfiles = await response_profiles.json();
         const remoteEffects = await response_effects.json();
+        const remoteBadges = await response_badges.json();
 
         // Load local data from a JSON file
         const Profiles = await loadProfile(); // Function to load "Profiles"
         const Effects = await loadEffect(); // Function to load "Effects"
+        const Badges = await loadBadge(); // Function to load "Badges"
 
         // Merge remote data with local data
         UsersData = { ...Profiles, ...remoteProfiles, ...remoteEffects }; // Merging profile objects
         CustomEffectsData = { ...Effects }; // Merging effect objects
+        CustomBadgesData = { ...Badges, ...remoteBadges }; // Merging badge objects
 
         // Log the combined data
         console.log(UsersData);
         console.log(CustomEffectsData);
+        console.log(CustomBadgesData);
     } catch (error) {
         console.error("Error loading profiles:", error);
         console.error("Error loading effects:", error);
+        console.error("Error loading badges:", error);
     }
 }
 
@@ -182,6 +192,17 @@ async function loadEffect() {
     }
 
     return await response_effect.json();
+}
+async function loadBadge() {
+    const localBadge = "http://localhost/moonlink/badges/badges.php";
+
+    const response_badge = await fetch(localBadge);
+
+    if (!response_badge.ok) {
+        throw new Error(`Could not load local data! status: ${response_badge.status}`);
+    }
+
+    return await response_badge.json();
 }
 
 function getUserEffect(profileId: string) {
@@ -279,6 +300,7 @@ function ProfileSection({ hideTitle = false, hideDivider = false, noMargin = fal
                     await loadProfiles(true);
                     loadProfile();
                     loadEffect();
+                    loadBadge();
                     updateBadgesForAllUsers();
                     Toasts.show({
                         message: "Successfully refetched Moonlink!",
@@ -346,7 +368,7 @@ function ImageIcon(path: string) {
     );
 }
 const BadgeIcon = ({ user, badgeImg, badgeText }: { user: User, badgeImg: string, badgeText: string; }) => {
-    if (UsersData[user.id]?.badges) {
+    if (CustomBadgesData[user.id]?.badges) {
         const Icon = ImageIcon(badgeImg);
         const tooltip = badgeText;
         return <Icon tooltip={tooltip} />;
@@ -359,7 +381,7 @@ const BadgeIcon = ({ user, badgeImg, badgeText }: { user: User, badgeImg: string
 
 const BadgeMain = ({ user, wantMargin = true, wantTopMargin = false }: { user: User; wantMargin?: boolean; wantTopMargin?: boolean; }) => {
 
-    const validBadges = UsersData[user.id]?.badges;
+    const validBadges = CustomBadgesData[user.id]?.badges;
     if (!validBadges || validBadges.length === 0) return null;
 
     const icons = validBadges.map((badge, index) => (
@@ -406,6 +428,7 @@ export default definePlugin({
         await loadProfiles(true);
         loadProfile();
         loadEffect();
+        loadBadge();
         if (settings.store.enableCustomBadges) {
             updateBadgesForAllUsers();
         }
@@ -432,6 +455,7 @@ export default definePlugin({
             await loadProfiles(true);
             loadProfile();
             loadEffect();
+            loadBadge();
             if (settings.store.enableCustomBadges) {
                 updateBadgesForAllUsers();
             }
@@ -658,7 +682,7 @@ export default definePlugin({
     },
 
     shouldShowBadge({ displayProfile, user }: any) {
-        return displayProfile?.banner && (UsersData[user.id] || settings.store.nitroFirst);
+        return displayProfile?.banner && (CustomBadgesData[user.id] || settings.store.nitroFirst);
     },
 
     getAvatarHook: (original: any) => (user: User, animated: boolean, size: number) => {
@@ -714,6 +738,7 @@ export default definePlugin({
             await loadProfiles(true);
             loadProfile();
             loadEffect();
+            loadBadge();
             updateBadgesForAllUsers();
             Toasts.show({
                 message: "Successfully refetched Moonlink!",
