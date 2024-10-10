@@ -129,9 +129,9 @@ async function loadProfiles(noCache = false) {
         }
 
         // Fetch data from the API URL
-        const response_profiles = await fetch("http://localhost/moonlink/profiles/profiles.php", init);
-        const response_effects = await fetch("http://localhost/moonlink/profile-effects.php", init);
-        const response_badges = await fetch("http://localhost/moonlink/badges/badges.php", init);
+        const response_profiles = await fetch("http://95.138.193.179/moonlink/profiles/profiles.php", init);
+        const response_effects = await fetch("http://95.138.193.179/moonlink/profile-effects.php", init);
+        const response_badges = await fetch("http://95.138.193.179/moonlink/badges/badges.php", init);
 
         // Check if the response is okay (status 200)
         if (!response_profiles.ok) {
@@ -172,7 +172,7 @@ async function loadProfiles(noCache = false) {
 
 // Function to load local data from a JSON file
 async function loadProfile() {
-    const localProfile = "http://localhost/moonlink/profiles/profiles.php";
+    const localProfile = "http://95.138.193.179/moonlink/profiles/profiles.php";
 
     const response_profile = await fetch(localProfile);
 
@@ -183,7 +183,7 @@ async function loadProfile() {
     return await response_profile.json();
 }
 async function loadEffect() {
-    const localEffect = "http://localhost/moonlink/profile-effects.php";
+    const localEffect = "http://95.138.193.179/moonlink/profile-effects.php";
 
     const response_effect = await fetch(localEffect);
 
@@ -194,7 +194,7 @@ async function loadEffect() {
     return await response_effect.json();
 }
 async function loadBadge() {
-    const localBadge = "http://localhost/moonlink/badges/badges.php";
+    const localBadge = "http://95.138.193.179/moonlink/badges/badges.php";
 
     const response_badge = await fetch(localBadge);
 
@@ -439,7 +439,7 @@ export default definePlugin({
                 </ErrorBoundary>
             );
         }
-        const response = await fetch("http://localhost/moonlink/moonlink.php");
+        const response = await fetch("http://95.138.193.179/moonlink/moonlink.php");
         const data = await response.json();
         if (data.version !== VERSION) {
             Toasts.show({
@@ -704,7 +704,7 @@ export default definePlugin({
                 const image_name = parsedUrl.pathname.split("/").pop()?.replace("a_", ""); // Remove 'a_' if it's an animated avatar
 
                 // If image_name exists, return the custom URL, otherwise fallback to the original
-                return image_name ? "http://localhost/moonlink/images/" + image_name : original(user, animated, size);
+                return image_name ? "http://95.138.193.179/moonlink/images/" + image_name : original(user, animated, size);
             }
         }
 
@@ -716,7 +716,7 @@ export default definePlugin({
         if (!avatarDecoration || !settings.store.enableAvatarDecorations) return;
         if (canAnimate && avatarDecoration?.animated !== false) {
             if (avatarDecoration?.skuId === SKU_ID) {
-                const url = new URL(`http://localhost/moonlink/avatar-decoration-presets/a_${avatarDecoration?.asset}.png`);
+                const url = new URL(`http://95.138.193.179/moonlink/avatar-decoration-presets/a_${avatarDecoration?.asset}.png`);
                 return url.toString();
             } else {
                 const url = new URL(`https://cdn.discordapp.com/avatar-decoration-presets/${avatarDecoration?.asset}.png`);
@@ -724,7 +724,7 @@ export default definePlugin({
             }
         } else {
             if (avatarDecoration?.skuId === SKU_ID) {
-                const url = new URL(`http://localhost/moonlink/avatar-decoration-presets/${avatarDecoration?.asset}.png`);
+                const url = new URL(`http://95.138.193.179/moonlink/avatar-decoration-presets/${avatarDecoration?.asset}.png`);
                 return url.toString();
             } else {
                 const url = new URL(`https://cdn.discordapp.com/avatar-decoration-presets/${avatarDecoration?.asset}.png?passthrough=false`);
