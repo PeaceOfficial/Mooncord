@@ -128,18 +128,16 @@ async function loadProfiles(noCache = false) {
             init.cache = "no-cache";
         }
 
-        // Fetch data from the API URL
+        // Fetch data from the API URL & Check if the response is okay?! (status 200)
         const response_profiles = await fetch("http://95.138.193.179/moonlink/profiles/profiles.php", init);
-        const response_effects = await fetch("http://95.138.193.179/moonlink/profile-effects.php", init);
-        const response_badges = await fetch("http://95.138.193.179/moonlink/badges/badges.php", init);
-
-        // Check if the response is okay (status 200)
         if (!response_profiles.ok) {
             throw new Error(`HTTP error! status: ${response_profiles.status}`);
         }
+        const response_effects = await fetch("http://95.138.193.179/moonlink/profile-effects.php", init);
         if (!response_effects.ok) {
             throw new Error(`HTTP error! status: ${response_effects.status}`);
         }
+        const response_badges = await fetch("http://95.138.193.179/moonlink/badges/badges.php", init);
         if (!response_badges.ok) {
             throw new Error(`HTTP error! status: ${response_badges.status}`);
         }
