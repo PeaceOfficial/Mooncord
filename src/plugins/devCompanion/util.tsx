@@ -146,7 +146,7 @@ export function toggleEnabled(name: string, beforeReload: () => void) {
 
     const settings = Settings.plugins[plugin.name];
 
-    const isEnabled = () => settings.enabled ?? false;
+    const isEnabled = () => Vencord.Plugins.isPluginEnabled(plugin.name);
 
     const wasEnabled = isEnabled();
 
