@@ -32,16 +32,16 @@ export const MessageLoggerStore = createStore("MessageLoggerData", "MessageLogge
 
 // this gets used by the logs modal. logs modal should only use saved messages not messages that are being processed
 // also hasMessageInLogs should only check saved messages not the ones that are being processed
-export let savedLoggedMessages: LoggedMessages = defaultLoggedMessages;
+export let savedLoggedMessages: LoggedMessages = { ...defaultLoggedMessages };
 
-export let loggedMessages: LoggedMessages = defaultLoggedMessages;
+export let loggedMessages: LoggedMessages = { ...defaultLoggedMessages };
 
 (async () => {
     try {
         const Native = getNative();
         const res = await Native.getLogsFromFs();
         if (res != null) {
-            // Flogger.log("Got logged messages from native wont be checking DataStore");
+            Flogger.log("Got logged messages from native wont be checking DataStore");
             const cleaned = await cleanMessages(res, Native);
             loggedMessages = cleaned;
             savedLoggedMessages = cleaned;

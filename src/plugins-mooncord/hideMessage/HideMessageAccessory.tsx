@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-import { cl, revealMessage } from ".";
+import { cl, revealMessage } from "./";
 import { HideIcon } from "./HideIcon";
 
 export const HideMessageAccessory = ({ id }: { id: string; }) => {

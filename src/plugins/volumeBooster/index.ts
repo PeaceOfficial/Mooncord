@@ -94,7 +94,7 @@ export default definePlugin({
             find: "AudioContextSettingsMigrated",
             replacement: [
                 {
-                    match: /(?<=isLocalMute\(\i,\i\),volume:(\i).+?\i\(\i,\i,)\1(?=\))/,
+                    match: /(?<=isLocalMute\(\i,\i\),volume:.+?volume:)\i(?=})/,
                     replace: "$&>200?200:$&"
                 },
                 {

@@ -82,10 +82,8 @@ export async function syncAndRunChecks() {
                     notify(
                         `You are no longer friends with ${getUniqueUsername(user)}.`,
                         user.getAvatarURL(undefined, undefined, false),
-                        () => Notices.popNotice()
-                        // () => openUserProfile(user.id)
+                        () => openUserProfile(user.id)
                     );
-
             }
         }
 

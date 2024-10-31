@@ -350,7 +350,7 @@ export default definePlugin({
                 {
                     // Filter attachments to remove fake nitro stickers or emojis
                     predicate: () => settings.store.transformStickers,
-                    match: /renderAttachments\(\i\){let{attachments:(\i).+?;/,
+                    match: /renderAttachments\(\i\){.+?{attachments:(\i).+?;/,
                     replace: (m, attachments) => `${m}${attachments}=$self.filterAttachments(${attachments});`
                 }
             ]
@@ -412,18 +412,21 @@ export default definePlugin({
     },
 
     get canUseEmotes() {
-        return (UserStore.getCurrentUser().premiumType ?? 0) > 0;
+        // @ts-ignore
+        return (UserStore?.getCurrentUser()?._realPremiumType ?? UserStore?.getCurrentUser().premiumType ?? 0) > 0;
     },
 
     get canUseStickers() {
-        return (UserStore.getCurrentUser().premiumType ?? 0) > 1;
+        // @ts-ignore
+        return (UserStore?.getCurrentUser()?._realPremiumType ?? UserStore.getCurrentUser().premiumType ?? 0) > 1;
     },
 
     handleProtoChange(proto: any, user: any) {
         try {
             if (proto == null || typeof proto === "string") return;
 
-            const premiumType: number = user?.premium_type ?? UserStore?.getCurrentUser()?.premiumType ?? 0;
+            // @ts-ignore
+            const premiumType: number = user?._realPremiumType ?? user?.premium_type ?? UserStore?.getCurrentUser()?.premiumType ?? 0;
 
             if (premiumType !== 2) {
                 proto.appearance ??= AppearanceSettingsActionCreators.create();
@@ -453,7 +456,8 @@ export default definePlugin({
     },
 
     handleGradientThemeSelect(backgroundGradientPresetId: number | undefined, theme: number, original: () => void) {
-        const premiumType = UserStore?.getCurrentUser()?.premiumType ?? 0;
+        // @ts-ignore
+        const premiumType = UserStore?.getCurrentUser()?._realPremiumType ?? UserStore?.getCurrentUser()?.premiumType ?? 0;
         if (premiumType === 2 || backgroundGradientPresetId == null) return original();
 
         if (!PreloadedUserSettingsActionCreators || !AppearanceSettingsActionCreators || !ClientThemeSettingsActionsCreators || !BINARY_READ_OPTIONS) return;
@@ -913,6 +917,7 @@ export default definePlugin({
             }
 
             if (s.enableEmojiBypass) {
+
                 for (const emoji of messageObj.validNonShortcutEmojis) {
                     if (this.canUseEmote(emoji, channelId)) continue;
 

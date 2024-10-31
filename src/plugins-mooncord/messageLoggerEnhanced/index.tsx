@@ -584,7 +584,6 @@ export default definePlugin({
                 replace: "$1$self.messageLoadSuccess(arguments[0]);$2"
             }
         },
-
         {
             find: "THREAD_STARTER_MESSAGE?null===",
             replacement: {

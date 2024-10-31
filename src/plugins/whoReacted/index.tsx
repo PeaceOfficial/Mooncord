@@ -141,8 +141,6 @@ export default definePlugin({
         Scroll = scroll;
     },
 
-    // TEST WEBHOOK
-
     renderUsers(props: RootObject) {
         return props.message.reactions.length > 10 ? null : (
             <ErrorBoundary noop>
