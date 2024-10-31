@@ -36,6 +36,7 @@
         "testTsc": "tsc --noEmit"
     },
     "dependencies": {
+        "@ffmpeg/ffmpeg": "^0.12.10",
         "@ffmpeg/util": "^0.12.1",
         "@sapphi-red/web-noise-suppressor": "0.3.5",
         "@types/less": "^3.0.6",
