@@ -201,7 +201,8 @@ function MooncordSettings() {
             <Forms.FormDivider />
 
             <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
-                <Forms.FormText className={Margins.bottom20} style={{ color: "var(--text-muted)" }}>
+
+                {/*                 <Forms.FormText className={Margins.bottom20} style={{ color: "var(--text-muted)" }}>
                     Hint: You can change the position of this settings section in the
                     {" "}<Button
                         look={Button.Looks.BLANK}
@@ -210,7 +211,7 @@ function MooncordSettings() {
                     >
                         settings of the Settings plugin
                     </Button>!
-                </Forms.FormText>
+                </Forms.FormText> */}
 
                 {Switches.map(s => s && (
                     <Switch

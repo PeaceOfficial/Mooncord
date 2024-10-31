@@ -222,7 +222,9 @@ const DefaultSettings: Settings = {
         "ConsoleJanitor": {
             "enabled": true,
             "disableNoisyLoggers": true,
-            "disableSpotifyLogger": true
+            "disableSpotifyLogger": true,
+            "disableLoggers": false,
+            "whitelistedLoggers": "GatewaySocket; Routing/Utils"
         },
         "ConsoleShortcuts": {
             "enabled": false
@@ -294,7 +296,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "FakeNitro": {
-            "enabled": false,
+            "enabled": true,
             "enableEmojiBypass": true,
             "emojiSize": 48,
             "transformEmojis": true,
@@ -349,9 +351,6 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "IgnoreActivities": {
-            "enabled": false
-        },
-        "iLoveSpam": {
             "enabled": false
         },
         "ImageLink": {
@@ -534,9 +533,6 @@ const DefaultSettings: Settings = {
         },
         "PreviewMessage": {
             "enabled": true
-        },
-        "PronounDB": {
-            "enabled": false
         },
         "QuickMention": {
             "enabled": false
@@ -1068,9 +1064,6 @@ const DefaultSettings: Settings = {
         "NoBulletPoints": {
             "enabled": false
         },
-        "NoDefaultEmojis": {
-            "enabled": false
-        },
         "NoDeleteSafety": {
             "enabled": false
         },
@@ -1309,6 +1302,113 @@ const DefaultSettings: Settings = {
             "showCustomBadgesinmessage": true,
             "nitroFirst": true,
             "voiceBackground": true
+        },
+        "IloveSpam": {
+            "enabled": false
+        },
+        "UserMessagesPronouns": {
+            "enabled": false
+        },
+        "WhitelistedEmojis": {
+            "enabled": false
+        },
+        "EquicordToolbox": {
+            "enabled": false
+        },
+        "FixImagesQuality": {
+            "enabled": false
+        },
+        "ILoveSpam": {
+            "enabled": false
+        },
+        "USRBG": {
+            "enabled": false
+        },
+        "BetterAudioPlayer": {
+            "enabled": false
+        },
+        "BetterInvites": {
+            "enabled": false
+        },
+        "ChannelBadges": {
+            "enabled": false
+        },
+        "CharacterCounter": {
+            "enabled": true,
+            "colorEffects": true,
+            "position": false
+        },
+        "CustomTimestamps": {
+            "enabled": false
+        },
+        "EquicordCSS": {
+            "enabled": false
+        },
+        "FakeProfileThemesAndEffects": {
+            "enabled": false
+        },
+        "FixFileExtensions": {
+            "enabled": false
+        },
+        "GensokyoRadioRPC": {
+            "enabled": false
+        },
+        "GifCollections": {
+            "enabled": false
+        },
+        "HideChatButtons": {
+            "enabled": false
+        },
+        "ImagePreview": {
+            "enabled": false
+        },
+        "MessagePeek": {
+            "enabled": false
+        },
+        "MoreStickers": {
+            "enabled": false
+        },
+        "MoreThemes": {
+            "enabled": false
+        },
+        "PinIcon": {
+            "enabled": false
+        },
+        "RemixMe": {
+            "enabled": false
+        },
+        "RPCStats": {
+            "enabled": false
+        },
+        "SidebarChat": {
+            "enabled": false
+        },
+        "StatusPresets": {
+            "enabled": false
+        },
+        "TosuRPC": {
+            "enabled": false
+        },
+        "UserPFP": {
+            "enabled": false
+        },
+        "VencordRPC": {
+            "enabled": false
+        },
+        "VoiceChannelLog": {
+            "enabled": false
+        },
+        "WriteUpperCase": {
+            "enabled": false
+        },
+        "iLoveSpam": {
+            "enabled": false
+        },
+        "PronounDB": {
+            "enabled": false
+        },
+        "NoDefaultEmojis": {
+            "enabled": false
         }
     },
 
