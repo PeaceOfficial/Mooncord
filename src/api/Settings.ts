@@ -89,7 +89,9 @@ const DefaultSettings: Settings = {
     useQuickCss: true,
     "themeLinks": [],
     "enabledThemes": [],
-    "enabledThemeLinks": [],
+    "enabledThemeLinks": [
+        "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/themes/default-theme.css"
+    ],
     enableReactDevtools: false,
     frameless: false,
     transparent: false,
