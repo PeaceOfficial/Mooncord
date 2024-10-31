@@ -931,7 +931,7 @@ const DefaultSettings: Settings = {
             "pastelStatuses": true
         },
         "GlobalBadges": {
-            "enabled": false,
+            "enabled": true,
             "showPrefix": true,
             "showCustom": true
         },
