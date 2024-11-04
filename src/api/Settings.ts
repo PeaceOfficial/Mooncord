@@ -135,7 +135,7 @@ const DefaultSettings: Settings = {
             "enabled": false
         },
         "AlwaysAnimate": {
-            "enabled": false
+            "enabled": true
         },
         "AlwaysExpandRoles": {
             "enabled": false
