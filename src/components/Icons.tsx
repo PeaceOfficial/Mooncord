@@ -18,8 +18,9 @@
 
 import "./iconStyles.css";
 
-import { getIntlMessage, getTheme, Theme } from "@utils/discord";
+import { getTheme, Theme } from "@utils/discord";
 import { classes } from "@utils/misc";
+import { i18n } from "@webpack/common";
 import type { PropsWithChildren } from "react";
 
 interface BaseIconProps extends IconProps {
@@ -132,7 +133,7 @@ export function InfoIcon(props: IconProps) {
 export function OwnerCrownIcon(props: IconProps) {
     return (
         <Icon
-            aria-label={getIntlMessage("GUILD_OWNER")}
+            aria-label={i18n.Messages.GUILD_OWNER}
             {...props}
             className={classes(props.className, "vc-owner-crown-icon")}
             role="img"

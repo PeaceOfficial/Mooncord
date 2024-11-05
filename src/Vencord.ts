@@ -44,6 +44,7 @@ import { SettingsRouter } from "./webpack/common";
 
 if (IS_REPORTER) {
     require("./debug/runReporter");
+    Settings.plugins.CharacterCounter.enabled = false;
 }
 
 async function syncSettings() {
@@ -70,7 +71,8 @@ async function syncSettings() {
         if (localStorage.Vencord_settingsDirty) {
             await putCloudSettings();
             delete localStorage.Vencord_settingsDirty;
-        } else if (await getCloudSettings(false)) { // if we synchronized something (false means no sync)
+        } else if (await getCloudSettings(false)) {
+            // if we synchronized something (false means no sync)
             // we show a notification here instead of allowing getCloudSettings() to show one to declutter the amount of
             // potential notifications that might occur. getCloudSettings() will always send a notification regardless if
             // there was an error to notify the user, but besides that we only want to show one notification instead of all
@@ -100,7 +102,7 @@ async function init() {
                 await update();
                 if (Settings.autoUpdateNotification)
                     setTimeout(() => showNotification({
-                        title: "Mooncord has been updated!",
+                        title: "Equicord has been updated!",
                         body: "Click here to restart",
                         permanent: true,
                         noPersist: true,
@@ -110,7 +112,7 @@ async function init() {
             }
 
             setTimeout(() => showNotification({
-                title: "Mooncord update is available!",
+                title: "A Equicord update is available!",
                 body: "Click here to view the update",
                 permanent: true,
                 noPersist: true,

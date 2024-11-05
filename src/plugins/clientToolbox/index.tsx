@@ -130,10 +130,10 @@ function ToolboxFragmentWrapper({ children }: { children: ReactNode[]; }) {
     return <>{children}</>;
 }
 
-migratePluginSettings("ClientToolbox", "VencordToolbox");
+migratePluginSettings("EquicordToolbox", "VencordToolbox");
 export default definePlugin({
     name: "ClientToolbox",
-    description: "Adds a button next to the inbox button in the channel header that houses your Discord Client quick actions.",
+    description: "Adds a button next to the inbox button in the channel header that houses Equicord quick actions",
     authors: [Devs.Ven, Devs.AutumnVN],
 
     patches: [

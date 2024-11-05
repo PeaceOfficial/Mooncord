@@ -201,7 +201,6 @@ function MooncordSettings() {
             <Forms.FormDivider />
 
             <Forms.FormSection className={Margins.top16} title="Settings" tag="h5">
-
                 {/*                 <Forms.FormText className={Margins.bottom20} style={{ color: "var(--text-muted)" }}>
                     Hint: You can change the position of this settings section in the
                     {" "}<Button

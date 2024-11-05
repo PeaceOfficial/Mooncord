@@ -97,12 +97,12 @@ export default definePlugin({
         return [
             {
                 section: SectionTypes.HEADER,
-                label: "Equicord",
+                label: "Mooncord",
                 className: "vc-settings-header"
             },
             {
                 section: "EquicordSettings",
-                label: "Equicord",
+                label: "Mooncord",
                 element: VencordTab,
                 className: "vc-settings"
             },
@@ -118,12 +118,24 @@ export default definePlugin({
                 element: require("@components/ThemeSettings/ThemesTab").default,
                 className: "vc-themes"
             },
-            !IS_UPDATER_DISABLED && {
-                section: "EquicordUpdater",
-                label: "Updater",
-                element: UpdaterTab,
-                className: "vc-updater"
+
+            /* //MOVED TO MOONCORD TAB !!! 2024.10.07 - @PeaceOfficial
+            {
+                section: "EquicordSettingsSync",
+                label: "Settings",
+                element: BackupAndRestoreTab,
+                className: "vc-backup-restore"
             },
+            */
+
+            /*             !IS_UPDATER_DISABLED && {
+                            section: "EquicordUpdater",
+                            label: "Updater",
+                            element: UpdaterTab,
+                            className: "vc-updater"
+                        }, */
+
+            /*
             {
                 section: "EquicordCloud",
                 label: "Cloud",
@@ -131,17 +143,13 @@ export default definePlugin({
                 className: "vc-cloud"
             },
             {
-                section: "EquicordSettingsSync",
-                label: "Backup & Restore",
-                element: BackupAndRestoreTab,
-                className: "vc-backup-restore"
-            },
-            {
                 section: "EquicordPatchHelper",
                 label: "Patch Helper",
                 element: PatchHelperTab,
                 className: "vc-patch-helper"
             },
+            */
+
             ...this.customSections.map(func => func(SectionTypes)),
             {
                 section: SectionTypes.DIVIDER
