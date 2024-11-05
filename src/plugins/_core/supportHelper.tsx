@@ -23,11 +23,11 @@ import ErrorBoundary from "@components/ErrorBoundary";
 import { Flex } from "@components/Flex";
 import { Link } from "@components/Link";
 import { openUpdaterModal } from "@components/VencordSettings/UpdaterTab";
-import { Devs, SUPPORT_CHANNEL_ID, SUPPORT_CHANNEL_IDS, VC_SUPPORT_CHANNEL_ID } from "@utils/constants";
+import { Devs, GUILD_ID, SUPPORT_CHANNEL_ID, SUPPORT_CHANNEL_IDS, VC_GUILD_ID, VC_SUPPORT_CHANNEL_ID } from "@utils/constants";
 import { sendMessage } from "@utils/discord";
 import { Logger } from "@utils/Logger";
 import { Margins } from "@utils/margins";
-import { isMooncordPluginDev, isPluginDev, tryOrElse } from "@utils/misc";
+import { isEquicordPluginDev, isPluginDev, tryOrElse } from "@utils/misc";
 import { relaunch } from "@utils/native";
 import { onlyOnce } from "@utils/onlyOnce";
 import { makeCodeblock } from "@utils/text";
@@ -40,17 +40,9 @@ import plugins, { PluginMeta } from "~plugins";
 
 import SettingsPlugin from "./settings";
 
-const VENCORD_GUILD_ID = "1015060230222131221";
-const EQUICORD_GUILD_ID = "1285734980416307200";
 const VENBOT_USER_ID = "1017176847865352332";
 const KNOWN_ISSUES_CHANNEL_ID = "1222936386626129920";
 const CodeBlockRe = /```js\n(.+?)```/s;
-
-const AllowedChannelIds = [
-    SUPPORT_CHANNEL_ID,
-    "1290010418365992981", // Equicord > #dev
-    "1289000342322937876", // Equicord > #support
-];
 
 const TrustedRolesIds = [
     "1026534353167208489", // contributor
@@ -58,6 +50,7 @@ const TrustedRolesIds = [
     "1042507929485586532", // donor
     "1173520023239786538", // Equicord Team
     "1222677964760682556", // Equicord Contributor
+    "1287079931645263968", // Equibop Contributor
     "1173343399470964856", // Vencord Contributor
 ];
 
@@ -82,7 +75,7 @@ async function generateDebugInfoMessage() {
         if (IS_DISCORD_DESKTOP) return `Discord Desktop v${DiscordNative.app.getVersion()}`;
         if (IS_VESKTOP) return `Vesktop v${VesktopNative.app.getVersion()}`;
         if (IS_EQUIBOP) return `Equibop v${VesktopNative.app.getVersion()}`;
-        if ("armcord" in window) return `ArmCord v${window.armcord.version}`;
+        if ("legcord" in window) return `LegCord v${window.legcord.version}`;
 
         // @ts-expect-error
         const name = typeof unsafeWindow !== "undefined" ? "UserScript" : "Web";
@@ -90,8 +83,8 @@ async function generateDebugInfoMessage() {
     })();
 
     const info = {
-        Mooncord:
-            `v${VERSION} • [${gitHash}](<https://github.com/PeaceOfficial/Mooncord/commit/${gitHash}>)` +
+        Equicord:
+            `v${VERSION} • [${gitHash}](<https://github.com/Equicord/Equicord/commit/${gitHash}>)` +
             `${SettingsPlugin.additionalInfo} - ${Intl.DateTimeFormat("en-GB", { dateStyle: "medium" }).format(BUILD_TIMESTAMP)}`,
         Client: `${RELEASE_CHANNEL} ~ ${client}`,
         Platform: window.navigator.platform
@@ -104,8 +97,8 @@ async function generateDebugInfoMessage() {
     const commonIssues = {
         "NoRPC enabled": Vencord.Plugins.isPluginEnabled("NoRPC"),
         "Activity Sharing disabled": tryOrElse(() => !ShowCurrentGame.getSetting(), false),
-        "Mooncord DevBuild": !IS_STANDALONE,
-        "Has UserPlugins": Object.values(PluginMeta).some(m => m.userPlugins),
+        "Equicord DevBuild": !IS_STANDALONE,
+        "Has UserPlugins": Object.values(PluginMeta).some(m => m.userPlugin),
         "More than two weeks out of date": BUILD_TIMESTAMP < Date.now() - 12096e5,
     };
 
@@ -121,10 +114,10 @@ function generatePluginList() {
     const isApiPlugin = (plugin: string) => plugin.endsWith("API") || plugins[plugin].required;
 
     const enabledPlugins = Object.keys(plugins)
-        .filter(p => Vencord.Plugins.isPluginEnabled(p) && !isApiPlugin(p));
+        .filter(p => Vencord.Plugins.isPluginEnabled(p) && !isApiPlugin(p)).sort();
 
-    const enabledStockPlugins = enabledPlugins.filter(p => !PluginMeta[p].userPlugins);
-    const enabledUserPlugins = enabledPlugins.filter(p => PluginMeta[p].userPlugins);
+    const enabledStockPlugins = enabledPlugins.filter(p => !PluginMeta[p].userPlugin);
+    const enabledUserPlugins = enabledPlugins.filter(p => PluginMeta[p].userPlugin);
 
 
     let content = `**Enabled Plugins (${enabledStockPlugins.length}):**\n${makeCodeblock(enabledStockPlugins.join(", "))}`;
@@ -154,24 +147,26 @@ export default definePlugin({
     settings,
 
     patches: [{
-        find: ".BEGINNING_DM.format",
+        find: "#{intl::BEGINNING_DM}",
         replacement: {
-            match: /BEGINNING_DM\.format\(\{.+?\}\),(?=.{0,300}(\i)\.isMultiUserDM)/,
+            match: /#{intl::BEGINNING_DM},{.+?}\),(?=.{0,300}(\i)\.isMultiUserDM)/,
             replace: "$& $self.renderContributorDmWarningCard({ channel: $1 }),"
         }
     }],
 
     commands: [
         {
-            name: "mooncord-debug",
-            description: "Send Mooncord debug info",
-            predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isMooncordPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
+            name: "equicord-debug",
+            description: "Send Equicord debug info",
+            // @ts-ignore
+            predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isEquicordPluginDev(UserStore.getCurrentUser()?.id) || GUILD_ID === ctx?.guild?.id,
             execute: async () => ({ content: await generateDebugInfoMessage() })
         },
         {
-            name: "mooncord-plugins",
-            description: "Send Mooncord plugin list",
-            predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isMooncordPluginDev(UserStore.getCurrentUser()?.id) || AllowedChannelIds.includes(ctx.channel.id),
+            name: "equicord-plugins",
+            description: "Send Equicord plugin list",
+            // @ts-ignore
+            predicate: ctx => isPluginDev(UserStore.getCurrentUser()?.id) || isEquicordPluginDev(UserStore.getCurrentUser()?.id) || GUILD_ID === ctx?.guild?.id,
             execute: () => ({ content: generatePluginList() })
         }
     ],
@@ -180,6 +175,8 @@ export default definePlugin({
         async CHANNEL_SELECT({ channelId }) {
             if (!SUPPORT_CHANNEL_IDS.includes(channelId)) return;
 
+            const selfId = UserStore.getCurrentUser()?.id;
+            if (!selfId || isPluginDev(selfId) || isEquicordPluginDev(selfId)) return;
             if (channelId === VC_SUPPORT_CHANNEL_ID && Vencord.Plugins.isPluginEnabled("VCSupport") && !clicked) {
                 clicked = true;
                 return Alerts.show({
@@ -191,16 +188,13 @@ export default definePlugin({
                         <img src="https://media.tenor.com/QtGqjwBpRzwAAAAi/wumpus-dancing.gif" />
                         <Forms.FormText>Before you ask for help,</Forms.FormText>
                         <Forms.FormText>Check for updates and if this</Forms.FormText>
-                        <Forms.FormText>issue could be caused by Mooncord!</Forms.FormText>
+                        <Forms.FormText>issue could be caused by Equicord!</Forms.FormText>
                     </div>,
-                    confirmText: "Go to Mooncord Support",
+                    confirmText: "Go to Equicord Support",
                     cancelText: "Okay continue",
                     onConfirm: () => VencordNative.native.openExternal("https://discord.gg/npnv52UQwY"),
                 });
             }
-
-            const selfId = UserStore.getCurrentUser()?.id;
-            if (!selfId || isPluginDev(selfId) || isMooncordPluginDev(selfId)) return;
 
             if (!IS_UPDATER_DISABLED) {
                 await checkForUpdatesOnce().catch(() => { });
@@ -209,7 +203,7 @@ export default definePlugin({
                     return Alerts.show({
                         title: "Hold on!",
                         body: <div>
-                            <Forms.FormText>You are using an outdated version of Mooncord! Chances are, your issue is already fixed.</Forms.FormText>
+                            <Forms.FormText>You are using an outdated version of Equicord! Chances are, your issue is already fixed.</Forms.FormText>
                             <Forms.FormText className={Margins.top8}>
                                 Please first update before asking for support!
                             </Forms.FormText>
@@ -224,16 +218,16 @@ export default definePlugin({
             }
 
             // @ts-ignore outdated type
-            const roles = GuildMemberStore.getSelfMember(VENCORD_GUILD_ID)?.roles || GuildMemberStore.getSelfMember(EQUICORD_GUILD_ID)?.roles;
+            const roles = GuildMemberStore.getSelfMember(VC_GUILD_ID)?.roles || GuildMemberStore.getSelfMember(GUILD_ID)?.roles;
             if (!roles || TrustedRolesIds.some(id => roles.includes(id))) return;
 
             if (!IS_WEB && IS_UPDATER_DISABLED) {
                 return Alerts.show({
                     title: "Hold on!",
                     body: <div>
-                        <Forms.FormText>You are using an externally updated Mooncord version, the ability to help you here may be limited.</Forms.FormText>
+                        <Forms.FormText>You are using an externally updated Equicord version, the ability to help you here may be limited.</Forms.FormText>
                         <Forms.FormText className={Margins.top8}>
-                            Please join the <Link href="https://discord.gg/5Xh2W87egW">Mooncord Server</Link> for support,
+                            Please join the <Link href="https://discord.gg/5Xh2W87egW">Equicord Server</Link> for support,
                             or if this issue persists on Vencord, continue on.
                         </Forms.FormText>
                     </div>
@@ -244,11 +238,11 @@ export default definePlugin({
                 return Alerts.show({
                     title: "Hold on!",
                     body: <div>
-                        <Forms.FormText>You are using a custom build of Mooncord, which we do not provide support for!</Forms.FormText>
+                        <Forms.FormText>You are using a custom build of Equicord, which we do not provide support for!</Forms.FormText>
 
                         <Forms.FormText className={Margins.top8}>
-                            We only provide support for <Link href="https://github.com/PeaceOfficial/Mooncord">official builds</Link>.
-                            Either <Link href="https://github.com/PeaceOfficial/Moonship">switch to an official build</Link> or figure your issue out yourself.
+                            We only provide support for <Link href="https://github.com/Equicord/Equicord">official builds</Link>.
+                            Either <Link href="https://github.com/Equicord/Equilotl">switch to an official build</Link> or figure your issue out yourself.
                         </Forms.FormText>
 
                         <Text variant="text-md/bold" className={Margins.top8}>You will be banned from receiving support if you ignore this rule.</Text>
@@ -263,8 +257,8 @@ export default definePlugin({
 
     renderContributorDmWarningCard: ErrorBoundary.wrap(({ channel }) => {
         const userId = channel.getRecipientId();
-        if (!isPluginDev(userId) || !isMooncordPluginDev(userId)) return null;
-        if (RelationshipStore.isFriend(userId) || isPluginDev(UserStore.getCurrentUser()?.id) || isMooncordPluginDev(UserStore.getCurrentUser()?.id)) return null;
+        if (!isPluginDev(userId) || !isEquicordPluginDev(userId)) return null;
+        if (RelationshipStore.isFriend(userId) || isPluginDev(UserStore.getCurrentUser()?.id) || isEquicordPluginDev(UserStore.getCurrentUser()?.id)) return null;
 
         return (
             <Card className={`vc-plugins-restart-card ${Margins.top8}`}>
@@ -277,7 +271,7 @@ export default definePlugin({
     }, { noop: true }),
 
     start() {
-        addAccessory("mooncord-debug", props => {
+        addAccessory("equicord-debug", props => {
             const buttons = [] as JSX.Element[];
 
             const shouldAddUpdateButton =
@@ -311,19 +305,19 @@ export default definePlugin({
             }
 
             if (props.channel.id === SUPPORT_CHANNEL_ID) {
-                if (props.message.content.includes("/mooncord-debug") || props.message.content.includes("/mooncord-plugins")) {
+                if (props.message.content.includes("/equicord-debug") || props.message.content.includes("/equicord-plugins")) {
                     buttons.push(
                         <Button
                             key="vc-dbg"
                             onClick={async () => sendMessage(props.channel.id, { content: await generateDebugInfoMessage() })}
                         >
-                            Run /mooncord-debug
+                            Run /equicord-debug
                         </Button>,
                         <Button
                             key="vc-plg-list"
                             onClick={async () => sendMessage(props.channel.id, { content: generatePluginList() })}
                         >
-                            Run /mooncord-plugins
+                            Run /equicord-plugins
                         </Button>
                     );
                 }

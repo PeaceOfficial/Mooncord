@@ -17,11 +17,16 @@
 */
 
 import { Settings } from "@api/Settings";
+import BackupAndRestoreTab from "@components/VencordSettings/BackupAndRestoreTab";
+import CloudTab from "@components/VencordSettings/CloudTab";
+import PatchHelperTab from "@components/VencordSettings/PatchHelperTab";
 import PluginsTab from "@components/VencordSettings/PluginsTab";
+import UpdaterTab from "@components/VencordSettings/UpdaterTab";
 import VencordTab from "@components/VencordSettings/VencordTab";
 import { Devs } from "@utils/constants";
+import { getIntlMessage } from "@utils/discord";
 import definePlugin, { OptionType } from "@utils/types";
-import { i18n, React } from "@webpack/common";
+import { React } from "@webpack/common";
 
 import gitHash from "~git-hash";
 
@@ -65,7 +70,7 @@ export default definePlugin({
             ]
         },
         {
-            find: "Messages.USER_SETTINGS_ACTIONS_MENU_LABEL",
+            find: "#{intl::USER_SETTINGS_ACTIONS_MENU_LABEL}",
             replacement: {
                 match: /(?<=function\((\i),\i\)\{)(?=let \i=Object.values\(\i.\i\).*?(\i\.\i)\.open\()/,
                 replace: "$2.open($1);return;"
@@ -92,12 +97,12 @@ export default definePlugin({
         return [
             {
                 section: SectionTypes.HEADER,
-                label: "Mooncord",
+                label: "Equicord",
                 className: "vc-settings-header"
             },
             {
                 section: "EquicordSettings",
-                label: "Mooncord",
+                label: "Equicord",
                 element: VencordTab,
                 className: "vc-settings"
             },
@@ -113,24 +118,12 @@ export default definePlugin({
                 element: require("@components/ThemeSettings/ThemesTab").default,
                 className: "vc-themes"
             },
-
-            /* //MOVED TO MOONCORD TAB !!! 2024.10.07 - @PeaceOfficial
-            {
-                section: "EquicordSettingsSync",
-                label: "Settings",
-                element: BackupAndRestoreTab,
-                className: "vc-backup-restore"
+            !IS_UPDATER_DISABLED && {
+                section: "EquicordUpdater",
+                label: "Updater",
+                element: UpdaterTab,
+                className: "vc-updater"
             },
-            */
-
-            /*             !IS_UPDATER_DISABLED && {
-                            section: "EquicordUpdater",
-                            label: "Updater",
-                            element: UpdaterTab,
-                            className: "vc-updater"
-                        }, */
-
-            /*
             {
                 section: "EquicordCloud",
                 label: "Cloud",
@@ -138,13 +131,17 @@ export default definePlugin({
                 className: "vc-cloud"
             },
             {
+                section: "EquicordSettingsSync",
+                label: "Backup & Restore",
+                element: BackupAndRestoreTab,
+                className: "vc-backup-restore"
+            },
+            {
                 section: "EquicordPatchHelper",
                 label: "Patch Helper",
                 element: PatchHelperTab,
                 className: "vc-patch-helper"
             },
-            */
-
             ...this.customSections.map(func => func(SectionTypes)),
             {
                 section: SectionTypes.DIVIDER
@@ -166,11 +163,12 @@ export default definePlugin({
 
         try {
             const names = {
-                top: i18n.Messages.USER_SETTINGS,
-                aboveNitro: i18n.Messages.BILLING_SETTINGS,
-                belowNitro: i18n.Messages.APP_SETTINGS,
-                aboveActivity: i18n.Messages.ACTIVITY_SETTINGS
+                top: getIntlMessage("USER_SETTINGS"),
+                aboveNitro: getIntlMessage("BILLING_SETTINGS"),
+                belowNitro: getIntlMessage("APP_SETTINGS"),
+                aboveActivity: getIntlMessage("ACTIVITY_SETTINGS")
             };
+
             return header === names[settingsLocation];
         } catch {
             return firstChild === "PREMIUM";
@@ -204,7 +202,7 @@ export default definePlugin({
     options: {
         settingsLocation: {
             type: OptionType.SELECT,
-            description: "Where to put the Mooncord settings section",
+            description: "Where to put the Equicord settings section",
             options: [
                 { label: "At the very top", value: "top" },
                 { label: "Above the Nitro section", value: "aboveNitro", default: true },
@@ -217,7 +215,7 @@ export default definePlugin({
     },
 
     get electronVersion() {
-        return VencordNative.native.getVersions().electron || window.armcord?.electron || null;
+        return VencordNative.native.getVersions().electron || window.legcord?.electron || null;
     },
 
     get chromiumVersion() {
@@ -226,7 +224,8 @@ export default definePlugin({
                 // @ts-ignore Typescript will add userAgentData IMMEDIATELY
                 || navigator.userAgentData?.brands?.find(b => b.brand === "Chromium" || b.brand === "Google Chrome")?.version
                 || null;
-        } catch { // inb4 some stupid browser throws unsupported error for navigator.userAgentData, it's only in chromium
+        } catch {
+            // inb4 some stupid browser throws unsupported error for navigator.userAgentData, it's only in chromium
             return null;
         }
     },
@@ -242,7 +241,7 @@ export default definePlugin({
     getInfoRows() {
         const { electronVersion, chromiumVersion, additionalInfo } = this;
 
-        const rows = [`Mooncord ${gitHash}${additionalInfo}`];
+        const rows = [`Equicord ${gitHash}${additionalInfo}`];
 
         if (electronVersion) rows.push(`Electron ${electronVersion}`);
         if (chromiumVersion) rows.push(`Chromium ${chromiumVersion}`);

@@ -23,7 +23,7 @@ import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByCodeLazy, findByPropsLazy } from "@webpack";
 
-import { reverseExtensionMap } from "../../plugins-mooncord/fixFileExtensions/components";
+import { reverseExtensionMap } from "../../equicordplugins/fixFileExtensions/components";
 
 type AnonUpload = Upload & { anonymise?: boolean; };
 
@@ -88,9 +88,9 @@ export default definePlugin({
             }
         },
         {
-            find: ".Messages.ATTACHMENT_UTILITIES_SPOILER",
+            find: "#{intl::ATTACHMENT_UTILITIES_SPOILER}",
             replacement: {
-                match: /(?<=children:\[)(?=.{10,80}tooltip:.{0,100}\i\.\i\.Messages\.ATTACHMENT_UTILITIES_SPOILER)/,
+                match: /(?<=children:\[)(?=.{10,80}tooltip:.{0,100}#{intl::ATTACHMENT_UTILITIES_SPOILER})/,
                 replace: "arguments[0].canEdit!==false?$self.renderIcon(arguments[0]):null,"
             },
         },
