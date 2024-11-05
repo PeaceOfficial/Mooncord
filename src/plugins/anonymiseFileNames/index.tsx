@@ -23,7 +23,7 @@ import { Devs } from "@utils/constants";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByCodeLazy, findByPropsLazy } from "@webpack";
 
-import { reverseExtensionMap } from "../../equicordplugins/fixFileExtensions/components";
+import { reverseExtensionMap } from "../../plugins-mooncord/fixFileExtensions/components";
 
 type AnonUpload = Upload & { anonymise?: boolean; };
 
