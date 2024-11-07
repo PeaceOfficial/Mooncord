@@ -151,6 +151,7 @@ export interface LocaleInfo {
 }
 
 export interface i18n {
+    t: any;
     getAvailableLocales(): Locale[];
     getLanguages(): LocaleInfo[];
     getDefaultLocale(): string;

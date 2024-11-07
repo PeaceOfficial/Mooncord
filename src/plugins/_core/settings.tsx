@@ -103,18 +103,21 @@ export default definePlugin({
             {
                 section: "EquicordSettings",
                 label: "Mooncord",
+                searchableTitles: ["Mooncord", "Settings", "Mooncord Settings"],
                 element: VencordTab,
                 className: "vc-settings"
             },
             {
                 section: "EquicordPlugins",
                 label: "Plugins",
+                searchableTitles: ["Plugins"],
                 element: PluginsTab,
                 className: "vc-plugins"
             },
             {
                 section: "EquicordThemes",
                 label: "Themes",
+                searchableTitles: ["Themes"],
                 element: require("@components/ThemeSettings/ThemesTab").default,
                 className: "vc-themes"
             },
@@ -123,6 +126,7 @@ export default definePlugin({
             {
                 section: "EquicordSettingsSync",
                 label: "Settings",
+                searchableTitles: ["Backup & Restore"],
                 element: BackupAndRestoreTab,
                 className: "vc-backup-restore"
             },
@@ -131,6 +135,7 @@ export default definePlugin({
             /*             !IS_UPDATER_DISABLED && {
                             section: "EquicordUpdater",
                             label: "Updater",
+                            searchableTitles: ["Updater"],
                             element: UpdaterTab,
                             className: "vc-updater"
                         }, */
@@ -139,12 +144,14 @@ export default definePlugin({
             {
                 section: "EquicordCloud",
                 label: "Cloud",
+                searchableTitles: ["Cloud"],
                 element: CloudTab,
                 className: "vc-cloud"
             },
             {
                 section: "EquicordPatchHelper",
                 label: "Patch Helper",
+                searchableTitles: ["Patch Helper"],
                 element: PatchHelperTab,
                 className: "vc-patch-helper"
             },
