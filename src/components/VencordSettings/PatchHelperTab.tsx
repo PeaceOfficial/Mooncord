@@ -27,7 +27,10 @@ import { Button, Clipboard, Forms, Parser, React, Switch, TextArea, TextInput } 
 
 import { SettingsTab, wrapTab } from "./shared";
 
-var differ = require("diff") as typeof import("diff");
+// Do not include diff in non dev builds (side effects import)
+if (IS_DEV) {
+    var differ = require("diff") as typeof import("diff");
+}
 
 const findCandidates = debounce(function ({ find, setModule, setError }) {
     const candidates = search(find);
@@ -386,4 +389,4 @@ function PatchHelper() {
     );
 }
 
-export default wrapTab(PatchHelper, "PatchHelper");
+export default IS_DEV ? wrapTab(PatchHelper, "PatchHelper") : null;

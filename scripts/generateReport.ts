@@ -37,8 +37,7 @@ const CANARY = process.env.USE_CANARY === "true";
 
 const browser = await pup.launch({
     headless: true,
-    executablePath: process.env.CHROMIUM_BIN,
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    executablePath: process.env.CHROMIUM_BIN
 });
 
 const page = await browser.newPage();
@@ -87,7 +86,7 @@ function toCodeBlock(s: string, indentation = 0, isDiscord = false) {
 async function printReport() {
     console.log();
 
-    console.log("# Equicord Report" + (CANARY ? " (Canary)" : ""));
+    console.log("# Vencord Report" + (CANARY ? " (Canary)" : ""));
 
     console.log();
 
@@ -135,8 +134,8 @@ async function printReport() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                description: "Here's the latest Equicord Report!",
-                username: "Equicord Reporter" + (CANARY ? " (Canary)" : ""),
+                description: "Here's the latest Vencord Report!",
+                username: "Vencord Reporter" + (CANARY ? " (Canary)" : ""),
                 embeds: [
                     {
                         title: "Bad Patches",
@@ -200,11 +199,11 @@ page.on("console", async e => {
 
     const firstArg = await rawArgs[0]?.jsonValue();
 
-    const isEquicord = firstArg === "[Mooncord]";
+    const isVencord = firstArg === "[Vencord]";
     const isDebug = firstArg === "[PUP_DEBUG]";
 
     outer:
-    if (isEquicord) {
+    if (isVencord) {
         try {
             var args = await Promise.all(e.args().map(a => a.jsonValue()));
         } catch {
@@ -226,7 +225,7 @@ page.on("console", async e => {
                     plugin,
                     type,
                     id,
-                    match: regex.replace(/\[A-Za-z_\$\]\[\\w\$\]\*/g, "\\i"),
+                    match: regex.replace(/\(\?:\[A-Za-z_\$\]\[\\w\$\]\*\)/g, "\\i"),
                     error: await maybeGetError(e.args()[3])
                 });
 
@@ -265,11 +264,9 @@ page.on("console", async e => {
                         report.badWebpackFinds.push(otherMessage);
                         break;
                     case "Finished test":
+                        await browser.close();
                         await printReport();
-                        setTimeout(async () => {
-                            await browser.close();
-                            process.exit();
-                        }, 10000);
+                        process.exit();
                 }
         }
     }
@@ -290,12 +287,9 @@ page.on("console", async e => {
     }
 });
 
-page.on("error", e => {
-    console.error("[Error]", e.message);
-});
+page.on("error", e => console.error("[Error]", e.message));
 page.on("pageerror", e => {
     if (e.message.includes("Sentry successfully disabled")) return;
-    if (e.message.includes("the network is offline")) return;
 
     if (!e.message.startsWith("Object") && !e.message.includes("Cannot find module")) {
         console.error("[Page Error]", e.message);
@@ -317,7 +311,7 @@ async function reporterRuntime(token: string) {
 
 await page.evaluateOnNewDocument(`
     if (location.host.endsWith("discord.com")) {
-        ${readFileSync("./dist/browser/browser.js", "utf-8")};
+        ${readFileSync("./dist/browser.js", "utf-8")};
         (${reporterRuntime.toString()})(${JSON.stringify(process.env.DISCORD_TOKEN)});
     }
 `);

@@ -159,7 +159,7 @@ const DefaultSettings: Settings = {
         },
         "BetterFolders": {
             "enabled": true,
-            "sidebar": false,
+            "sidebar": true,
             "sidebarAnim": true,
             "closeAllFolders": false,
             "closeAllHomeButton": false,

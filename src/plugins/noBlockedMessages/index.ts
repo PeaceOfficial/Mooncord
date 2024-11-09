@@ -22,20 +22,20 @@ import { runtimeHashMessageKey } from "@utils/intlHash";
 import { Logger } from "@utils/Logger";
 import definePlugin, { OptionType } from "@utils/types";
 import { findByPropsLazy } from "@webpack";
-import { i18n, MessageStore } from "@webpack/common";
+import { i18n } from "@webpack/common";
 import { Message } from "discord-types/general";
 
 const RelationshipStore = findByPropsLazy("getRelationships", "isBlocked");
 
 interface MessageDeleteProps {
-    // i18n message i18n.t["+FcYMz"] if deleted, with args
+    // Internal intl message for BLOCKED_MESSAGE_COUNT
     collapsedReason: () => any;
 }
 
 export default definePlugin({
     name: "NoBlockedMessages",
     description: "Hides all blocked messages from chat completely.",
-    authors: [Devs.rushii, Devs.Samu, Devs.F53],
+    authors: [Devs.rushii, Devs.Samu],
     patches: [
         {
             find: "#{intl::BLOCKED_MESSAGES_HIDE}",
@@ -58,14 +58,7 @@ export default definePlugin({
                     replace: (_, props) => `if($self.isBlocked(${props}.message))return;`
                 }
             ]
-        })),
-        {
-            find: ".messageListItem",
-            replacement: {
-                match: /(?<=\i=)(?=\(0,(\i)\.jsx)/,
-                replace: "!$self.isReplyToBlocked(arguments[0].message)&&"
-            }
-        }
+        }))
     ],
     options: {
         ignoreBlockedMessages: {
@@ -74,26 +67,9 @@ export default definePlugin({
             default: false,
             restartNeeded: true,
         },
-        hideRepliesToBlockedMessages: {
-            description: "Hide replies to messages made by users you've blocked",
-            type: OptionType.BOOLEAN,
-            default: false,
-            restartNeeded: false,
-        }
     },
 
-    isReplyToBlocked(message: Message) {
-        if (!Settings.plugins.NoBlockedMessages.hideRepliesToBlockedMessages)
-            return false;
-
-        const { messageReference } = message;
-        if (!messageReference) return false;
-        const replyMessage = MessageStore.getMessage(messageReference.channel_id, messageReference.message_id);
-        return this.isBlocked(replyMessage);
-    },
-
-    isBlocked(message: Message | undefined) {
-        if (!message) return false;
+    isBlocked(message: Message) {
         try {
             return RelationshipStore.isBlocked(message.author.id);
         } catch (e) {
