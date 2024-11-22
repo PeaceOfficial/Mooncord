@@ -284,7 +284,7 @@ function MooncordSettings() {
                             value: "hud"
                         },
                     ]}
-                    select={v => settings.macosVibrancyStyle = v}
+                    select={v => (settings.macosVibrancyStyle = v)}
                     isSelected={v => settings.macosVibrancyStyle === v}
                     serialize={identity} />
             </>}
