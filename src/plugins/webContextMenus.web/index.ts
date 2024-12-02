@@ -22,6 +22,7 @@ import definePlugin, { OptionType } from "@utils/types";
 import { saveFile } from "@utils/web";
 import { findByPropsLazy } from "@webpack";
 import { Clipboard, ComponentDispatch } from "@webpack/common";
+
 const ctxMenuCallbacks = findByPropsLazy("contextMenuCallbackNative");
 
 async function fetchImage(url: string) {
@@ -29,18 +30,6 @@ async function fetchImage(url: string) {
     if (res.status !== 200) return;
 
     return await res.blob();
-}
-
-let result;
-switch (true) {
-    case IS_VESKTOP:
-    case IS_EQUIBOP:
-    case "legcord" in window:
-    case "goofcord" in window:
-        result = true;
-        break;
-    default:
-        result = false;
 }
 
 
@@ -52,7 +41,7 @@ const settings = definePluginSettings({
         description: "Add back the Discord context menus for images, links and the chat input bar",
         // Web slate menu has proper spellcheck suggestions and image context menu is also pretty good,
         // so disable this by default. Vesktop just doesn't, so enable by default
-        default: result,
+        default: IS_VESKTOP,
         restartNeeded: true
     }
 });
@@ -84,7 +73,7 @@ export default definePlugin({
     description: "Re-adds context menus missing in the web version of Discord: Links & Images (Copy/Open Link/Image), Text Area (Copy, Cut, Paste, SpellCheck)",
     authors: [Devs.Ven],
     enabledByDefault: true,
-    required: result,
+    required: IS_VESKTOP,
 
     settings,
 
@@ -227,9 +216,12 @@ export default definePlugin({
                     replace: "true"
                 },
                 {
-                    match: /\i\.\i\.copy/,
+                    match: /\i\.\i\.copy(?=\(\i)/,
                     replace: "Vencord.Webpack.Common.Clipboard.copy"
-                }]
+                }
+            ],
+            all: true,
+            noWarn: true
         },
         // Automod add filter words
         {
@@ -262,7 +254,7 @@ export default definePlugin({
             });
         }
 
-        if (IS_VESKTOP && VesktopNative.clipboard || IS_EQUIBOP && VesktopNative.clipboard) {
+        if (IS_VESKTOP && VesktopNative.clipboard) {
             VesktopNative.clipboard.copyImage(await imageData.arrayBuffer(), url);
             return;
         } else {

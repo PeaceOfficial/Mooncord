@@ -124,34 +124,19 @@ export default definePlugin({
             }
         },
         {
+            find: "ProductCatalog",
+            replacement: {
+                match: /\i\.warn\("Cannot find the corresponding SKU to the user's premium type "\.concat\(\i\.premiumType\)\),/,
+                replace: ""
+            }
+        },
+        {
             find: "Slow dispatch on",
             replacement: {
                 match: /\i\.totalTime>100&&\i\.verbose\("Slow dispatch on ".+?\)\);/,
                 replace: ""
             }
         },
-        // Zustand section
-        {
-            find: "[DEPRECATED] Passing a vanilla store will be unsupported in a future version. Instead use `import { useStore } from 'zustand'`.",
-            replacement: [
-                {
-                    match: /&&console\.warn\("\[DEPRECATED\] Passing a vanilla store will be unsupported in a future version\. Instead use `import { useStore } from 'zustand'`\."\)/,
-                    replace: ""
-                },
-                {
-                    match: /console\.warn\("\[DEPRECATED\] Use `createWithEqualityFn` instead of `create` or use `useStoreWithEqualityFn` instead of `useStore`\. They can be imported from 'zustand\/traditional'\. https:\/\/github\.com\/pmndrs\/zustand\/discussions\/1937"\),/,
-                    replace: ""
-                }
-            ]
-        },
-        {
-            find: "[DEPRECATED] `getStorage`, `serialize` and `deserialize` options are deprecated. Use `storage` option instead.",
-            replacement: {
-                match: /console\.warn\("\[DEPRECATED\] `getStorage`, `serialize` and `deserialize` options are deprecated\. Use `storage` option instead\."\),/,
-                replace: ""
-            }
-        },
-
         // Patches discords generic logger function
         {
             find: "Σ:",

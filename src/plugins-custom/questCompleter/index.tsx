@@ -18,30 +18,14 @@
 
 import { showNotification } from "@api/Notifications";
 import ErrorBoundary from "@components/ErrorBoundary";
-import { Devs, EquicordDevs, MooncordDevs } from "@utils/constants";
+import { Devs, EquicordDevs } from "@utils/constants";
 import { getTheme, Theme } from "@utils/discord";
 import { classes } from "@utils/misc";
 import definePlugin from "@utils/types";
-import { findByCode, findByProps, findExportedComponentLazy } from "@webpack";
-import { FluxDispatcher, Forms, RestAPI, Text, UserStore } from "@webpack/common";
-
+import { findByProps, findExportedComponentLazy } from "@webpack";
+import { Button, FluxDispatcher, RestAPI, Tooltip, UserStore } from "@webpack/common";
 const HeaderBarIcon = findExportedComponentLazy("Icon", "Divider");
 const isApp = navigator.userAgent.includes("Electron/");
-
-const QuestsIcon = () => props => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        className="vc-quest-completer-icon"
-        viewBox="0 0 828 893"
-    >
-        <path
-            fill="currentColor"
-            d="M395 732c-56.667 0-109.333-9-158-27-48-18-89.667-43.333-125-76-35.333-33.333-63-72.333-83-117C9.667 467.333 0 418.667 0 366c0-53.333 9.667-102 29-146 20-44.667 47.667-83.333 83-116 35.333-33.333 77-59 125-77C285.667 9 338.333 0 395 0c57.333 0 110 9 158 27s89.667 43.667 125 77c35.333 32.667 62.667 71.333 82 116 20 44 30 92.667 30 146 0 52.667-10 101.333-30 146-19.333 44.667-46.667 83.667-82 117-35.333 32.667-77 58-125 76s-100.667 27-158 27zm229 161c-32.667 0-63-3.333-91-10-28-6-55.333-16.333-82-31-26-14.667-53.333-35-82-61-28.667-25.333-60.667-57-96-95l244-60c16 24.667 29.667 43.667 41 57 11.333 13.333 22.333 22.667 33 28 11.333 5.333 24 8 38 8 34.667 0 67-15 97-45l102 120c-50 59.333-118 89-204 89zM395 541c22 0 42.333-4 61-12 19.333-8 36-19.333 50-34 14.667-15.333 26-33.667 34-55 8-22 12-46.667 12-74s-4-51.667-12-73c-8-22-19.333-40.333-34-55-14-15.333-30.667-27-50-35-18.667-8-39-12-61-12s-42.667 4-62 12c-18.667 8-35.333 19.667-50 35-14 14.667-25 33-33 55-8 21.333-12 45.667-12 73s4 52 12 74c8 21.333 19 39.667 33 55 14.667 14.667 31.333 26 50 34 19.333 8 40 12 62 12z"
-        ></path>
-    </svg>
-);
 
 function ToolBarQuestsIcon() {
     return (
@@ -78,18 +62,12 @@ function ToolBarHeader() {
 async function openCompleteQuestUI() {
     const ApplicationStreamingStore = findByProps("getStreamerActiveStreamMetadata");
     const RunningGameStore = findByProps("getRunningGames");
-    const ExperimentStore = findByProps("getGuildExperiments");
     const QuestsStore = findByProps("getQuest");
     const quest = [...QuestsStore.quests.values()].find(x => x.id !== "1248385850622869556" && x.userStatus?.enrolledAt && !x.userStatus?.completedAt && new Date(x.config.expiresAt).getTime() > Date.now());
 
-    if (!isApp) {
+    if (!quest) {
         showNotification({
-            title: "Quests Completer",
-            body: "This no longer works in browser. Use the desktop app!",
-        });
-    } else if (!quest) {
-        showNotification({
-            title: "Quests Completer",
+            title: "Quest Completer",
             body: "No Quests To Complete",
         });
     } else {
@@ -98,27 +76,52 @@ async function openCompleteQuestUI() {
             ? "light"
             : "dark";
 
-        let applicationId, applicationName, secondsNeeded, secondsDone, canPlay, icon, questId;
-        if (quest.config.configVersion === 1) {
-            questId = quest.id;
-            applicationId = quest.config.applicationId;
-            applicationName = quest.config.applicationName;
-            secondsNeeded = quest.config.streamDurationRequirementMinutes * 60;
-            secondsDone = quest.userStatus?.streamProgressSeconds ?? 0;
-            icon = `https://cdn.discordapp.com/assets/quests/${questId}/${theme}/${quest.config.assets.gameTile}`;
-            canPlay = quest.config.variants.includes(2);
-        } else if (quest.config.configVersion === 2) {
-            questId = quest.id;
-            applicationId = quest.config.application.id;
-            applicationName = quest.config.application.name;
-            icon = `https://cdn.discordapp.com/assets/quests/${questId}/${theme}/${quest.config.assets.gameTile}`;
-            canPlay = ExperimentStore.getUserExperimentBucket("2024-04_quest_playtime_task") > 0 && quest.config.taskConfig.tasks.PLAY_ON_DESKTOP;
-            const taskName = canPlay ? "PLAY_ON_DESKTOP" : "STREAM_ON_DESKTOP";
-            secondsNeeded = quest.config.taskConfig.tasks[taskName]?.target;
-            secondsDone = quest.userStatus?.progress?.[taskName]?.value ?? 0;
-        }
-        if (canPlay) {
-            await RestAPI.get({ url: `/applications/public?application_ids=${applicationId}` }).then(res => {
+        const applicationId = quest.config.application.id;
+        const applicationName = quest.config.application.name;
+        const taskName = ["WATCH_VIDEO", "PLAY_ON_DESKTOP", "STREAM_ON_DESKTOP"].find(x => quest.config.taskConfig.tasks[x] != null);
+        // @ts-ignore
+        const secondsNeeded = quest.config.taskConfig.tasks[taskName].target;
+        // @ts-ignore
+        const secondsDone = quest.userStatus?.progress?.[taskName]?.value ?? 0;
+        const icon = `https://cdn.discordapp.com/assets/quests/${quest.id}/${theme}/${quest.config.assets.gameTile}`;
+        if (taskName === "WATCH_VIDEO") {
+            const tolerance = 2, speed = 10;
+            const diff = Math.floor((Date.now() - new Date(quest.userStatus.enrolledAt).getTime()) / 1000);
+            const startingPoint = Math.min(Math.max(Math.ceil(secondsDone), diff), secondsNeeded);
+            const fn = async () => {
+                for (let i = startingPoint; i <= secondsNeeded; i += speed) {
+                    try {
+                        await RestAPI.post({ url: `/quests/${quest.id}/video-progress`, body: { timestamp: Math.min(secondsNeeded, i + Math.random()) } });
+                    } catch (ex) {
+                        console.log("Failed to send increment of", i, ex);
+                    }
+                    await new Promise(resolve => setTimeout(resolve, tolerance * 1000));
+                }
+                if ((secondsNeeded - secondsDone) % speed !== 0) {
+                    await RestAPI.post({ url: `/quests/${quest.id}/video-progress`, body: { timestamp: secondsNeeded } });
+                    showNotification({
+                        title: `${applicationName} - Quest Completer`,
+                        body: "Quest Completed.",
+                        icon: icon,
+                    });
+                }
+            };
+            fn();
+            showNotification({
+                title: `${applicationName} - Quest Completer`,
+                body: `Wait for ${Math.ceil((secondsNeeded - startingPoint) / speed * tolerance)} more seconds.`,
+                icon: icon,
+            });
+            console.log(`Spoofing video for ${applicationName}.`);
+        } else if (taskName === "PLAY_ON_DESKTOP") {
+            if (!isApp) {
+                showNotification({
+                    title: `${applicationName} - Quest Completer`,
+                    body: `${applicationName}'s quest requires the desktop app.`,
+                    icon: icon,
+                });
+            }
+            RestAPI.get({ url: `/applications/public?application_ids=${applicationId}` }).then(res => {
                 const appData = res.body[0];
                 const exeName = appData.executables.find(x => x.os === "win32").name.replace(">", "");
 
@@ -142,14 +145,14 @@ async function openCompleteQuestUI() {
                 const fn = data => {
                     const progress = quest.config.configVersion === 1 ? data.userStatus.streamProgressSeconds : Math.floor(data.userStatus.progress.PLAY_ON_DESKTOP.value);
                     showNotification({
-                        title: `${applicationName} - Quests Completer`,
+                        title: `${applicationName} - Quest Completer`,
                         body: `Current progress: ${progress}/${secondsNeeded} seconds.`,
                         icon: icon,
                     });
 
                     if (progress >= secondsNeeded) {
                         showNotification({
-                            title: `${applicationName} - Quests Completer`,
+                            title: `${applicationName} - Quest Completer`,
                             body: "Quest Completed.",
                             icon: icon,
                         });
@@ -163,16 +166,29 @@ async function openCompleteQuestUI() {
                     }
                 };
                 FluxDispatcher.subscribe("QUESTS_SEND_HEARTBEAT_SUCCESS", fn);
+                console.log(`Spoofed your game to ${applicationName}.`);
             });
-        } else {
-            const stream = ApplicationStreamingStore.getAnyStreamForUser(UserStore.getCurrentUser()?.id);
-            if (!stream) {
+        } else if (taskName === "STREAM_ON_DESKTOP") {
+            if (!isApp) {
                 showNotification({
-                    title: "You're not streaming - Quests Completer",
-                    body: `${applicationName} requires you to be streaming.`,
+                    title: `${applicationName} - Quest Completer`,
+                    body: `${applicationName}'s quest requires the desktop app.`,
                     icon: icon,
                 });
             }
+            const stream = ApplicationStreamingStore.getAnyStreamForUser(UserStore.getCurrentUser()?.id);
+            if (!stream) {
+                showNotification({
+                    title: "You're not streaming - Quest Completer",
+                    body: `${applicationName} requires you to be streaming.\nPlease stream any window in vc.`,
+                    icon: icon,
+                });
+            }
+            showNotification({
+                title: `${applicationName} - Quest Completer`,
+                body: "Remember that you need at least 1 other person to be in the vc!",
+                icon: icon,
+            });
             const realFunc = ApplicationStreamingStore.getStreamerActiveStreamMetadata;
             ApplicationStreamingStore.getStreamerActiveStreamMetadata = () => ({
                 id: applicationId,
@@ -183,14 +199,14 @@ async function openCompleteQuestUI() {
             const fn = data => {
                 const progress = quest.config.configVersion === 1 ? data.userStatus.streamProgressSeconds : Math.floor(data.userStatus.progress.STREAM_ON_DESKTOP.value);
                 showNotification({
-                    title: `${applicationName} - Quests Completer`,
+                    title: `${applicationName} - Quest Completer`,
                     body: `Current progress: ${progress}/${secondsNeeded} seconds.`,
                     icon: icon,
                 });
 
                 if (progress >= secondsNeeded) {
                     showNotification({
-                        title: `${applicationName} - Quests Completer`,
+                        title: `${applicationName} - Quest Completer`,
                         body: "Quest Completed.",
                         icon: icon,
                     });
@@ -200,6 +216,7 @@ async function openCompleteQuestUI() {
                 }
             };
             FluxDispatcher.subscribe("QUESTS_SEND_HEARTBEAT_SUCCESS", fn);
+            console.log(`Spoofed your stream to ${applicationName}.`);
         }
         return;
     }
@@ -208,13 +225,13 @@ async function openCompleteQuestUI() {
 export default definePlugin({
     name: "QuestCompleter",
     description: "A plugin to complete quests without having the game installed.",
-    authors: [Devs.HappyEnderman, EquicordDevs.SerStars, EquicordDevs.thororen, MooncordDevs.peaceofficial],
+    authors: [Devs.HappyEnderman, EquicordDevs.SerStars, EquicordDevs.thororen],
     patches: [
         {
             find: "\"invite-button\"",
             replacement: {
-                match: /(function .+?\(.+?\){let{inPopout:.+allowIdle.+?}=.+?\.\i\)\("popup"\),(.+?)=\[\];if\(.+?\){.+"chat-spacer"\)\)\),\(\d,.+?\.jsx\)\(.+?,{children:).+?}}/,
-                replace: "$1[$self.renderQuestButton(),...$2]})}}"
+                match: /(\i\.Fragment,{children:)(\i\i)/,
+                replace: "$1[$self.renderQuestButton(),...$2]"
             }
         },
         {
@@ -226,19 +243,19 @@ export default definePlugin({
         }
     ],
     renderQuestButton() {
-        const ToolTipButton = findByCode("}),color:\"currentColor\"})})}}");
         return (
-            <>
-                <ToolTipButton
-                    label="Complete Quest"
-                    tooltipPosition="bottom"
-                    iconComponent={QuestsIcon()}
-                    onClick={openCompleteQuestUI}
-                >
-                </ToolTipButton>
-                <Forms.FormDivider></Forms.FormDivider>
-
-            </>
+            <Tooltip text="Complete Quest">
+                {tooltipProps => (
+                    <Button style={{ backgroundColor: "transparent" }}
+                        {...tooltipProps}
+                        size={"25"}
+                        className={"vc-quest-completer-icon"}
+                        onClick={openCompleteQuestUI}
+                    >
+                        <ToolBarQuestsIcon />
+                    </Button>
+                )}
+            </Tooltip>
         );
     },
     toolbarAction(e) {
@@ -255,19 +272,5 @@ export default definePlugin({
             </ErrorBoundary>,
             e.toolbar,
         ];
-    },
-    settingsAboutComponent() {
-        return (<>
-            {
-                isApp ?
-                    <Text variant="text-lg/bold">
-                        The plugin should work properly because you are on the Desktop Client.
-                    </Text>
-                    :
-                    <Text variant="text-lg/bold">
-                        This plugin won't work because you are not on the Desktop Client.
-                    </Text>
-            }
-        </>);
     }
 });
