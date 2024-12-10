@@ -23,12 +23,12 @@ const settings = definePluginSettings({
         options: [
             {
                 label: "MoonlighAvatar Default DB",
-                value: "https://userpfp.github.io/UserPFP/source/data.json",
+                value: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/profiles/avatars.json",
                 default: true
             },
             {
                 label: "MoonlighAvatar Backup DB",
-                value: "https://userpfp.thororen.com/data.json"
+                value: "https://raw.githubusercontent.com/PeaceOfficial/Mooncord/refs/heads/main/src/modules/profiles/avatars.json"
             }
         ]
     }
@@ -42,11 +42,11 @@ export default definePlugin({
     settings,
     settingsAboutComponent: () => (
         <>
-            <Link href="https://userpfp.github.io/UserPFP/#how-to-request-a-profile-picture-pfp">
+            <Link href="https://soon-you-can-request.com">
                 <b>Submit your own PFP here!</b>
             </Link>
             <br></br>
-            <Link href="https://ko-fi.com/coolesding">
+            <Link href="https://soon-you-can-request.com">
                 <b>Support MoonlighAvatar here!</b>
             </Link>
         </>
