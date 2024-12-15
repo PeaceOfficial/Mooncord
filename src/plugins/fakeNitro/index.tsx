@@ -17,7 +17,7 @@
 */
 
 import { addPreEditListener, addPreSendListener, removePreEditListener, removePreSendListener } from "@api/MessageEvents";
-import { definePluginSettings } from "@api/Settings";
+import { definePluginSettings, Settings } from "@api/Settings";
 import { Devs } from "@utils/constants";
 import { ApngBlendOp, ApngDisposeOp, importApngJs } from "@utils/dependencies";
 import { getCurrentGuild, getEmojiURL } from "@utils/discord";
@@ -29,6 +29,14 @@ import type { Emoji } from "@webpack/types";
 import type { Message } from "discord-types/general";
 import { applyPalette, GIFEncoder, quantize } from "gifenc";
 import type { ReactElement, ReactNode } from "react";
+
+let premiumType;
+if (Settings.plugins?.NoNitroUpsell?.enabled) {
+    // @ts-ignore
+    premiumType = UserStore?.getCurrentUser()?._realPremiumType ?? UserStore?.getCurrentUser()?.premiumType ?? 0;
+} else {
+    premiumType = UserStore?.getCurrentUser()?.premiumType ?? 0;
+}
 
 const StickerStore = findStoreLazy("StickersStore") as {
     getPremiumPacks(): StickerPack[];
@@ -207,8 +215,8 @@ function makeBypassPatches(): Omit<Patch, "plugin"> {
     return {
         find: "canUseCustomStickersEverywhere:",
         replacement: mapping.map(({ func, predicate }) => ({
-            match: new RegExp(String.raw`(?<=${func}:function\(\i(?:,\i)?\){)`),
-            replace: "return true;",
+            match: new RegExp(String.raw`(?<=${func}:)\i`),
+            replace: "() => true",
             predicate
         }))
     };
@@ -297,8 +305,8 @@ export default definePlugin({
             replacement: [
                 {
                     // Overwrite incoming connection settings proto with our local settings
-                    match: /CONNECTION_OPEN:function\((\i)\){/,
-                    replace: (m, props) => `${m}$self.handleProtoChange(${props}.userSettingsProto,${props}.user);`
+                    match: /function (\i)\((\i)\){(?=.*CONNECTION_OPEN:\1)/,
+                    replace: (m, funcName, props) => `${m}$self.handleProtoChange(${props}.userSettingsProto,${props}.user);`
                 },
                 {
                     // Overwrite non local proto changes with our local settings
@@ -412,18 +420,16 @@ export default definePlugin({
     },
 
     get canUseEmotes() {
-        return (UserStore.getCurrentUser().premiumType ?? 0) > 0;
+        return (premiumType) > 0;
     },
 
     get canUseStickers() {
-        return (UserStore.getCurrentUser().premiumType ?? 0) > 1;
+        return (premiumType) > 1;
     },
 
     handleProtoChange(proto: any, user: any) {
         try {
             if (proto == null || typeof proto === "string") return;
-
-            const premiumType: number = user?.premium_type ?? UserStore?.getCurrentUser()?.premiumType ?? 0;
 
             if (premiumType !== 2) {
                 proto.appearance ??= AppearanceSettingsActionCreators.create();
@@ -453,7 +459,6 @@ export default definePlugin({
     },
 
     handleGradientThemeSelect(backgroundGradientPresetId: number | undefined, theme: number, original: () => void) {
-        const premiumType = UserStore?.getCurrentUser()?.premiumType ?? 0;
         if (premiumType === 2 || backgroundGradientPresetId == null) return original();
 
         if (!PreloadedUserSettingsActionCreators || !AppearanceSettingsActionCreators || !ClientThemeSettingsActionsCreators || !BINARY_READ_OPTIONS) return;
@@ -923,6 +928,9 @@ export default definePlugin({
                     const url = new URL(getEmojiURL(emoji.id, emoji.animated, s.emojiSize));
                     url.searchParams.set("size", s.emojiSize.toString());
                     url.searchParams.set("name", emoji.name);
+                    if (emoji.animated) {
+                        url.pathname = url.pathname.replace(".webp", ".gif");
+                    }
 
                     const linkText = s.hyperLinkText.replaceAll("{{NAME}}", emoji.name);
 

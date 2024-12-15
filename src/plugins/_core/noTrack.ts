@@ -60,17 +60,14 @@ export default definePlugin({
                 }
             ]
         },
-        // TEMP Work until Vencord Fix
-        ...[
-            ".DEBUG_LOGGING)",
-            ".inputDeviceId)||"
-        ].map(find => ({
-            find,
+        {
+            find: ".BetterDiscord||null!=",
             replacement: {
-                match: "getDebugLogging(){",
-                replace: "getDebugLogging(){return false;"
+                // Make hasClientMods return false
+                match: /(?=let \i=window;)/,
+                replace: "return false;"
             }
-        })),
+        }
     ],
 
     startAt: StartAt.Init,
